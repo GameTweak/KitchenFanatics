@@ -31,13 +31,14 @@ namespace KitchenFanatics.Forms
         {
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgw_itemoverview = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(610, 511);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 39);
@@ -47,6 +48,7 @@ namespace KitchenFanatics.Forms
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(470, 511);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(134, 39);
@@ -54,19 +56,23 @@ namespace KitchenFanatics.Forms
             this.button2.Text = "Opret ny vare";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgw_itemoverview
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 40);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(723, 446);
-            this.dataGridView1.TabIndex = 2;
+            this.dgw_itemoverview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgw_itemoverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgw_itemoverview.Location = new System.Drawing.Point(21, 40);
+            this.dgw_itemoverview.Name = "dgw_itemoverview";
+            this.dgw_itemoverview.RowHeadersWidth = 51;
+            this.dgw_itemoverview.RowTemplate.Height = 24;
+            this.dgw_itemoverview.Size = new System.Drawing.Size(723, 446);
+            this.dgw_itemoverview.TabIndex = 2;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(330, 511);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Location = new System.Drawing.Point(21, 512);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(134, 38);
             this.button3.TabIndex = 3;
@@ -77,14 +83,14 @@ namespace KitchenFanatics.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 589);
+            this.ClientSize = new System.Drawing.Size(768, 570);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgw_itemoverview);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "ItemOverview";
             this.Text = "Vareoversigt";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -93,7 +99,7 @@ namespace KitchenFanatics.Forms
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgw_itemoverview;
         private System.Windows.Forms.Button button3;
     }
 }

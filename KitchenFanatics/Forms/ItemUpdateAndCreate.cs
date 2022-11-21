@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace KitchenFanatics
 {
-    public partial class Form1 : Form
+    public partial class ItemUpdateAndCreate : Form
     {
-        public Form1()
+        public ItemUpdateAndCreate()
         {
             InitializeComponent();
         }

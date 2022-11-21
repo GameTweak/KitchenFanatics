@@ -95,6 +95,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KitchenFanaticDataSet.xsd</DependentUpon>
+    </Compile>  
     <Compile Include="Forms\SalesModul.cs">
       <SubType>Form</SubType>
     </Compile>

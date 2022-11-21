@@ -18,8 +18,8 @@
       <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="SaleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Product_SaleLine" Member="Product" ThisKey="ItemNR" OtherKey="ItemNR" Type="Product" IsForeignKey="true" />
       <Association Name="Sale_SaleLine" Member="Sale" ThisKey="SaleID" OtherKey="SaleID" Type="Sale" IsForeignKey="true" />
+      <Association Name="Product_SaleLine" Member="Product" ThisKey="ItemNR" OtherKey="ItemNR" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ProductCategory" Member="ProductCategories">
@@ -29,6 +29,18 @@
       <Column Name="CategoryDecription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="UniqueAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ProductCategory_Product" Member="Products" ThisKey="CategoryID" OtherKey="ItemCategory" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sale" Member="Sales">
+    <Type Name="Sale">
+      <Column Name="SaleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SaleDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SaleTotal" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="DeliveryAddress" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="SaleStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Sale_SaleLine" Member="SaleLines" ThisKey="SaleID" OtherKey="SaleID" Type="SaleLine" />
+      <Association Name="Customer_Sale" Member="Customer" ThisKey="CustomerID" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Products" Member="Products">
@@ -42,20 +54,9 @@
       <Column Name="ItemHeight" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="ItemDepth" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="ItemWeight" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ItemTags" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="Product_SaleLine" Member="SaleLines" ThisKey="ItemNR" OtherKey="ItemNR" Type="SaleLine" />
       <Association Name="ProductCategory_Product" Member="ProductCategory" ThisKey="ItemCategory" OtherKey="CategoryID" Type="ProductCategory" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Sale" Member="Sales">
-    <Type Name="Sale">
-      <Column Name="SaleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SaleDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="SaleTotal" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="DeliveryAddress" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="SaleStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Sale_SaleLine" Member="SaleLines" ThisKey="SaleID" OtherKey="SaleID" Type="SaleLine" />
-      <Association Name="Customer_Sale" Member="Customer" ThisKey="CustomerID" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

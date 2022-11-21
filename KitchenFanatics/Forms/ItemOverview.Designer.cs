@@ -38,20 +38,20 @@ namespace KitchenFanatics.Forms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(653, 542);
+            this.button1.Location = new System.Drawing.Point(610, 511);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(134, 39);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Rediger vare";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(559, 542);
+            this.button2.Location = new System.Drawing.Point(470, 511);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(134, 39);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "Opret ny vare";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
@@ -66,11 +66,11 @@ namespace KitchenFanatics.Forms
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(460, 542);
+            this.button3.Location = new System.Drawing.Point(330, 511);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(134, 38);
             this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
+            this.button3.Text = "Udskriv alle varer";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // ItemOverview

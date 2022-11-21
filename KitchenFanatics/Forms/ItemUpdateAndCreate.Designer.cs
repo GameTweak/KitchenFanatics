@@ -47,6 +47,8 @@
             this.txt_itemweight = new System.Windows.Forms.TextBox();
             this.txt_itemdepth = new System.Windows.Forms.TextBox();
             this.txt_itemheight = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txt_itemcategory = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -77,7 +79,7 @@
             // btn_deleteitem
             // 
             this.btn_deleteitem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_deleteitem.Location = new System.Drawing.Point(402, 227);
+            this.btn_deleteitem.Location = new System.Drawing.Point(402, 377);
             this.btn_deleteitem.Name = "btn_deleteitem";
             this.btn_deleteitem.Size = new System.Drawing.Size(98, 44);
             this.btn_deleteitem.TabIndex = 4;
@@ -87,7 +89,7 @@
             // btn_saveitem
             // 
             this.btn_saveitem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_saveitem.Location = new System.Drawing.Point(506, 227);
+            this.btn_saveitem.Location = new System.Drawing.Point(506, 377);
             this.btn_saveitem.Name = "btn_saveitem";
             this.btn_saveitem.Size = new System.Drawing.Size(98, 44);
             this.btn_saveitem.TabIndex = 5;
@@ -129,7 +131,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 186);
+            this.label5.Location = new System.Drawing.Point(18, 235);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 17);
             this.label5.TabIndex = 10;
@@ -144,9 +146,10 @@
             // 
             // txt_itemtags
             // 
-            this.txt_itemtags.Location = new System.Drawing.Point(96, 186);
+            this.txt_itemtags.Location = new System.Drawing.Point(96, 235);
+            this.txt_itemtags.Multiline = true;
             this.txt_itemtags.Name = "txt_itemtags";
-            this.txt_itemtags.Size = new System.Drawing.Size(506, 22);
+            this.txt_itemtags.Size = new System.Drawing.Size(506, 121);
             this.txt_itemtags.TabIndex = 12;
             // 
             // label6
@@ -206,11 +209,29 @@
             this.txt_itemheight.Size = new System.Drawing.Size(70, 22);
             this.txt_itemheight.TabIndex = 19;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 194);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 17);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Kategori:";
+            // 
+            // txt_itemcategory
+            // 
+            this.txt_itemcategory.Location = new System.Drawing.Point(96, 194);
+            this.txt_itemcategory.Name = "txt_itemcategory";
+            this.txt_itemcategory.Size = new System.Drawing.Size(506, 22);
+            this.txt_itemcategory.TabIndex = 21;
+            // 
             // ItemUpdateAndCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 293);
+            this.ClientSize = new System.Drawing.Size(625, 443);
+            this.Controls.Add(this.txt_itemcategory);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.txt_itemheight);
             this.Controls.Add(this.txt_itemdepth);
             this.Controls.Add(this.txt_itemweight);
@@ -257,6 +278,8 @@
         private System.Windows.Forms.TextBox txt_itemweight;
         private System.Windows.Forms.TextBox txt_itemdepth;
         private System.Windows.Forms.TextBox txt_itemheight;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txt_itemcategory;
     }
 }
 

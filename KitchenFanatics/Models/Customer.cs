@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Models
 {
-    internal class Customer
+    public class Customer
     {
         public Customer(string firstname, string lastname, string email, string customeraddress, int phonenumber) 
         {

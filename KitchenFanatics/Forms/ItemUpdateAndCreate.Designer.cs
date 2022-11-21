@@ -76,6 +76,7 @@
             // 
             // btn_deleteitem
             // 
+            this.btn_deleteitem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_deleteitem.Location = new System.Drawing.Point(402, 227);
             this.btn_deleteitem.Name = "btn_deleteitem";
             this.btn_deleteitem.Size = new System.Drawing.Size(98, 44);
@@ -85,6 +86,7 @@
             // 
             // btn_saveitem
             // 
+            this.btn_saveitem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_saveitem.Location = new System.Drawing.Point(506, 227);
             this.btn_saveitem.Name = "btn_saveitem";
             this.btn_saveitem.Size = new System.Drawing.Size(98, 44);

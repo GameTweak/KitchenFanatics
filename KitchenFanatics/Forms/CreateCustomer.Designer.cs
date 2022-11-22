@@ -148,6 +148,7 @@
             this.Controls.Add(this.customerFirstName_lb);
             this.Name = "CreateCustomer";
             this.Text = "CreateCustomer";
+            this.Load += new System.EventHandler(this.CreateCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

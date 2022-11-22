@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.customerFullName_lb = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.customerOverview_dgv = new System.Windows.Forms.DataGridView();
             this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +48,7 @@
             this.customerMail_tb = new System.Windows.Forms.TextBox();
             this.customerPhoneNumber_tb = new System.Windows.Forms.TextBox();
             this.customerAddress_tb = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerOverview_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).BeginInit();
             this.SuspendLayout();
@@ -62,24 +62,25 @@
             this.customerFullName_lb.TabIndex = 0;
             this.customerFullName_lb.Text = "Name";
             // 
-            // dataGridView1
+            // customerOverview_dgv
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.customerOverview_dgv.AutoGenerateColumns = false;
+            this.customerOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.customerOverview_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.customerIDDataGridViewTextBoxColumn,
             this.firstNameDataGridViewTextBoxColumn,
             this.lastNameDataGridViewTextBoxColumn,
             this.customerAddressDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
             this.phoneNumberDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.customerBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 89);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 281);
-            this.dataGridView1.TabIndex = 1;
+            this.customerOverview_dgv.DataSource = this.customerBindingSource;
+            this.customerOverview_dgv.Location = new System.Drawing.Point(12, 89);
+            this.customerOverview_dgv.Name = "customerOverview_dgv";
+            this.customerOverview_dgv.RowHeadersWidth = 51;
+            this.customerOverview_dgv.RowTemplate.Height = 24;
+            this.customerOverview_dgv.Size = new System.Drawing.Size(776, 281);
+            this.customerOverview_dgv.TabIndex = 1;
+            this.customerOverview_dgv.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RowClick_customer);
             // 
             // customerIDDataGridViewTextBoxColumn
             // 
@@ -152,6 +153,7 @@
             this.createCustomer.TabIndex = 2;
             this.createCustomer.Text = "Create Customer";
             this.createCustomer.UseVisualStyleBackColor = true;
+            this.createCustomer.Click += new System.EventHandler(this.createCustomer_Click);
             // 
             // customerMail_lb
             // 
@@ -179,7 +181,6 @@
             this.customerAddress_lb.Size = new System.Drawing.Size(58, 16);
             this.customerAddress_lb.TabIndex = 5;
             this.customerAddress_lb.Text = "Address";
-            this.customerAddress_lb.Click += new System.EventHandler(this.customerAddress_lb_Click);
             // 
             // customerFullName_tb
             // 
@@ -222,11 +223,11 @@
             this.Controls.Add(this.customerPhoneNumber_lb);
             this.Controls.Add(this.customerMail_lb);
             this.Controls.Add(this.createCustomer);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.customerOverview_dgv);
             this.Controls.Add(this.customerFullName_lb);
             this.Name = "CustomerOverview";
             this.Text = "CustomerOverview";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerOverview_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).EndInit();
             this.ResumeLayout(false);
@@ -237,7 +238,7 @@
         #endregion
 
         private System.Windows.Forms.Label customerFullName_lb;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView customerOverview_dgv;
         private KitchenFanaticDataSet kitchenFanaticDataSet;
         private System.Windows.Forms.BindingSource customerBindingSource;
         private KitchenFanaticDataSetTableAdapters.CustomerTableAdapter customerTableAdapter;

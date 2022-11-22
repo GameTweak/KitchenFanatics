@@ -65,9 +65,12 @@ namespace KitchenFanatics.Repositories
                 // Returns the sale
                 return saleHistories;
             }
-        }
+        } 
 
 
 
-    }
+    } 
 }
+
+
+        

@@ -16,5 +16,10 @@ namespace KitchenFanatics.Forms
         {
             InitializeComponent();
         }
+
+        private void CreateCustomer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

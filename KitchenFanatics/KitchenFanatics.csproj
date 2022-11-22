@@ -114,6 +114,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\ItemRepository.cs" />
     <Compile Include="Repositories\SaleRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
@@ -122,6 +123,7 @@
     <EmbeddedResource Include="Forms\CustomerOverview.resx">
       <DependentUpon>CustomerOverview.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\SaleService.cs" />
     <EmbeddedResource Include="Forms\FormSelector.resx">
       <DependentUpon>FormSelector.cs</DependentUpon>
@@ -163,7 +165,7 @@
     <None Include="KitchenFanaticDataSet.xss">
       <DependentUpon>KitchenFanaticDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Properties\DataSources\KitchenFanatics.Models.SaleHistory.datasource" />
+    <None Include="Properties\DataSources\KitchenFanatics.Database.Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

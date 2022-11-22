@@ -36,14 +36,27 @@ namespace KitchenFanatics.Repositories
                         saleHistory.Customer.LastName,
                         saleHistory.Customer.Email,
                         saleHistory.Customer.CustomerAddress,
-                        1,
+                        saleHistory.Customer.PhoneNumber,
                         saleHistory.Customer.CustomerID
                         );
 
                     // Foreach loop adding all the items to the List
-                    foreach(var item in dbContext.SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID))
+                    foreach (var item in dbContext.SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID))
                     {
-                        Item lineItem = new Item();
+                        var product = item.Product;
+
+                        Item lineItem = new Item(
+                            product.ItemNR,
+                            product.ItemName,
+                            product.ItemPrice,
+                            product.ItemStock,
+                            product.ItemCategory,
+                            product.ItemWidth,
+                            product.ItemHeight,
+                            product.ItemDepth,
+                            product.ItemWeight,
+                            product.ItemTags);
+
                         items.Add(lineItem);
                     }
 
@@ -61,16 +74,9 @@ namespace KitchenFanatics.Repositories
                     // Adds the sale to the list
                     saleHistories.Add(sale);
                 }
-
                 // Returns the sale
                 return saleHistories;
             }
-        } 
-
-
-
-    } 
+        }
+    }
 }
-
-
-        

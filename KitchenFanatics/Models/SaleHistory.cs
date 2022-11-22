@@ -15,6 +15,18 @@ namespace KitchenFanatics.Models
         /// 
         /// Written by Esben
         /// </summary>
+         
+        // Constructor for defining af instance in the Sale History
+        public SaleHistory(int id, DateTime date, decimal price, string address, int status, List<Item> itemlist, Customer customer)
+        {
+            this.Id = id;
+            this.SaleDate = date;
+            this.TotalPrice = price;
+            this.DeliveryAddress = address;
+            this.SaleStatus = status;
+            this.Items = itemlist;
+            this.Customer = customer;
+        }
         
         // Used to set and get the ID
         public int Id { get; set; }

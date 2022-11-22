@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Models
 {
-    internal class Customer
+    public class Customer
     {
+        public Customer(string firstname, string lastname, string email, string customeraddress, int phonenumber, int id) 
+        {
+            this.FirstName = firstname;
+            this.LastName = lastname;
+            this.Email = email;
+            this.Customeraddress = customeraddress;
+            this.phonenumber = phonenumber;
+            this.id = id;
+        }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Customeraddress { get; set; }
+        public int phonenumber { get; set; }
+        public int id { get; set; }
     }
 }

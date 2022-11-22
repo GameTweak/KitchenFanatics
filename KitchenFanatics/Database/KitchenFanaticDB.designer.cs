@@ -39,12 +39,12 @@ namespace KitchenFanatics.Database
     partial void InsertProductCategory(ProductCategory instance);
     partial void UpdateProductCategory(ProductCategory instance);
     partial void DeleteProductCategory(ProductCategory instance);
-    partial void InsertProduct(Product instance);
-    partial void UpdateProduct(Product instance);
-    partial void DeleteProduct(Product instance);
     partial void InsertSale(Sale instance);
     partial void UpdateSale(Sale instance);
     partial void DeleteSale(Sale instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
     #endregion
 		
 		public KitchenFanaticDBDataContext() : 
@@ -101,19 +101,19 @@ namespace KitchenFanatics.Database
 			}
 		}
 		
-		public System.Data.Linq.Table<Product> Products
-		{
-			get
-			{
-				return this.GetTable<Product>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Sale> Sales
 		{
 			get
 			{
 				return this.GetTable<Sale>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Product> Products
+		{
+			get
+			{
+				return this.GetTable<Product>();
 			}
 		}
 	}
@@ -344,9 +344,9 @@ namespace KitchenFanatics.Database
 		
 		private System.Nullable<int> _SaleID;
 		
-		private EntityRef<Product> _Product;
-		
 		private EntityRef<Sale> _Sale;
+		
+		private EntityRef<Product> _Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -366,8 +366,8 @@ namespace KitchenFanatics.Database
 		
 		public SaleLine()
 		{
-			this._Product = default(EntityRef<Product>);
 			this._Sale = default(EntityRef<Sale>);
+			this._Product = default(EntityRef<Product>);
 			OnCreated();
 		}
 		
@@ -479,40 +479,6 @@ namespace KitchenFanatics.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_SaleLine", Storage="_Product", ThisKey="ItemNR", OtherKey="ItemNR", IsForeignKey=true)]
-		public Product Product
-		{
-			get
-			{
-				return this._Product.Entity;
-			}
-			set
-			{
-				Product previousValue = this._Product.Entity;
-				if (((previousValue != value) 
-							|| (this._Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Product.Entity = null;
-						previousValue.SaleLines.Remove(this);
-					}
-					this._Product.Entity = value;
-					if ((value != null))
-					{
-						value.SaleLines.Add(this);
-						this._ItemNR = value.ItemNR;
-					}
-					else
-					{
-						this._ItemNR = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sale_SaleLine", Storage="_Sale", ThisKey="SaleID", OtherKey="SaleID", IsForeignKey=true)]
 		public Sale Sale
 		{
@@ -543,6 +509,40 @@ namespace KitchenFanatics.Database
 						this._SaleID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Sale");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_SaleLine", Storage="_Product", ThisKey="ItemNR", OtherKey="ItemNR", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.SaleLines.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.SaleLines.Add(this);
+						this._ItemNR = value.ItemNR;
+					}
+					else
+					{
+						this._ItemNR = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Product");
 				}
 			}
 		}
@@ -727,329 +727,6 @@ namespace KitchenFanatics.Database
 		{
 			this.SendPropertyChanging();
 			entity.ProductCategory = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
-	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ItemNR;
-		
-		private string _ItemName;
-		
-		private decimal _ItemPrice;
-		
-		private int _ItemStock;
-		
-		private System.Nullable<int> _ItemCategory;
-		
-		private System.Nullable<decimal> _ItemWidth;
-		
-		private System.Nullable<decimal> _ItemHeight;
-		
-		private System.Nullable<decimal> _ItemDepth;
-		
-		private System.Nullable<decimal> _ItemWeight;
-		
-		private EntitySet<SaleLine> _SaleLines;
-		
-		private EntityRef<ProductCategory> _ProductCategory;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnItemNRChanging(int value);
-    partial void OnItemNRChanged();
-    partial void OnItemNameChanging(string value);
-    partial void OnItemNameChanged();
-    partial void OnItemPriceChanging(decimal value);
-    partial void OnItemPriceChanged();
-    partial void OnItemStockChanging(int value);
-    partial void OnItemStockChanged();
-    partial void OnItemCategoryChanging(System.Nullable<int> value);
-    partial void OnItemCategoryChanged();
-    partial void OnItemWidthChanging(System.Nullable<decimal> value);
-    partial void OnItemWidthChanged();
-    partial void OnItemHeightChanging(System.Nullable<decimal> value);
-    partial void OnItemHeightChanged();
-    partial void OnItemDepthChanging(System.Nullable<decimal> value);
-    partial void OnItemDepthChanged();
-    partial void OnItemWeightChanging(System.Nullable<decimal> value);
-    partial void OnItemWeightChanged();
-    #endregion
-		
-		public Product()
-		{
-			this._SaleLines = new EntitySet<SaleLine>(new Action<SaleLine>(this.attach_SaleLines), new Action<SaleLine>(this.detach_SaleLines));
-			this._ProductCategory = default(EntityRef<ProductCategory>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemNR", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ItemNR
-		{
-			get
-			{
-				return this._ItemNR;
-			}
-			set
-			{
-				if ((this._ItemNR != value))
-				{
-					this.OnItemNRChanging(value);
-					this.SendPropertyChanging();
-					this._ItemNR = value;
-					this.SendPropertyChanged("ItemNR");
-					this.OnItemNRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string ItemName
-		{
-			get
-			{
-				return this._ItemName;
-			}
-			set
-			{
-				if ((this._ItemName != value))
-				{
-					this.OnItemNameChanging(value);
-					this.SendPropertyChanging();
-					this._ItemName = value;
-					this.SendPropertyChanged("ItemName");
-					this.OnItemNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemPrice", DbType="Decimal(18,0) NOT NULL")]
-		public decimal ItemPrice
-		{
-			get
-			{
-				return this._ItemPrice;
-			}
-			set
-			{
-				if ((this._ItemPrice != value))
-				{
-					this.OnItemPriceChanging(value);
-					this.SendPropertyChanging();
-					this._ItemPrice = value;
-					this.SendPropertyChanged("ItemPrice");
-					this.OnItemPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemStock", DbType="Int NOT NULL")]
-		public int ItemStock
-		{
-			get
-			{
-				return this._ItemStock;
-			}
-			set
-			{
-				if ((this._ItemStock != value))
-				{
-					this.OnItemStockChanging(value);
-					this.SendPropertyChanging();
-					this._ItemStock = value;
-					this.SendPropertyChanged("ItemStock");
-					this.OnItemStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCategory", DbType="Int")]
-		public System.Nullable<int> ItemCategory
-		{
-			get
-			{
-				return this._ItemCategory;
-			}
-			set
-			{
-				if ((this._ItemCategory != value))
-				{
-					if (this._ProductCategory.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnItemCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._ItemCategory = value;
-					this.SendPropertyChanged("ItemCategory");
-					this.OnItemCategoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemWidth", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ItemWidth
-		{
-			get
-			{
-				return this._ItemWidth;
-			}
-			set
-			{
-				if ((this._ItemWidth != value))
-				{
-					this.OnItemWidthChanging(value);
-					this.SendPropertyChanging();
-					this._ItemWidth = value;
-					this.SendPropertyChanged("ItemWidth");
-					this.OnItemWidthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemHeight", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ItemHeight
-		{
-			get
-			{
-				return this._ItemHeight;
-			}
-			set
-			{
-				if ((this._ItemHeight != value))
-				{
-					this.OnItemHeightChanging(value);
-					this.SendPropertyChanging();
-					this._ItemHeight = value;
-					this.SendPropertyChanged("ItemHeight");
-					this.OnItemHeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDepth", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ItemDepth
-		{
-			get
-			{
-				return this._ItemDepth;
-			}
-			set
-			{
-				if ((this._ItemDepth != value))
-				{
-					this.OnItemDepthChanging(value);
-					this.SendPropertyChanging();
-					this._ItemDepth = value;
-					this.SendPropertyChanged("ItemDepth");
-					this.OnItemDepthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemWeight", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ItemWeight
-		{
-			get
-			{
-				return this._ItemWeight;
-			}
-			set
-			{
-				if ((this._ItemWeight != value))
-				{
-					this.OnItemWeightChanging(value);
-					this.SendPropertyChanging();
-					this._ItemWeight = value;
-					this.SendPropertyChanged("ItemWeight");
-					this.OnItemWeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_SaleLine", Storage="_SaleLines", ThisKey="ItemNR", OtherKey="ItemNR")]
-		public EntitySet<SaleLine> SaleLines
-		{
-			get
-			{
-				return this._SaleLines;
-			}
-			set
-			{
-				this._SaleLines.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductCategory_Product", Storage="_ProductCategory", ThisKey="ItemCategory", OtherKey="CategoryID", IsForeignKey=true)]
-		public ProductCategory ProductCategory
-		{
-			get
-			{
-				return this._ProductCategory.Entity;
-			}
-			set
-			{
-				ProductCategory previousValue = this._ProductCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._ProductCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ProductCategory.Entity = null;
-						previousValue.Products.Remove(this);
-					}
-					this._ProductCategory.Entity = value;
-					if ((value != null))
-					{
-						value.Products.Add(this);
-						this._ItemCategory = value.CategoryID;
-					}
-					else
-					{
-						this._ItemCategory = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ProductCategory");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SaleLines(SaleLine entity)
-		{
-			this.SendPropertyChanging();
-			entity.Product = this;
-		}
-		
-		private void detach_SaleLines(SaleLine entity)
-		{
-			this.SendPropertyChanging();
-			entity.Product = null;
 		}
 	}
 	
@@ -1301,6 +978,353 @@ namespace KitchenFanatics.Database
 		{
 			this.SendPropertyChanging();
 			entity.Sale = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ItemNR;
+		
+		private string _ItemName;
+		
+		private decimal _ItemPrice;
+		
+		private int _ItemStock;
+		
+		private System.Nullable<int> _ItemCategory;
+		
+		private System.Nullable<decimal> _ItemWidth;
+		
+		private System.Nullable<decimal> _ItemHeight;
+		
+		private System.Nullable<decimal> _ItemDepth;
+		
+		private System.Nullable<decimal> _ItemWeight;
+		
+		private string _ItemTags;
+		
+		private EntitySet<SaleLine> _SaleLines;
+		
+		private EntityRef<ProductCategory> _ProductCategory;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnItemNRChanging(int value);
+    partial void OnItemNRChanged();
+    partial void OnItemNameChanging(string value);
+    partial void OnItemNameChanged();
+    partial void OnItemPriceChanging(decimal value);
+    partial void OnItemPriceChanged();
+    partial void OnItemStockChanging(int value);
+    partial void OnItemStockChanged();
+    partial void OnItemCategoryChanging(System.Nullable<int> value);
+    partial void OnItemCategoryChanged();
+    partial void OnItemWidthChanging(System.Nullable<decimal> value);
+    partial void OnItemWidthChanged();
+    partial void OnItemHeightChanging(System.Nullable<decimal> value);
+    partial void OnItemHeightChanged();
+    partial void OnItemDepthChanging(System.Nullable<decimal> value);
+    partial void OnItemDepthChanged();
+    partial void OnItemWeightChanging(System.Nullable<decimal> value);
+    partial void OnItemWeightChanged();
+    partial void OnItemTagsChanging(string value);
+    partial void OnItemTagsChanged();
+    #endregion
+		
+		public Product()
+		{
+			this._SaleLines = new EntitySet<SaleLine>(new Action<SaleLine>(this.attach_SaleLines), new Action<SaleLine>(this.detach_SaleLines));
+			this._ProductCategory = default(EntityRef<ProductCategory>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemNR", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ItemNR
+		{
+			get
+			{
+				return this._ItemNR;
+			}
+			set
+			{
+				if ((this._ItemNR != value))
+				{
+					this.OnItemNRChanging(value);
+					this.SendPropertyChanging();
+					this._ItemNR = value;
+					this.SendPropertyChanged("ItemNR");
+					this.OnItemNRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ItemName
+		{
+			get
+			{
+				return this._ItemName;
+			}
+			set
+			{
+				if ((this._ItemName != value))
+				{
+					this.OnItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._ItemName = value;
+					this.SendPropertyChanged("ItemName");
+					this.OnItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemPrice", DbType="Decimal(18,0) NOT NULL")]
+		public decimal ItemPrice
+		{
+			get
+			{
+				return this._ItemPrice;
+			}
+			set
+			{
+				if ((this._ItemPrice != value))
+				{
+					this.OnItemPriceChanging(value);
+					this.SendPropertyChanging();
+					this._ItemPrice = value;
+					this.SendPropertyChanged("ItemPrice");
+					this.OnItemPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemStock", DbType="Int NOT NULL")]
+		public int ItemStock
+		{
+			get
+			{
+				return this._ItemStock;
+			}
+			set
+			{
+				if ((this._ItemStock != value))
+				{
+					this.OnItemStockChanging(value);
+					this.SendPropertyChanging();
+					this._ItemStock = value;
+					this.SendPropertyChanged("ItemStock");
+					this.OnItemStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCategory", DbType="Int")]
+		public System.Nullable<int> ItemCategory
+		{
+			get
+			{
+				return this._ItemCategory;
+			}
+			set
+			{
+				if ((this._ItemCategory != value))
+				{
+					if (this._ProductCategory.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnItemCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._ItemCategory = value;
+					this.SendPropertyChanged("ItemCategory");
+					this.OnItemCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemWidth", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ItemWidth
+		{
+			get
+			{
+				return this._ItemWidth;
+			}
+			set
+			{
+				if ((this._ItemWidth != value))
+				{
+					this.OnItemWidthChanging(value);
+					this.SendPropertyChanging();
+					this._ItemWidth = value;
+					this.SendPropertyChanged("ItemWidth");
+					this.OnItemWidthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemHeight", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ItemHeight
+		{
+			get
+			{
+				return this._ItemHeight;
+			}
+			set
+			{
+				if ((this._ItemHeight != value))
+				{
+					this.OnItemHeightChanging(value);
+					this.SendPropertyChanging();
+					this._ItemHeight = value;
+					this.SendPropertyChanged("ItemHeight");
+					this.OnItemHeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDepth", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ItemDepth
+		{
+			get
+			{
+				return this._ItemDepth;
+			}
+			set
+			{
+				if ((this._ItemDepth != value))
+				{
+					this.OnItemDepthChanging(value);
+					this.SendPropertyChanging();
+					this._ItemDepth = value;
+					this.SendPropertyChanged("ItemDepth");
+					this.OnItemDepthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemWeight", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ItemWeight
+		{
+			get
+			{
+				return this._ItemWeight;
+			}
+			set
+			{
+				if ((this._ItemWeight != value))
+				{
+					this.OnItemWeightChanging(value);
+					this.SendPropertyChanging();
+					this._ItemWeight = value;
+					this.SendPropertyChanged("ItemWeight");
+					this.OnItemWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemTags", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string ItemTags
+		{
+			get
+			{
+				return this._ItemTags;
+			}
+			set
+			{
+				if ((this._ItemTags != value))
+				{
+					this.OnItemTagsChanging(value);
+					this.SendPropertyChanging();
+					this._ItemTags = value;
+					this.SendPropertyChanged("ItemTags");
+					this.OnItemTagsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_SaleLine", Storage="_SaleLines", ThisKey="ItemNR", OtherKey="ItemNR")]
+		public EntitySet<SaleLine> SaleLines
+		{
+			get
+			{
+				return this._SaleLines;
+			}
+			set
+			{
+				this._SaleLines.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductCategory_Product", Storage="_ProductCategory", ThisKey="ItemCategory", OtherKey="CategoryID", IsForeignKey=true)]
+		public ProductCategory ProductCategory
+		{
+			get
+			{
+				return this._ProductCategory.Entity;
+			}
+			set
+			{
+				ProductCategory previousValue = this._ProductCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._ProductCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ProductCategory.Entity = null;
+						previousValue.Products.Remove(this);
+					}
+					this._ProductCategory.Entity = value;
+					if ((value != null))
+					{
+						value.Products.Add(this);
+						this._ItemCategory = value.CategoryID;
+					}
+					else
+					{
+						this._ItemCategory = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ProductCategory");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SaleLines(SaleLine entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_SaleLines(SaleLine entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
 		}
 	}
 }

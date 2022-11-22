@@ -79,6 +79,12 @@
     <Compile Include="Forms\CustomerOverview.Designer.cs">
       <DependentUpon>CustomerOverview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSelector.Designer.cs">
+      <DependentUpon>FormSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ItemOverview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,12 +101,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KitchenFanaticDataSet.xsd</DependentUpon>
-    </Compile>  
-    <Compile Include="Forms\SalesModul.cs">
+    </Compile>
+    <Compile Include="Forms\SalesModule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SalesModul.Designer.cs">
-      <DependentUpon>SalesModul.cs</DependentUpon>
+    <Compile Include="Forms\SalesModule.Designer.cs">
+      <DependentUpon>SalesModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\SaleHistory.cs" />
@@ -117,14 +123,17 @@
       <DependentUpon>CustomerOverview.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Services\SaleService.cs" />
+    <EmbeddedResource Include="Forms\FormSelector.resx">
+      <DependentUpon>FormSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemOverview.resx">
       <DependentUpon>ItemOverview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemUpdateAndCreate.resx">
       <DependentUpon>ItemUpdateAndCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SalesModul.resx">
-      <DependentUpon>SalesModul.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SalesModule.resx">
+      <DependentUpon>SalesModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -154,6 +163,7 @@
     <None Include="KitchenFanaticDataSet.xss">
       <DependentUpon>KitchenFanaticDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Properties\DataSources\KitchenFanatics.Models.SaleHistory.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

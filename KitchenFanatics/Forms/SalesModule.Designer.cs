@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SaleHistories = new System.Windows.Forms.DataGridView();
+            this.saleHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -51,11 +52,10 @@
             this.deliveryAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -95,6 +95,10 @@
             this.DGV_SaleHistories.RowTemplate.Height = 24;
             this.DGV_SaleHistories.Size = new System.Drawing.Size(688, 248);
             this.DGV_SaleHistories.TabIndex = 1;
+            // 
+            // saleHistoryBindingSource
+            // 
+            this.saleHistoryBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleHistory);
             // 
             // textBox3
             // 
@@ -248,20 +252,16 @@
             // 
             // customerDataGridViewTextBoxColumn
             // 
-            this.customerDataGridViewTextBoxColumn.DataPropertyName = "Customer";
+            this.customerDataGridViewTextBoxColumn.DataPropertyName = "CustomerName";
             this.customerDataGridViewTextBoxColumn.HeaderText = "Kunde";
             this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
             this.customerDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // saleHistoryBindingSource
-            // 
-            this.saleHistoryBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleHistory);
             // 
             // SalesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 480);
+            this.ClientSize = new System.Drawing.Size(710, 571);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -280,9 +280,9 @@
             this.Text = "SalesModul";
             this.Load += new System.EventHandler(this.SalesModul_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

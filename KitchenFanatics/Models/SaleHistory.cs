@@ -48,5 +48,7 @@ namespace KitchenFanatics.Models
 
         // The customer connected to the Sale
         public Customer Customer { get; set; }
+
+        public String CustomerName { get { return Customer.FirstName + " " + Customer.LastName; } }
     }
 }

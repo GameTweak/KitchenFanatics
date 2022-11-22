@@ -19,7 +19,7 @@ namespace KitchenFanatics.Services
         public List<SaleHistory> GetSaleHistories()
         {
             SaleRepository saleRepository = new SaleRepository();
-            return saleRepository.GetAllSales();
+            return saleRepository.GetAllSalesV2();
         }
     }
 }

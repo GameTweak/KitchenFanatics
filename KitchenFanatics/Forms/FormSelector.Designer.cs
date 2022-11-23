@@ -73,7 +73,6 @@
             this.btn_ItemUpdateNCreate.TabIndex = 3;
             this.btn_ItemUpdateNCreate.Text = "Åben Item Update and Create";
             this.btn_ItemUpdateNCreate.UseVisualStyleBackColor = true;
-            this.btn_ItemUpdateNCreate.Click += new System.EventHandler(this.btn_ItemUpdateNCreate_Click);
             // 
             // btn_SaleModule
             // 

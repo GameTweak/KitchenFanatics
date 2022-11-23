@@ -85,17 +85,23 @@
     <Compile Include="Forms\FormSelector.Designer.cs">
       <DependentUpon>FormSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ItemCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemCreate.Designer.cs">
+      <DependentUpon>ItemCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ItemOverview.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ItemOverview.Designer.cs">
       <DependentUpon>ItemOverview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ItemUpdateAndCreate.cs">
+    <Compile Include="Forms\ItemUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ItemUpdateAndCreate.Designer.cs">
-      <DependentUpon>ItemUpdateAndCreate.cs</DependentUpon>
+    <Compile Include="Forms\ItemUpdate.Designer.cs">
+      <DependentUpon>ItemUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="KitchenFanaticDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -128,11 +134,14 @@
     <EmbeddedResource Include="Forms\FormSelector.resx">
       <DependentUpon>FormSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemCreate.resx">
+      <DependentUpon>ItemCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemOverview.resx">
       <DependentUpon>ItemOverview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ItemUpdateAndCreate.resx">
-      <DependentUpon>ItemUpdateAndCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ItemUpdate.resx">
+      <DependentUpon>ItemUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SalesModule.resx">
       <DependentUpon>SalesModule.cs</DependentUpon>
@@ -166,6 +175,7 @@
       <DependentUpon>KitchenFanaticDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\KitchenFanatics.Database.Product.datasource" />
+    <None Include="Properties\DataSources\KitchenFanatics.Models.Item1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

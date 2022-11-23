@@ -41,6 +41,7 @@ namespace KitchenFanatics.Repositories
         /// </summary>
         /// <param name="item"></param>
         public void CreateItem(Models.Item item)
+
         {
             //a new object of the database Product type is instansiated
             Database.Product newItem = new Database.Product();
@@ -100,6 +101,6 @@ namespace KitchenFanatics.Repositories
             dbContext.Products.DeleteOnSubmit(dbItem);
             //the changes are submitted
             dbContext.SubmitChanges();
-        }
-    }
+        } 
+    } 
 }

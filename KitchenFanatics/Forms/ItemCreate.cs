@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KitchenFanatics
+namespace KitchenFanatics.Forms
 {
-    public partial class ItemUpdateAndCreate : Form
+    public partial class ItemCreate : Form
     {
-        public ItemUpdateAndCreate()
+        public ItemCreate()
         {
             InitializeComponent();
+        }
+
+        private void ItemCreate_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

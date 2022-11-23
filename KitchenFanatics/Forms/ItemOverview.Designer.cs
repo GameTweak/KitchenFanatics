@@ -30,66 +30,71 @@ namespace KitchenFanatics.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_edititem = new System.Windows.Forms.Button();
+            this.btn_createnewitem = new System.Windows.Forms.Button();
             this.dgw_itemoverview = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemCategoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemWidthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemHeightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemDepthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemWeightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemTagsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.widthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.heightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.depthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tagsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_edititem
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1141, 511);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 39);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Rediger vare";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_edititem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_edititem.Location = new System.Drawing.Point(817, 511);
+            this.btn_edititem.Name = "btn_edititem";
+            this.btn_edititem.Size = new System.Drawing.Size(134, 39);
+            this.btn_edititem.TabIndex = 0;
+            this.btn_edititem.Text = "Rediger vare";
+            this.btn_edititem.UseVisualStyleBackColor = true;
+            this.btn_edititem.Click += new System.EventHandler(this.btn_edititem_Click);
             // 
-            // button2
+            // btn_createnewitem
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(1001, 511);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(134, 39);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Opret ny vare";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_createnewitem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_createnewitem.Location = new System.Drawing.Point(677, 511);
+            this.btn_createnewitem.Name = "btn_createnewitem";
+            this.btn_createnewitem.Size = new System.Drawing.Size(134, 39);
+            this.btn_createnewitem.TabIndex = 1;
+            this.btn_createnewitem.Text = "Opret ny vare";
+            this.btn_createnewitem.UseVisualStyleBackColor = true;
+            this.btn_createnewitem.Click += new System.EventHandler(this.btn_createnewitem_Click);
             // 
             // dgw_itemoverview
             // 
             this.dgw_itemoverview.AllowUserToAddRows = false;
             this.dgw_itemoverview.AllowUserToDeleteRows = false;
+            this.dgw_itemoverview.AllowUserToResizeColumns = false;
+            this.dgw_itemoverview.AllowUserToResizeRows = false;
             this.dgw_itemoverview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgw_itemoverview.AutoGenerateColumns = false;
+            this.dgw_itemoverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgw_itemoverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgw_itemoverview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.itemNRDataGridViewTextBoxColumn,
-            this.itemNameDataGridViewTextBoxColumn,
-            this.itemPriceDataGridViewTextBoxColumn,
-            this.itemStockDataGridViewTextBoxColumn,
+            this.idDataGridViewTextBoxColumn,
+            this.titleDataGridViewTextBoxColumn,
             this.itemCategoryDataGridViewTextBoxColumn,
-            this.itemWidthDataGridViewTextBoxColumn,
-            this.itemHeightDataGridViewTextBoxColumn,
-            this.itemDepthDataGridViewTextBoxColumn,
-            this.itemWeightDataGridViewTextBoxColumn,
-            this.itemTagsDataGridViewTextBoxColumn});
-            this.dgw_itemoverview.DataSource = this.productBindingSource;
+            this.priceDataGridViewTextBoxColumn,
+            this.inStockDataGridViewTextBoxColumn,
+            this.widthDataGridViewTextBoxColumn,
+            this.heightDataGridViewTextBoxColumn,
+            this.depthDataGridViewTextBoxColumn,
+            this.weightDataGridViewTextBoxColumn,
+            this.tagsDataGridViewTextBoxColumn});
+            this.dgw_itemoverview.DataSource = this.itemBindingSource;
             this.dgw_itemoverview.Location = new System.Drawing.Point(21, 40);
             this.dgw_itemoverview.MultiSelect = false;
             this.dgw_itemoverview.Name = "dgw_itemoverview";
@@ -98,8 +103,102 @@ namespace KitchenFanatics.Forms
             this.dgw_itemoverview.RowHeadersWidth = 51;
             this.dgw_itemoverview.RowTemplate.Height = 24;
             this.dgw_itemoverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgw_itemoverview.Size = new System.Drawing.Size(1254, 446);
+            this.dgw_itemoverview.Size = new System.Drawing.Size(930, 446);
             this.dgw_itemoverview.TabIndex = 2;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Varenummer";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 118;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Varenavn";
+            this.titleDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.titleDataGridViewTextBoxColumn.Width = 98;
+            // 
+            // itemCategoryDataGridViewTextBoxColumn
+            // 
+            this.itemCategoryDataGridViewTextBoxColumn.DataPropertyName = "ItemCategory";
+            this.itemCategoryDataGridViewTextBoxColumn.HeaderText = "Varekategori";
+            this.itemCategoryDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.itemCategoryDataGridViewTextBoxColumn.Name = "itemCategoryDataGridViewTextBoxColumn";
+            this.itemCategoryDataGridViewTextBoxColumn.ReadOnly = true;
+            this.itemCategoryDataGridViewTextBoxColumn.Width = 118;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Pris";
+            this.priceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.priceDataGridViewTextBoxColumn.Width = 61;
+            // 
+            // inStockDataGridViewTextBoxColumn
+            // 
+            this.inStockDataGridViewTextBoxColumn.DataPropertyName = "InStock";
+            this.inStockDataGridViewTextBoxColumn.HeaderText = "På lager";
+            this.inStockDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.inStockDataGridViewTextBoxColumn.Name = "inStockDataGridViewTextBoxColumn";
+            this.inStockDataGridViewTextBoxColumn.ReadOnly = true;
+            this.inStockDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // widthDataGridViewTextBoxColumn
+            // 
+            this.widthDataGridViewTextBoxColumn.DataPropertyName = "Width";
+            this.widthDataGridViewTextBoxColumn.HeaderText = "Bredde";
+            this.widthDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.widthDataGridViewTextBoxColumn.Name = "widthDataGridViewTextBoxColumn";
+            this.widthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.widthDataGridViewTextBoxColumn.Width = 83;
+            // 
+            // heightDataGridViewTextBoxColumn
+            // 
+            this.heightDataGridViewTextBoxColumn.DataPropertyName = "Height";
+            this.heightDataGridViewTextBoxColumn.HeaderText = "Højde";
+            this.heightDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.heightDataGridViewTextBoxColumn.Name = "heightDataGridViewTextBoxColumn";
+            this.heightDataGridViewTextBoxColumn.ReadOnly = true;
+            this.heightDataGridViewTextBoxColumn.Width = 74;
+            // 
+            // depthDataGridViewTextBoxColumn
+            // 
+            this.depthDataGridViewTextBoxColumn.DataPropertyName = "Depth";
+            this.depthDataGridViewTextBoxColumn.HeaderText = "Dybde";
+            this.depthDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.depthDataGridViewTextBoxColumn.Name = "depthDataGridViewTextBoxColumn";
+            this.depthDataGridViewTextBoxColumn.ReadOnly = true;
+            this.depthDataGridViewTextBoxColumn.Width = 78;
+            // 
+            // weightDataGridViewTextBoxColumn
+            // 
+            this.weightDataGridViewTextBoxColumn.DataPropertyName = "Weight";
+            this.weightDataGridViewTextBoxColumn.HeaderText = "Vægt";
+            this.weightDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.weightDataGridViewTextBoxColumn.Name = "weightDataGridViewTextBoxColumn";
+            this.weightDataGridViewTextBoxColumn.ReadOnly = true;
+            this.weightDataGridViewTextBoxColumn.Width = 71;
+            // 
+            // tagsDataGridViewTextBoxColumn
+            // 
+            this.tagsDataGridViewTextBoxColumn.DataPropertyName = "Tags";
+            this.tagsDataGridViewTextBoxColumn.HeaderText = "Tags";
+            this.tagsDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tagsDataGridViewTextBoxColumn.Name = "tagsDataGridViewTextBoxColumn";
+            this.tagsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tagsDataGridViewTextBoxColumn.Width = 69;
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
             // 
             // button3
             // 
@@ -111,133 +210,40 @@ namespace KitchenFanatics.Forms
             this.button3.Text = "Udskriv alle varer";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(KitchenFanatics.Database.Product);
-            // 
-            // itemNRDataGridViewTextBoxColumn
-            // 
-            this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
-            this.itemNRDataGridViewTextBoxColumn.HeaderText = "Varenummer";
-            this.itemNRDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemNRDataGridViewTextBoxColumn.Name = "itemNRDataGridViewTextBoxColumn";
-            this.itemNRDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemNRDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemNameDataGridViewTextBoxColumn
-            // 
-            this.itemNameDataGridViewTextBoxColumn.DataPropertyName = "ItemName";
-            this.itemNameDataGridViewTextBoxColumn.HeaderText = "Varenavn";
-            this.itemNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemNameDataGridViewTextBoxColumn.Name = "itemNameDataGridViewTextBoxColumn";
-            this.itemNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemPriceDataGridViewTextBoxColumn
-            // 
-            this.itemPriceDataGridViewTextBoxColumn.DataPropertyName = "ItemPrice";
-            this.itemPriceDataGridViewTextBoxColumn.HeaderText = "Pris";
-            this.itemPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemPriceDataGridViewTextBoxColumn.Name = "itemPriceDataGridViewTextBoxColumn";
-            this.itemPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemPriceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemStockDataGridViewTextBoxColumn
-            // 
-            this.itemStockDataGridViewTextBoxColumn.DataPropertyName = "ItemStock";
-            this.itemStockDataGridViewTextBoxColumn.HeaderText = "På lager";
-            this.itemStockDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemStockDataGridViewTextBoxColumn.Name = "itemStockDataGridViewTextBoxColumn";
-            this.itemStockDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemStockDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemCategoryDataGridViewTextBoxColumn
-            // 
-            this.itemCategoryDataGridViewTextBoxColumn.DataPropertyName = "ItemCategory";
-            this.itemCategoryDataGridViewTextBoxColumn.HeaderText = "Varekategori";
-            this.itemCategoryDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemCategoryDataGridViewTextBoxColumn.Name = "itemCategoryDataGridViewTextBoxColumn";
-            this.itemCategoryDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemCategoryDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemWidthDataGridViewTextBoxColumn
-            // 
-            this.itemWidthDataGridViewTextBoxColumn.DataPropertyName = "ItemWidth";
-            this.itemWidthDataGridViewTextBoxColumn.HeaderText = "Bredde";
-            this.itemWidthDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemWidthDataGridViewTextBoxColumn.Name = "itemWidthDataGridViewTextBoxColumn";
-            this.itemWidthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemWidthDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemHeightDataGridViewTextBoxColumn
-            // 
-            this.itemHeightDataGridViewTextBoxColumn.DataPropertyName = "ItemHeight";
-            this.itemHeightDataGridViewTextBoxColumn.HeaderText = "Højde";
-            this.itemHeightDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemHeightDataGridViewTextBoxColumn.Name = "itemHeightDataGridViewTextBoxColumn";
-            this.itemHeightDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemHeightDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemDepthDataGridViewTextBoxColumn
-            // 
-            this.itemDepthDataGridViewTextBoxColumn.DataPropertyName = "ItemDepth";
-            this.itemDepthDataGridViewTextBoxColumn.HeaderText = "Dybde";
-            this.itemDepthDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemDepthDataGridViewTextBoxColumn.Name = "itemDepthDataGridViewTextBoxColumn";
-            this.itemDepthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemDepthDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemWeightDataGridViewTextBoxColumn
-            // 
-            this.itemWeightDataGridViewTextBoxColumn.DataPropertyName = "ItemWeight";
-            this.itemWeightDataGridViewTextBoxColumn.HeaderText = "Vægt";
-            this.itemWeightDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemWeightDataGridViewTextBoxColumn.Name = "itemWeightDataGridViewTextBoxColumn";
-            this.itemWeightDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemWeightDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // itemTagsDataGridViewTextBoxColumn
-            // 
-            this.itemTagsDataGridViewTextBoxColumn.DataPropertyName = "ItemTags";
-            this.itemTagsDataGridViewTextBoxColumn.HeaderText = "Tags";
-            this.itemTagsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemTagsDataGridViewTextBoxColumn.Name = "itemTagsDataGridViewTextBoxColumn";
-            this.itemTagsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemTagsDataGridViewTextBoxColumn.Width = 125;
-            // 
             // ItemOverview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1299, 570);
+            this.ClientSize = new System.Drawing.Size(975, 570);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dgw_itemoverview);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_createnewitem);
+            this.Controls.Add(this.btn_edititem);
             this.Name = "ItemOverview";
             this.Text = "Vareoversigt";
+            this.Load += new System.EventHandler(this.ItemOverview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_edititem;
+        private System.Windows.Forms.Button btn_createnewitem;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemNRDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemStockDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemCategoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemWidthDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemHeightDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemDepthDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemWeightDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemTagsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.DataGridView dgw_itemoverview;
+        private System.Windows.Forms.BindingSource itemBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemCategoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inStockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn widthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn heightDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn depthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn weightDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tagsDataGridViewTextBoxColumn;
     }
 }

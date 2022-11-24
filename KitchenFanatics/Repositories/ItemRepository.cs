@@ -41,7 +41,6 @@ namespace KitchenFanatics.Repositories
         /// </summary>
         /// <param name="item"></param>
         public void CreateItem(Models.Item item)
-
         {
             //a new object of the database Product type is instansiated
             Database.Product newItem = new Database.Product();
@@ -55,12 +54,12 @@ namespace KitchenFanatics.Repositories
             newItem.ItemHeight = item.Height;
             newItem.ItemDepth = item.Depth;
             newItem.ItemWeight = item.Weight;
-            newItem.ItemTags = item.Tags; 
+            newItem.ItemTags = item.Tags;
 
             //the new row will be inserted in the table when submitted
             dbContext.Products.InsertOnSubmit(newItem);
             //the changes are submitted 
-            dbContext.SubmitChanges(); 
+            dbContext.SubmitChanges();
 
         }
 
@@ -85,7 +84,7 @@ namespace KitchenFanatics.Repositories
             dbItem.ItemTags = item.Tags;
 
             //the update is submitted to the database
-            dbContext.SubmitChanges(); 
+            dbContext.SubmitChanges();
         }
 
         /// <summary>
@@ -101,6 +100,6 @@ namespace KitchenFanatics.Repositories
             dbContext.Products.DeleteOnSubmit(dbItem);
             //the changes are submitted
             dbContext.SubmitChanges();
-        } 
-    } 
+        }
+    }
 }

@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using KitchenFanatics.Database;
 using KitchenFanatics.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KitchenFanatics.Models
 {
@@ -48,5 +53,7 @@ namespace KitchenFanatics.Models
 
         // The customer connected to the Sale
         public Customer Customer { get; set; }
+
+        public String CustomerName { get { return Customer.FirstName + " " + Customer.LastName; } }
     }
 }

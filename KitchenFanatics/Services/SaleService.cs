@@ -8,18 +8,27 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Services
 {
+    // Written by Esben
     public class SaleService
     {
         /// <summary>
         /// Returns all Sale Histories on the Sale table
-        /// 
-        /// Written by Esben
         /// </summary>
         /// <returns></returns>
         public List<SaleHistory> GetSaleHistories()
         {
             SaleRepository saleRepository = new SaleRepository();
-            return saleRepository.GetAllSales();
+            return saleRepository.GetAllSalesV2();
+        }
+
+        /// <summary>
+        /// Removes the selected entry from the database
+        /// </summary>
+        /// <param name="history">Entry to be deleted</param>
+        public void DeleteEntry(SaleHistory history)
+        {
+            SaleRepository saleRepository = new SaleRepository();
+            saleRepository.DeleteSelectedSale(history);
         }
     }
 }

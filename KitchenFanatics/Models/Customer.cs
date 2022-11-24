@@ -1,8 +1,10 @@
-﻿using System;
+﻿using KitchenFanatics.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace KitchenFanatics.Models
 {
@@ -17,6 +19,7 @@ namespace KitchenFanatics.Models
             this.phonenumber = phonenumber;
             this.id = id;
         }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

@@ -1,82 +1,149 @@
 ﻿using KitchenFanatics.Database;
 using KitchenFanatics.Models;
+using KitchenFanatics.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KitchenFanatics.Repositories
 {
-    public class SaleRepository
+    /// <summary>
+    /// The repository used to fetch the data from the Sales table
+    /// 
+    /// Written by Esben
+    /// </summary>
+    public class SaleRepository : KitchenFanaticDBDataContext
     {
+        // Time debug objects
+        Stopwatch sw = new Stopwatch();
+        Stopwatch sw2 = new Stopwatch();
+
         /// <summary>
         /// Establishes an connection to the database and retrieves all the Sales stored on it
-        /// 
-        /// Written by Esben
         /// </summary>
-        /// <returns>All notes</returns>
-        public List<SaleHistory> GetAllSales()
+        /// <returns>All sales</returns>
+        public List<SaleHistory> GetAllSalesV2()
         {
-            // Defines the connection to the Database
-            using (KitchenFanaticDBDataContext dbContext = new KitchenFanaticDBDataContext())
+            // Creates an collection that will contain all the sales from the Database
+            List<SaleHistory> saleHistories = new List<SaleHistory>();
+
+            sw.Start();
+
+            // A foreach loop, looping through all the Sales in the Sales table
+            foreach (var saleHistory in Sales)
             {
-                // Creates an collection that will contain all the sales from the Database
-                List<SaleHistory> saleHistories = new List<SaleHistory>();
+                // The list that'll be containing all the Items associated with the Sale
+                List<Item> items = new List<Item>();
 
-                // A foreach loop, looping through all the Sales in the Sales table
-                foreach (var saleHistory in dbContext.Sales)
-                {
-                    // The list that'll be containing all the Items associated with the Sale
-                    List<Item> items = new List<Item>();
+                // Total Price
+                decimal TotalPrice = 0;
 
-                    // Defines the customer assosiated with the sale
-                    Models.Customer customer = new Models.Customer(
-                        saleHistory.Customer.FirstName,
-                        saleHistory.Customer.LastName,
-                        saleHistory.Customer.Email,
-                        saleHistory.Customer.CustomerAddress,
-                        saleHistory.Customer.PhoneNumber,
-                        saleHistory.Customer.CustomerID
-                        );
+                // Defines the customer assosiated with the sale
+                Models.Customer customer = new Models.Customer(
+                    saleHistory.Customer.FirstName,
+                    saleHistory.Customer.LastName,
+                    saleHistory.Customer.Email,
+                    saleHistory.Customer.CustomerAddress,
+                    saleHistory.Customer.PhoneNumber,
+                    saleHistory.Customer.CustomerID
+                    );
 
-                    // Foreach loop adding all the items to the List
-                    foreach (var item in dbContext.SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID))
-                    {
-                        var product = item.Product;
+                // Uses the FetchItems to add connect the SaleLine items to the SaleHistory
+                items = FetchItems(SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID));
+                
+                // Defines the Sale object
+                SaleHistory newSale = new SaleHistory(
+                    saleHistory.SaleID,
+                    saleHistory.SaleDate,
+                    TotalPrice,
+                    saleHistory.DeliveryAddress,
+                    saleHistory.SaleStatus,
+                    items,
+                    customer
+                    );
 
-                        Item lineItem = new Item(
-                            product.ItemNR,
-                            product.ItemName,
-                            product.ItemPrice,
-                            product.ItemStock,
-                            product.ItemCategory,
-                            product.ItemWidth,
-                            product.ItemHeight,
-                            product.ItemDepth,
-                            product.ItemWeight,
-                            product.ItemTags);
-
-                        items.Add(lineItem);
-                    }
-
-                    // Defines the Sale object
-                    SaleHistory sale = new SaleHistory(
-                        saleHistory.SaleID,
-                        saleHistory.SaleDate,
-                        saleHistory.SaleTotal,
-                        saleHistory.DeliveryAddress,
-                        saleHistory.SaleStatus,
-                        items,
-                        customer
-                        );
-
-                    // Adds the sale to the list
-                    saleHistories.Add(sale);
-                }
-                // Returns the sale
-                return saleHistories;
+                // Adds the sale to the list
+                saleHistories.Add(newSale);
             }
+
+            sw.Stop();
+            Console.WriteLine("Time taken: {0}ms", sw.Elapsed.TotalMilliseconds);
+
+            return saleHistories;
+        }
+
+        public void CreateNewSale(SaleHistory historyToSave)
+        {
+            if (historyToSave.Customer == null) throw new NullReferenceException("Customer cannot be null!");
+            if (historyToSave.Items == null) throw new NullReferenceException("The items list must not be Empty!");
+
+        }
+
+        /// <summary>
+        /// Deletes the selected entry from the database
+        /// </summary>
+        /// <param name="historyToSave">Entry to delete</param>
+        public void DeleteSelectedSale(SaleHistory historyToSave)
+        {
+            // Selects the entry that's going to be deleted
+            var saleToDelete = Sales.Where(sd => sd.SaleID == historyToSave.Id).FirstOrDefault();
+            
+            // Gets the list of items connected to the sales that are going to be deleted
+            var saleLineToDelete = SaleLines.Where(sld => sld.SaleID == historyToSave.Id);
+
+            foreach(var i in saleLineToDelete)
+            {
+                Console.WriteLine(i.SaleLineID);
+            }
+
+            // 
+            SaleLines.DeleteAllOnSubmit(saleLineToDelete);
+
+            // 
+            Sales.DeleteOnSubmit(saleToDelete);
+
+            // Submits the changes to the database
+            SubmitChanges();
+        }
+
+        /// <summary>
+        /// A method used retrieve SaleLine items assosiated with the SaleHistory
+        /// </summary>
+        /// <param name="line">Linq2Sql line that specifes what sale is connected</param>
+        /// <returns>A List collection containing Items</returns>
+        private List<Item> FetchItems(IQueryable<SaleLine> line)
+        {
+            // Defines the List that'll be returned with all the Items
+            List<Item> LineItems = new List<Item>();
+
+            // Loops through 
+            foreach (var item in line)
+            {
+                // Selects the Product from each line
+                var product = item.Product;
+
+                // Defines the object
+                Item lineItem = new Item(
+                    product.ItemNR,
+                    product.ItemName,
+                    product.ItemPrice,
+                    product.ItemStock,
+                    product.ItemCategory,
+                    product.ItemWidth,
+                    product.ItemHeight,
+                    product.ItemDepth,
+                    product.ItemWeight,
+                    product.ItemTags);
+
+                // Adds the object to the collection
+                LineItems.Add(lineItem);
+            }
+            // Returns the list
+            return LineItems;
         }
     }
 }

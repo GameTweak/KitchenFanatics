@@ -188,6 +188,7 @@
             this.btn_createitem.TabIndex = 47;
             this.btn_createitem.Text = "Opret vare";
             this.btn_createitem.UseVisualStyleBackColor = true;
+            this.btn_createitem.Click += new System.EventHandler(this.btn_createitem_Click);
             // 
             // txt_itemname
             // 
@@ -241,7 +242,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ItemCreate";
             this.Text = "Opret vare";
-            this.Load += new System.EventHandler(this.ItemCreate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

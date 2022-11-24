@@ -35,12 +35,6 @@ namespace KitchenFanatics.Forms
             itemOverview.ShowDialog();
         }
 
-        private void btn_ItemUpdateNCreate_Click(object sender, EventArgs e)
-        {
-            ItemUpdateAndCreate itemUpdateAndCreate = new ItemUpdateAndCreate();
-            itemUpdateAndCreate.ShowDialog();
-        }
-
         private void btn_SaleModule_Click(object sender, EventArgs e)
         {
             SalesModule salesModul = new SalesModule();

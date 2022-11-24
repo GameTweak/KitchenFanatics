@@ -53,14 +53,8 @@ namespace KitchenFanatics.Repositories
                     );
 
                 // Uses the FetchItems to add connect the SaleLine items to the SaleHistory
-                //items = FetchItems(SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID));
+                items = FetchItems(SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID));
                 
-                foreach (var sale in SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID))
-                {
-                    items.Add(new Item(sale.Product));
-                }
-
-
                 // Defines the Sale object
                 SaleHistory newSale = new SaleHistory(
                     saleHistory.SaleID,

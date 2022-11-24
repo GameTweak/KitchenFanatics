@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace KitchenFanatics.Models
 {
     //Written by Johanne
-    public class Item : Product
+    public class Item
     {
         //a constructor is created for the Item class, ? is used to allow nulls
         public Item(int id, string title, decimal price, int stock, int? category, decimal? width, decimal? height, decimal? depth, decimal? weight, string tags)
@@ -24,21 +24,6 @@ namespace KitchenFanatics.Models
             this.Depth = depth;
             this.Weight = weight;
             this.Tags = tags; 
-        }
-
-        // A contructor that uses the Database table to create a Item | By Esben
-        public Item(Product product)
-        {
-            this.Id = product.ItemNR;
-            this.Title = product.ItemName;
-            this.Price = product.ItemPrice;
-            this.InStock = product.ItemStock;
-            this.ItemCategory = product.ItemCategory;
-            this.Width = product.ItemWidth;
-            this.Height = product.ItemHeight;
-            this.Depth = product.ItemDepth;
-            this.Weight = product.ItemWeight;
-            this.Tags = product.ItemTags;
         }
 
         //the class is assigned fields, which are all made public 

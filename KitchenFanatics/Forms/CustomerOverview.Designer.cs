@@ -56,9 +56,10 @@
             // customerFullName_lb
             // 
             this.customerFullName_lb.AutoSize = true;
-            this.customerFullName_lb.Location = new System.Drawing.Point(12, 19);
+            this.customerFullName_lb.Location = new System.Drawing.Point(9, 15);
+            this.customerFullName_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.customerFullName_lb.Name = "customerFullName_lb";
-            this.customerFullName_lb.Size = new System.Drawing.Size(44, 16);
+            this.customerFullName_lb.Size = new System.Drawing.Size(35, 13);
             this.customerFullName_lb.TabIndex = 0;
             this.customerFullName_lb.Text = "Name";
             // 
@@ -74,11 +75,12 @@
             this.emailDataGridViewTextBoxColumn,
             this.phoneNumberDataGridViewTextBoxColumn});
             this.customerOverview_dgv.DataSource = this.customerBindingSource;
-            this.customerOverview_dgv.Location = new System.Drawing.Point(12, 89);
+            this.customerOverview_dgv.Location = new System.Drawing.Point(9, 72);
+            this.customerOverview_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customerOverview_dgv.Name = "customerOverview_dgv";
             this.customerOverview_dgv.RowHeadersWidth = 51;
             this.customerOverview_dgv.RowTemplate.Height = 24;
-            this.customerOverview_dgv.Size = new System.Drawing.Size(776, 281);
+            this.customerOverview_dgv.Size = new System.Drawing.Size(582, 228);
             this.customerOverview_dgv.TabIndex = 1;
             this.customerOverview_dgv.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RowClick_customer);
             // 
@@ -147,9 +149,10 @@
             // 
             // createCustomer
             // 
-            this.createCustomer.Location = new System.Drawing.Point(590, 389);
+            this.createCustomer.Location = new System.Drawing.Point(442, 316);
+            this.createCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.createCustomer.Name = "createCustomer";
-            this.createCustomer.Size = new System.Drawing.Size(177, 49);
+            this.createCustomer.Size = new System.Drawing.Size(133, 40);
             this.createCustomer.TabIndex = 2;
             this.createCustomer.Text = "Create Customer";
             this.createCustomer.UseVisualStyleBackColor = true;
@@ -158,63 +161,70 @@
             // customerMail_lb
             // 
             this.customerMail_lb.AutoSize = true;
-            this.customerMail_lb.Location = new System.Drawing.Point(210, 19);
+            this.customerMail_lb.Location = new System.Drawing.Point(158, 15);
+            this.customerMail_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.customerMail_lb.Name = "customerMail_lb";
-            this.customerMail_lb.Size = new System.Drawing.Size(32, 16);
+            this.customerMail_lb.Size = new System.Drawing.Size(26, 13);
             this.customerMail_lb.TabIndex = 3;
             this.customerMail_lb.Text = "Mail";
             // 
             // customerPhoneNumber_lb
             // 
             this.customerPhoneNumber_lb.AutoSize = true;
-            this.customerPhoneNumber_lb.Location = new System.Drawing.Point(439, 19);
+            this.customerPhoneNumber_lb.Location = new System.Drawing.Point(329, 15);
+            this.customerPhoneNumber_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.customerPhoneNumber_lb.Name = "customerPhoneNumber_lb";
-            this.customerPhoneNumber_lb.Size = new System.Drawing.Size(104, 16);
+            this.customerPhoneNumber_lb.Size = new System.Drawing.Size(82, 13);
             this.customerPhoneNumber_lb.TabIndex = 4;
             this.customerPhoneNumber_lb.Text = "TelefonNummer";
             // 
             // customerAddress_lb
             // 
             this.customerAddress_lb.AutoSize = true;
-            this.customerAddress_lb.Location = new System.Drawing.Point(572, 20);
+            this.customerAddress_lb.Location = new System.Drawing.Point(429, 16);
+            this.customerAddress_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.customerAddress_lb.Name = "customerAddress_lb";
-            this.customerAddress_lb.Size = new System.Drawing.Size(58, 16);
+            this.customerAddress_lb.Size = new System.Drawing.Size(45, 13);
             this.customerAddress_lb.TabIndex = 5;
             this.customerAddress_lb.Text = "Address";
             // 
             // customerFullName_tb
             // 
-            this.customerFullName_tb.Location = new System.Drawing.Point(12, 39);
+            this.customerFullName_tb.Location = new System.Drawing.Point(9, 32);
+            this.customerFullName_tb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customerFullName_tb.Name = "customerFullName_tb";
-            this.customerFullName_tb.Size = new System.Drawing.Size(195, 22);
+            this.customerFullName_tb.Size = new System.Drawing.Size(147, 20);
             this.customerFullName_tb.TabIndex = 6;
             // 
             // customerMail_tb
             // 
-            this.customerMail_tb.Location = new System.Drawing.Point(213, 39);
+            this.customerMail_tb.Location = new System.Drawing.Point(160, 32);
+            this.customerMail_tb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customerMail_tb.Name = "customerMail_tb";
-            this.customerMail_tb.Size = new System.Drawing.Size(223, 22);
+            this.customerMail_tb.Size = new System.Drawing.Size(168, 20);
             this.customerMail_tb.TabIndex = 7;
             // 
             // customerPhoneNumber_tb
             // 
-            this.customerPhoneNumber_tb.Location = new System.Drawing.Point(442, 39);
+            this.customerPhoneNumber_tb.Location = new System.Drawing.Point(332, 32);
+            this.customerPhoneNumber_tb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customerPhoneNumber_tb.Name = "customerPhoneNumber_tb";
-            this.customerPhoneNumber_tb.Size = new System.Drawing.Size(101, 22);
+            this.customerPhoneNumber_tb.Size = new System.Drawing.Size(77, 20);
             this.customerPhoneNumber_tb.TabIndex = 8;
             // 
             // customerAddress_tb
             // 
-            this.customerAddress_tb.Location = new System.Drawing.Point(575, 39);
+            this.customerAddress_tb.Location = new System.Drawing.Point(431, 32);
+            this.customerAddress_tb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customerAddress_tb.Name = "customerAddress_tb";
-            this.customerAddress_tb.Size = new System.Drawing.Size(192, 22);
+            this.customerAddress_tb.Size = new System.Drawing.Size(145, 20);
             this.customerAddress_tb.TabIndex = 9;
             // 
             // CustomerOverview
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.customerAddress_tb);
             this.Controls.Add(this.customerPhoneNumber_tb);
             this.Controls.Add(this.customerMail_tb);
@@ -225,6 +235,7 @@
             this.Controls.Add(this.createCustomer);
             this.Controls.Add(this.customerOverview_dgv);
             this.Controls.Add(this.customerFullName_lb);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CustomerOverview";
             this.Text = "CustomerOverview";
             ((System.ComponentModel.ISupportInitialize)(this.customerOverview_dgv)).EndInit();

@@ -8,6 +8,17 @@ namespace KitchenFanatics.Models
 {
     public class Customer
     {
+        /// <summary>
+        /// A constructor for the customer class
+        /// 
+        /// Written by Mikkel
+        /// </summary>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="email"></param>
+        /// <param name="customeraddress"></param>
+        /// <param name="phonenumber"></param>
+        /// <param name="id"></param>
         public Customer(string firstname, string lastname, string email, string customeraddress, string phonenumber, int id) 
         {
             this.FirstName = firstname;

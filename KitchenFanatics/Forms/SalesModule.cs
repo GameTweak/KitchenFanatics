@@ -30,5 +30,12 @@ namespace KitchenFanatics.Forms
 
             DGV_SaleHistories.DataSource = history;
         }
+
+        private void DeleteEntry(object sender, EventArgs e)
+        {
+            saleService.DeleteEntry((SaleHistory) DGV_SaleHistories.CurrentRow.DataBoundItem);
+            DGV_SaleHistories.Rows.Remove(DGV_SaleHistories.CurrentRow);
+            MessageBox.Show($"Deleted");
+        }
     }
 }

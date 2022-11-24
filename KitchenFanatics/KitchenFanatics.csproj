@@ -132,6 +132,7 @@
       <DependentUpon>CustomerOverview.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\SaleService.cs" />
     <EmbeddedResource Include="Forms\FormSelector.resx">
       <DependentUpon>FormSelector.cs</DependentUpon>
@@ -191,7 +192,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>

@@ -16,6 +16,7 @@ namespace KitchenFanatics.Forms
     {
 
         private SaleService saleService = new SaleService();
+        private SortingService sorting = new SortingService();
         private List<SaleHistory> history { get; set; }
 
 
@@ -36,6 +37,11 @@ namespace KitchenFanatics.Forms
             saleService.DeleteEntry((SaleHistory) DGV_SaleHistories.CurrentRow.DataBoundItem);
             DGV_SaleHistories.Rows.Remove(DGV_SaleHistories.CurrentRow);
             MessageBox.Show($"Deleted");
+        }
+
+        private void ClickToFilter(object sender, EventArgs e)
+        {
+            DGV_SaleHistories.DataSource = sorting.FilterSale(history, tb_Name.Text, tb_Email.Text, tb_Phone.Text, dtp_Start.Value, dtp_End.Value);
         }
     }
 }

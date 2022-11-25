@@ -20,7 +20,6 @@ namespace KitchenFanatics.Repositories
     {
         // Time debug objects
         Stopwatch sw = new Stopwatch();
-        Stopwatch sw2 = new Stopwatch();
 
         /// <summary>
         /// Establishes an connection to the database and retrieves all the Sales stored on it
@@ -39,8 +38,7 @@ namespace KitchenFanatics.Repositories
                 // The list that'll be containing all the Items associated with the Sale
                 List<Item> items = new List<Item>();
 
-                // Total Price
-                decimal TotalPrice = 0;
+                List<Models.SaleLine> line = new List<Models.SaleLine>();
 
                 // Defines the customer assosiated with the sale
                 Models.Customer customer = new Models.Customer(
@@ -52,17 +50,32 @@ namespace KitchenFanatics.Repositories
                     saleHistory.Customer.CustomerID
                     );
 
+                // Foreach loop that connects the SaleLine with the SaleHistory
+                foreach (var newline in SaleLines.Where(sl => sl.SaleID == saleHistory.SaleID))
+                {
+                    Models.SaleLine newSaleLine = new Models.SaleLine(
+                        newline.SaleLineID,
+                        newline.ItemNR,
+                        newline.Amount,
+                        newline.Price,
+                        newline.SaleID
+                        );
+
+                    line.Add(newSaleLine);
+                }
+
                 // Uses the FetchItems to add connect the SaleLine items to the SaleHistory
-                items = FetchItems(SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID));
-                
+                //items = FetchItems(SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID));
+
+
                 // Defines the Sale object
                 SaleHistory newSale = new SaleHistory(
                     saleHistory.SaleID,
                     saleHistory.SaleDate,
-                    TotalPrice,
+                    line.Select(l => l.Price).Sum(),
                     saleHistory.DeliveryAddress,
                     saleHistory.SaleStatus,
-                    items,
+                    line,
                     customer
                     );
 
@@ -79,8 +92,32 @@ namespace KitchenFanatics.Repositories
         public void CreateNewSale(SaleHistory historyToSave)
         {
             if (historyToSave.Customer == null) throw new NullReferenceException("Customer cannot be null!");
-            if (historyToSave.Items == null) throw new NullReferenceException("The items list must not be Empty!");
+            if (historyToSave.SaleLine == null) throw new NullReferenceException("The items list must not be Empty!");
 
+            List<Models.SaleLine> lineToSave = new List<Models.SaleLine>();
+
+            Sale newSale = new Sale
+            {
+                SaleDate = DateTime.Now,
+                SaleTotal = (decimal) historyToSave.SaleLine.Select(l => l.Price).Sum(),
+                DeliveryAddress = historyToSave.DeliveryAddress,
+                SaleStatus = historyToSave.SaleStatus,
+                CustomerID = historyToSave.Customer.id
+            };
+
+            Sales.InsertOnSubmit(newSale);
+
+            SubmitChanges();
+
+            foreach (var line in historyToSave.SaleLine)
+            {
+                Database.SaleLine newline = new Database.SaleLine();
+
+                newline.ItemNR = line.ItemNR;
+                line.Amount = line.Amount;
+                newline.Price = (decimal) line.Price;
+                newline.SaleID = line.SaleID;
+            }
         }
 
         /// <summary>
@@ -89,6 +126,9 @@ namespace KitchenFanatics.Repositories
         /// <param name="historyToSave">Entry to delete</param>
         public void DeleteSelectedSale(SaleHistory historyToSave)
         {
+
+            if (historyToSave == null) throw new NullReferenceException("Sale cannot be null!");
+
             // Selects the entry that's going to be deleted
             var saleToDelete = Sales.Where(sd => sd.SaleID == historyToSave.Id).FirstOrDefault();
             
@@ -115,7 +155,7 @@ namespace KitchenFanatics.Repositories
         /// </summary>
         /// <param name="line">Linq2Sql line that specifes what sale is connected</param>
         /// <returns>A List collection containing Items</returns>
-        private List<Item> FetchItems(IQueryable<SaleLine> line)
+        private List<Item> FetchItems(IQueryable<Database.SaleLine> line)
         {
             // Defines the List that'll be returned with all the Items
             List<Item> LineItems = new List<Item>();

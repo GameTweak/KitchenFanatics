@@ -44,7 +44,7 @@ namespace KitchenFanatics.Forms
             this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tagsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_printitems = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -200,22 +200,22 @@ namespace KitchenFanatics.Forms
             // 
             this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
             // 
-            // button3
+            // btn_printitems
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(21, 512);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(134, 38);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Udskriv alle varer";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_printitems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_printitems.Location = new System.Drawing.Point(21, 512);
+            this.btn_printitems.Name = "btn_printitems";
+            this.btn_printitems.Size = new System.Drawing.Size(134, 38);
+            this.btn_printitems.TabIndex = 3;
+            this.btn_printitems.Text = "Udskriv alle varer";
+            this.btn_printitems.UseVisualStyleBackColor = true;
             // 
             // ItemOverview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 570);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btn_printitems);
             this.Controls.Add(this.dgw_itemoverview);
             this.Controls.Add(this.btn_createnewitem);
             this.Controls.Add(this.btn_edititem);
@@ -232,7 +232,7 @@ namespace KitchenFanatics.Forms
 
         private System.Windows.Forms.Button btn_edititem;
         private System.Windows.Forms.Button btn_createnewitem;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_printitems;
         private System.Windows.Forms.DataGridView dgw_itemoverview;
         private System.Windows.Forms.BindingSource itemBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;

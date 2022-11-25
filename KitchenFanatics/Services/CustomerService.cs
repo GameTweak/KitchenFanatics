@@ -26,7 +26,7 @@ namespace KitchenFanatics.Services
             customerRepository.deleteCustomer(currentCustomer);
         }
 
-        private List<Models.Customer> GetCustomers()
+        public List<Models.Customer> GetCustomers()
         {
             var customerRepository = new Repositories.CustomerRepository();
             return customerRepository.GetAllCustomers();

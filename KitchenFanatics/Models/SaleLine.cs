@@ -18,6 +18,13 @@ namespace KitchenFanatics.Models
             SaleID = saleID;
         }
 
+        public SaleLine(int? itemNR, int? amount, decimal? price)
+        {
+            ItemNR = itemNR;
+            Amount = amount;
+            Price = price;
+        }
+
         public int? SaleLineID { get; set; }
 
         public int? ItemNR { get; set; }

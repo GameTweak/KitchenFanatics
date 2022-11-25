@@ -22,14 +22,14 @@ namespace KitchenFanatics.Models
         /// </summary>
          
         // Constructor for defining af instance in the Sale History
-        public SaleHistory(int id, DateTime date, decimal price, string address, int status, List<Item> itemlist, Customer customer)
+        public SaleHistory(int id, DateTime date, decimal? price, string address, int status, List<SaleLine> saleLine, Customer customer)
         {
             this.Id = id;
             this.SaleDate = date;
             this.TotalPrice = price;
             this.DeliveryAddress = address;
             this.SaleStatus = status;
-            this.Items = itemlist;
+            this.SaleLine = saleLine;
             this.Customer = customer;
         }
         
@@ -40,7 +40,7 @@ namespace KitchenFanatics.Models
         public DateTime SaleDate { get; set; }
 
         // Sets the total price of the sale
-        public decimal TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         // Connects the Delivery Address to the Sale
         public string DeliveryAddress { get; set; }
@@ -49,11 +49,12 @@ namespace KitchenFanatics.Models
         public int SaleStatus { get; set; }
 
         // A list containing all the items of the Sale
-        public List<Item> Items { get; set; }
+        public List<SaleLine> SaleLine { get; set; }
 
         // The customer connected to the Sale
         public Customer Customer { get; set; }
 
+        // Returns the customers full name
         public String CustomerName { get { return Customer.FirstName + " " + Customer.LastName; } }
     }
 }

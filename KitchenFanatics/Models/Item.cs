@@ -37,7 +37,7 @@ namespace KitchenFanatics.Models
             this.Weight = weight;
             this.Tags = tags;
         }
-
+        
         public Item(string title, decimal price, int stock, int? category, decimal? width, decimal? height, decimal? depth, decimal? weight, string tags)
         {
             this.Title = title;

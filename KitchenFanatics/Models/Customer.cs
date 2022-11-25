@@ -26,5 +26,7 @@ namespace KitchenFanatics.Models
         public string Customeraddress { get; set; }
         public string phonenumber { get; set; }
         public int id { get; set; }
+
+        public string FullName { get { return FirstName + " " + LastName; } }
     }
 }

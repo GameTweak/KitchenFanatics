@@ -25,7 +25,7 @@ namespace KitchenFanatics.Repositories
         /// Establishes an connection to the database and retrieves all the Sales stored on it
         /// </summary>
         /// <returns>All sales</returns>
-        public List<SaleHistory> GetAllSalesV2()
+        public List<SaleHistory> GetAllSales()
         {
             // Creates an collection that will contain all the sales from the Database
             List<SaleHistory> saleHistories = new List<SaleHistory>();
@@ -94,7 +94,7 @@ namespace KitchenFanatics.Repositories
             if (historyToSave.Customer == null) throw new NullReferenceException("Customer cannot be null!");
             if (historyToSave.SaleLine == null) throw new NullReferenceException("The items list must not be Empty!");
 
-            List<Models.SaleLine> lineToSave = new List<Models.SaleLine>();
+            List<Database.SaleLine> lineToSave = new List<Database.SaleLine>();
 
             Sale newSale = new Sale
             {
@@ -109,15 +109,22 @@ namespace KitchenFanatics.Repositories
 
             SubmitChanges();
 
+            Console.WriteLine(newSale.SaleID + " was created");
+
             foreach (var line in historyToSave.SaleLine)
             {
                 Database.SaleLine newline = new Database.SaleLine();
 
                 newline.ItemNR = line.ItemNR;
-                line.Amount = line.Amount;
+                newline.Amount = (int) line.Amount;
                 newline.Price = (decimal) line.Price;
-                newline.SaleID = line.SaleID;
+                newline.SaleID = newSale.SaleID;
+                lineToSave.Add(newline);
             }
+
+            SaleLines.InsertAllOnSubmit(lineToSave);
+            
+            SubmitChanges();
         }
 
         /// <summary>

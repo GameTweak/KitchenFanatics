@@ -32,7 +32,17 @@ namespace KitchenFanatics.Models
             this.SaleLine = saleLine;
             this.Customer = customer;
         }
-        
+
+        public SaleHistory(DateTime date, decimal? price, string address, int status, List<SaleLine> saleLine, Customer customer)
+        {
+            this.SaleDate = date;
+            this.TotalPrice = price;
+            this.DeliveryAddress = address;
+            this.SaleStatus = status;
+            this.SaleLine = saleLine;
+            this.Customer = customer;
+        }
+
         // Used to set and get the ID
         public int Id { get; set; }
 

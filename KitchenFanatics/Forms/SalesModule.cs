@@ -43,5 +43,11 @@ namespace KitchenFanatics.Forms
         {
             DGV_SaleHistories.DataSource = sorting.FilterSale(history, tb_Name.Text, tb_Email.Text, tb_Phone.Text, dtp_Start.Value, dtp_End.Value);
         }
+
+        private void CreateSale(object sender, EventArgs e)
+        {
+            CreateSale sale = new CreateSale();
+            sale.ShowDialog();
+        }
     }
 }

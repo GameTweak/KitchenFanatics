@@ -90,7 +90,16 @@ namespace KitchenFanatics.Forms
         private void CreateSale(object sender, EventArgs e)
         {
             // Defines the CreateSale form
-            CreateSale sale = new CreateSale();
+            SaleEditor sale = new SaleEditor(true);
+
+            // Opens the form for the user
+            sale.ShowDialog();
+        }
+
+        private void EditSale(object sender, EventArgs e)
+        {
+            // Defines the CreateSale form
+            SaleEditor sale = new SaleEditor(false, (SaleHistory) DGV_SaleHistories.CurrentRow.DataBoundItem);
 
             // Opens the form for the user
             sale.ShowDialog();

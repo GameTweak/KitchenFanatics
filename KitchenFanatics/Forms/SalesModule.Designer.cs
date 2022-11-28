@@ -54,6 +54,7 @@
             this.dtp_Start = new System.Windows.Forms.DateTimePicker();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_Create = new System.Windows.Forms.Button();
+            this.btn_EditSale = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).BeginInit();
@@ -292,11 +293,24 @@
             this.btn_Create.UseVisualStyleBackColor = true;
             this.btn_Create.Click += new System.EventHandler(this.CreateSale);
             // 
+            // btn_EditSale
+            // 
+            this.btn_EditSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EditSale.Location = new System.Drawing.Point(370, 379);
+            this.btn_EditSale.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_EditSale.Name = "btn_EditSale";
+            this.btn_EditSale.Size = new System.Drawing.Size(107, 31);
+            this.btn_EditSale.TabIndex = 20;
+            this.btn_EditSale.Text = "Redigere Salg";
+            this.btn_EditSale.UseVisualStyleBackColor = true;
+            this.btn_EditSale.Click += new System.EventHandler(this.EditSale);
+            // 
             // SalesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 421);
+            this.Controls.Add(this.btn_EditSale);
             this.Controls.Add(this.btn_Create);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.dtp_Start);
@@ -355,5 +369,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btn_Delete;
         private System.Windows.Forms.Button btn_Create;
+        private System.Windows.Forms.Button btn_EditSale;
     }
 }

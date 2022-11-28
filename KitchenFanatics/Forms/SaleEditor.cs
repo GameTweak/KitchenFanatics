@@ -12,23 +12,33 @@ using System.Windows.Forms;
 
 namespace KitchenFanatics.Forms
 {
-    public partial class CreateSale : Form
+    public partial class SaleEditor : Form
     {
         // Objects used
         private List<SaleLine> saleLine = new List<SaleLine>();
         private Item currentSelected { get; set; }
+        private SaleHistory History { get; set; }
         private BindingSource Cart = new BindingSource();
 
 
         // Variables
-        public bool ItemSelected = false;
+        private bool ItemSelected = false;
+        private bool IsNew { get; set; }
 
         // Services
         LogService logger = new LogService();
 
-        public CreateSale()
+        public SaleEditor(bool isNew)
         {
             InitializeComponent();
+            IsNew = isNew;
+        }
+
+        public SaleEditor(bool isNew, SaleHistory history)
+        {
+            InitializeComponent();
+            IsNew = isNew;
+            this.History = history;
         }
 
         /// <summary>
@@ -40,18 +50,40 @@ namespace KitchenFanatics.Forms
             ItemService itemService = new ItemService();
             CustomerService customerService = new CustomerService();
 
-            // Binds the ComboBox to contain all Customers
-            cb_Customers.DataSource = customerService.GetCustomers();
+            if (IsNew)
+            {
 
-            // Makes it so the ComboBox displays their full name
-            cb_Customers.DisplayMember = "FullName";
+                // Binds the ComboBox to contain all Customers
+                cb_Customers.DataSource = customerService.GetCustomers();
+
+                // Makes it so the ComboBox displays their full name
+                cb_Customers.DisplayMember = "FullName";
+
+                // Changes btn text to Create
+                btn_CreateEdit.Text = "Opret";
+            }
+            else
+            {
+                // Changes btn text to "Edit"
+                btn_CreateEdit.Text = "Redigere";
+
+                // Sets the combobox to have the customer Name
+                cb_Customers.Text = History.Customer.FullName;
+
+                // Disable the user from changing associated customer
+                cb_Customers.Enabled = false;
+
+                // Sets saleline to be the same as history saleline
+                saleLine = History.SaleLine;
+
+            }
 
             // Binds the datasoruce of the cart to the saleLine collection
             Cart.DataSource = saleLine;
 
             // Retrives all items from the store and binds it to the DataGridView "Products"
             dgv_Products.DataSource = itemService.GetAllItems();
-            
+
             // Binds the cart source to the DataGridView "Selected"
             dgv_Selected.DataSource = Cart;
         }
@@ -63,7 +95,7 @@ namespace KitchenFanatics.Forms
         private void AddItemToChosen(object sender, MouseEventArgs e)
         {
             // Fetches the currently selected item
-            currentSelected = (Item) dgv_Products.CurrentRow.DataBoundItem;
+            currentSelected = (Item)dgv_Products.CurrentRow.DataBoundItem;
 
             // Changes the textboxes to display the data of the Item
             tb_Name.Text = currentSelected.Title;
@@ -88,7 +120,7 @@ namespace KitchenFanatics.Forms
             try
             {
                 // Checks if there is an item selected and if the amount field is empty as well as if the given amount is 0 or less
-                if (ItemSelected && !string.IsNullOrEmpty(tb_Amount.Text) || int.Parse(tb_Amount.Text) <= 0)
+                if (ItemSelected && !string.IsNullOrEmpty(tb_Amount.Text) && int.Parse(tb_Amount.Text) > 0)
                 {
                     // Creates a new SaleLine object containing the data given
                     SaleLine newSale = new SaleLine(
@@ -113,32 +145,74 @@ namespace KitchenFanatics.Forms
         }
 
         /// <summary>
+        /// RemoveItem is a eventhandler that is trigger when the user double clicks an entry in the Cart DGV
+        /// </summary>
+        private void RemoveItem(object sender, MouseEventArgs e)
+        {
+            // Removes selected item
+            saleLine.Remove((SaleLine)dgv_Selected.CurrentRow.DataBoundItem);
+
+            // Updates the DataGridView
+            Cart.ResetBindings(false);
+        }
+
+        /// <summary>
         /// CreateNewSale is an eventhandler that is triggered when the "Create Sale" button is clicked
         /// Once clicked the list stored in the DataGridView is saved and stored on the DataBase
         /// </summary>
-        private void CreateNewSale(object sender, EventArgs e)
+        private void CreateEditSale(object sender, EventArgs e)
         {
             try
             {
                 // Checks if the saleLine is empty
                 if (saleLine.Any())
                 {
-                    // Defines the saleService
-                    SaleService saleService = new SaleService();
+                    if (IsNew)
+                    {
+                        // Defines the saleService
+                        SaleService saleService = new SaleService();
 
-                    // Gets the customer selected in the ComboBox
-                    Customer customer = (Customer)cb_Customers.SelectedValue;
+                        // Gets the customer selected in the ComboBox
+                        Customer customer = (Customer)cb_Customers.SelectedValue;
 
-                    // Gets the total price of selected items
-                    decimal Price = (decimal)saleLine.Select(sl => sl.Price).Sum();
+                        // Gets the total price of selected items
+                        decimal Price = (decimal)saleLine.Select(sl => sl.Price).Sum();
 
-                    // Creates a new saleHistory with the data on the page
-                    SaleHistory saleHistory = new SaleHistory(DateTime.Now, Price, customer.Customeraddress, 1, saleLine, customer);
+                        // Creates a new saleHistory with the data on the page
+                        SaleHistory saleHistory = new SaleHistory(DateTime.Now, Price, customer.Customeraddress, 1, saleLine, customer);
 
-                    // Saves and stores the saleHistory on the database
-                    saleService.CreateEntry(saleHistory);
+                        // Saves and stores the saleHistory on the database
+                        saleService.CreateEntry(saleHistory);
+
+                        // Closes the window
+                        Close();
+                    } 
+                    else
+                    {
+                        // Defines the saleService
+                        SaleService saleService = new SaleService();
+
+                        // Gets the customer selected in the ComboBox
+                        Customer customer = History.Customer;
+
+                        // Gets the total price of selected items
+                        decimal Price = (decimal)saleLine.Select(sl => sl.Price).Sum();
+
+                        History.SaleDate = DateTime.Now;
+                        History.TotalPrice = Price;
+                        History.SaleStatus = int.Parse(tb_Status.Text);
+                        History.SaleLine = saleLine;
+
+
+                        // Saves and stores the saleHistory on the database
+                        saleService.EditSale(History);
+
+                        // Closes the window
+                        Close();
+                    }
+
                 }
-            } 
+            }
             catch (NullReferenceException ex) { logger.LogError(ex); }
             catch (Exception ex) { logger.LogError(ex); }
         }

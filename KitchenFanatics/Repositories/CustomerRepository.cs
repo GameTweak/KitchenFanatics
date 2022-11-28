@@ -20,9 +20,9 @@ namespace KitchenFanatics.Repositories
 
             var AllCustomers = Customers;
 
-            foreach (var customer in AllCustomers)
+            foreach (var dbcustomer in AllCustomers)
             {
-                var customers = new Models.Customer(customer.FirstName, customer.LastName, customer.Email, customer.PhoneNumber, customer.CustomerAddress, customer.CustomerID);
+                var customers = new Models.Customer(dbcustomer.FirstName, dbcustomer.LastName, dbcustomer.Email, dbcustomer.CustomerAddress, dbcustomer.PhoneNumber,  dbcustomer.CustomerID);
 
                 result.Add(customers);
             }
@@ -46,7 +46,7 @@ namespace KitchenFanatics.Repositories
         public void updateCustomer(Models.Customer currentCustomer)
         {
             Database.Customer updatedCustomer = new Database.Customer();
-            var selectedCustomer = Customers.Single(Customer => Customer.CustomerID == currentCustomer.id);
+            var selectedCustomer = Customers.Single(Customer => Customer.CustomerID == currentCustomer.CustomerID);
             
             updatedCustomer.FirstName = selectedCustomer.FirstName;
             updatedCustomer.LastName = selectedCustomer.LastName;
@@ -59,7 +59,7 @@ namespace KitchenFanatics.Repositories
 
         public void deleteCustomer(Models.Customer currentCustomer)
         {
-           var selectedCustomer = Customers.Single(Customer => Customer.CustomerID == currentCustomer.id);
+           var selectedCustomer = Customers.Single(Customer => Customer.CustomerID == currentCustomer.CustomerID);
             Customers.DeleteOnSubmit(selectedCustomer);
             SubmitChanges();
         }

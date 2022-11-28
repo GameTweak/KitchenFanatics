@@ -9,14 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KitchenFanatics.Forms;
 using KitchenFanatics.Models;
+using KitchenFanatics.Services;
 
 namespace KitchenFanatics.Forms
 {
     public partial class CustomerOverview : Form
     {
+        private CustomerService CustomerService { get; set; }
+        private List<Customer> CustomerList { get; set; }
         public CustomerOverview()
         {
             InitializeComponent();
+            CustomerService= new CustomerService();
+            CustomerList= new List<Customer>();
+            CustomerList = CustomerService.GetCustomers();
+            UpdateUI();
         }
 
         private void UpdateInformation(Customer customer)
@@ -35,6 +42,16 @@ namespace KitchenFanatics.Forms
         {
             CreateCustomer form = new CreateCustomer();
             form.ShowDialog();
+        }
+
+        private void HeaderClick_CustomerID()
+        {
+
+        }
+
+        private void UpdateUI()
+        {
+            customerOverview_dgv.DataSource = CustomerList;
         }
     }
 }

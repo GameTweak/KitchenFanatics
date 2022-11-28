@@ -99,10 +99,10 @@ namespace KitchenFanatics.Repositories
             Sale newSale = new Sale
             {
                 SaleDate = DateTime.Now,
-                SaleTotal = (decimal) historyToSave.SaleLine.Select(l => l.Price).Sum(),
+                SaleTotal = (decimal)historyToSave.SaleLine.Select(l => l.Price).Sum(),
                 DeliveryAddress = historyToSave.DeliveryAddress,
                 SaleStatus = historyToSave.SaleStatus,
-                CustomerID = historyToSave.Customer.id
+                CustomerID = historyToSave.Customer.CustomerID
             };
 
             Sales.InsertOnSubmit(newSale);

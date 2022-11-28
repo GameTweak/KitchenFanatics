@@ -15,7 +15,7 @@ namespace KitchenFanatics.Models
         public string Title { get; set; }
         public decimal Price { get; set; }
         public int InStock { get; set; }
-        public new int? ItemCategory { get; set; }
+        public int? ItemCategory { get; set; }
         public decimal? Width { get; set; }
         public decimal? Height { get; set; }
         public decimal? Depth { get; set; }

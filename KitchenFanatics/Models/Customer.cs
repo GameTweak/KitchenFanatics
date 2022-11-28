@@ -17,7 +17,7 @@ namespace KitchenFanatics.Models
             this.Email = email;
             this.Customeraddress = customeraddress;
             this.phonenumber = phonenumber;
-            this.id = id;
+            this.CustomerID = id;
         }
 
         public string FirstName { get; set; }
@@ -25,6 +25,6 @@ namespace KitchenFanatics.Models
         public string Email { get; set; }
         public string Customeraddress { get; set; }
         public string phonenumber { get; set; }
-        public int id { get; set; }
+        public int CustomerID { get; set; }
     }
 }

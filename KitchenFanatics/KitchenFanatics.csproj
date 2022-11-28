@@ -73,11 +73,11 @@
     <Compile Include="Forms\CreateCustomer.Designer.cs">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CreateSale.cs">
+    <Compile Include="Forms\SaleEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreateSale.Designer.cs">
-      <DependentUpon>CreateSale.cs</DependentUpon>
+    <Compile Include="Forms\SaleEditor.Designer.cs">
+      <DependentUpon>SaleEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomerOverview.cs">
       <SubType>Form</SubType>
@@ -139,13 +139,14 @@
     <Compile Include="Repositories\SaleRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\CustomerSorting.cs" />
+    <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\SortingService.cs" />
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreateSale.resx">
-      <DependentUpon>CreateSale.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SaleEditor.resx">
+      <DependentUpon>SaleEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomerOverview.resx">
       <DependentUpon>CustomerOverview.cs</DependentUpon>
@@ -227,6 +228,35 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Models
 {
+    /// <summary>
+    /// SaleLine model used to set and retrieve data.
+    /// 
+    /// Written by Esben
+    /// </summary>
     public class SaleLine
     {
         public SaleLine(int? saleLineID, int? itemNR, int? amount, decimal? price, int? saleID)

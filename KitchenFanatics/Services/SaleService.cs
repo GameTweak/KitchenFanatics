@@ -18,7 +18,7 @@ namespace KitchenFanatics.Services
         public List<SaleHistory> GetSaleHistories()
         {
             SaleRepository saleRepository = new SaleRepository();
-            return saleRepository.GetAllSalesV2();
+            return saleRepository.GetAllSales();
         }
 
         /// <summary>
@@ -29,6 +29,16 @@ namespace KitchenFanatics.Services
         {
             SaleRepository saleRepository = new SaleRepository();
             saleRepository.DeleteSelectedSale(history);
+        }
+
+        /// <summary>
+        /// Creates a new entry and submits it to the database
+        /// </summary>
+        /// <param name="history"></param>
+        public void CreateEntry(SaleHistory history)
+        {
+            SaleRepository saleRepository = new SaleRepository();
+            saleRepository.CreateNewSale(history);
         }
     }
 }

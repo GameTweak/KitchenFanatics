@@ -46,6 +46,7 @@
             this.tb_Name = new System.Windows.Forms.TextBox();
             this.dtp_Start = new System.Windows.Forms.DateTimePicker();
             this.btn_Delete = new System.Windows.Forms.Button();
+            this.btn_Create = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,7 +89,7 @@
             this.customerDataGridViewTextBoxColumn});
             this.DGV_SaleHistories.DataSource = this.saleHistoryBindingSource;
             this.DGV_SaleHistories.Location = new System.Drawing.Point(11, 124);
-            this.DGV_SaleHistories.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DGV_SaleHistories.Margin = new System.Windows.Forms.Padding(2);
             this.DGV_SaleHistories.MultiSelect = false;
             this.DGV_SaleHistories.Name = "DGV_SaleHistories";
             this.DGV_SaleHistories.ReadOnly = true;
@@ -109,9 +110,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(569, 57);
+            this.button1.Location = new System.Drawing.Point(569, 56);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 62);
+            this.button1.Size = new System.Drawing.Size(129, 63);
             this.button1.TabIndex = 5;
             this.button1.Text = "Filter";
             this.button1.UseVisualStyleBackColor = true;
@@ -204,7 +205,6 @@
             this.tb_Name.Name = "tb_Name";
             this.tb_Name.Size = new System.Drawing.Size(180, 21);
             this.tb_Name.TabIndex = 16;
-            this.tb_Name.Text = "q";
             // 
             // dtp_Start
             // 
@@ -217,14 +217,26 @@
             // btn_Delete
             // 
             this.btn_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Delete.Location = new System.Drawing.Point(11, 376);
-            this.btn_Delete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Delete.Location = new System.Drawing.Point(592, 379);
+            this.btn_Delete.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(107, 31);
             this.btn_Delete.TabIndex = 18;
             this.btn_Delete.Text = "Slet Salg";
             this.btn_Delete.UseVisualStyleBackColor = true;
             this.btn_Delete.Click += new System.EventHandler(this.DeleteEntry);
+            // 
+            // btn_Create
+            // 
+            this.btn_Create.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Create.Location = new System.Drawing.Point(481, 379);
+            this.btn_Create.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Create.Name = "btn_Create";
+            this.btn_Create.Size = new System.Drawing.Size(107, 31);
+            this.btn_Create.TabIndex = 19;
+            this.btn_Create.Text = "Opret Salg";
+            this.btn_Create.UseVisualStyleBackColor = true;
+            this.btn_Create.Click += new System.EventHandler(this.CreateSale);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -284,6 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 421);
+            this.Controls.Add(this.btn_Create);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.dtp_Start);
             this.Controls.Add(this.tb_Name);
@@ -298,8 +311,11 @@
             this.Controls.Add(this.tb_Phone);
             this.Controls.Add(this.DGV_SaleHistories);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(726, 460);
+            this.MinimumSize = new System.Drawing.Size(726, 460);
             this.Name = "SalesModule";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SalesModul";
             this.Load += new System.EventHandler(this.SalesModul_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).EndInit();
@@ -337,5 +353,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn saleStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btn_Delete;
+        private System.Windows.Forms.Button btn_Create;
     }
 }

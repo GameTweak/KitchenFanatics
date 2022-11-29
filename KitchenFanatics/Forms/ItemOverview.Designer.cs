@@ -33,6 +33,9 @@ namespace KitchenFanatics.Forms
             this.btn_edititem = new System.Windows.Forms.Button();
             this.btn_createnewitem = new System.Windows.Forms.Button();
             this.dgw_itemoverview = new System.Windows.Forms.DataGridView();
+            this.btn_printitems = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cb_sortby = new System.Windows.Forms.ComboBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemCategoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +47,6 @@ namespace KitchenFanatics.Forms
             this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tagsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btn_printitems = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -95,7 +97,7 @@ namespace KitchenFanatics.Forms
             this.weightDataGridViewTextBoxColumn,
             this.tagsDataGridViewTextBoxColumn});
             this.dgw_itemoverview.DataSource = this.itemBindingSource;
-            this.dgw_itemoverview.Location = new System.Drawing.Point(21, 40);
+            this.dgw_itemoverview.Location = new System.Drawing.Point(21, 54);
             this.dgw_itemoverview.MultiSelect = false;
             this.dgw_itemoverview.Name = "dgw_itemoverview";
             this.dgw_itemoverview.ReadOnly = true;
@@ -103,8 +105,46 @@ namespace KitchenFanatics.Forms
             this.dgw_itemoverview.RowHeadersWidth = 51;
             this.dgw_itemoverview.RowTemplate.Height = 24;
             this.dgw_itemoverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgw_itemoverview.Size = new System.Drawing.Size(930, 446);
+            this.dgw_itemoverview.Size = new System.Drawing.Size(930, 438);
             this.dgw_itemoverview.TabIndex = 2;
+            // 
+            // btn_printitems
+            // 
+            this.btn_printitems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_printitems.Location = new System.Drawing.Point(21, 512);
+            this.btn_printitems.Name = "btn_printitems";
+            this.btn_printitems.Size = new System.Drawing.Size(134, 38);
+            this.btn_printitems.TabIndex = 3;
+            this.btn_printitems.Text = "Udskriv alle varer";
+            this.btn_printitems.UseVisualStyleBackColor = true;
+            this.btn_printitems.Click += new System.EventHandler(this.btn_printitems_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Sorter efter:";
+            // 
+            // cb_sortby
+            // 
+            this.cb_sortby.AccessibleDescription = "";
+            this.cb_sortby.AccessibleName = "";
+            this.cb_sortby.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_sortby.FormattingEnabled = true;
+            this.cb_sortby.Items.AddRange(new object[] {
+            "Standard",
+            "Pris - Lav til høj",
+            "Pris - Høj til lav",
+            "Varenavn - a-å",
+            "Varenavn - å-a"});
+            this.cb_sortby.Location = new System.Drawing.Point(108, 13);
+            this.cb_sortby.Name = "cb_sortby";
+            this.cb_sortby.Size = new System.Drawing.Size(178, 24);
+            this.cb_sortby.TabIndex = 9;
+            this.cb_sortby.SelectedIndexChanged += new System.EventHandler(this.cb_sortby_SelectedIndexChanged);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -200,21 +240,13 @@ namespace KitchenFanatics.Forms
             // 
             this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
             // 
-            // btn_printitems
-            // 
-            this.btn_printitems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_printitems.Location = new System.Drawing.Point(21, 512);
-            this.btn_printitems.Name = "btn_printitems";
-            this.btn_printitems.Size = new System.Drawing.Size(134, 38);
-            this.btn_printitems.TabIndex = 3;
-            this.btn_printitems.Text = "Udskriv alle varer";
-            this.btn_printitems.UseVisualStyleBackColor = true;
-            // 
             // ItemOverview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 570);
+            this.Controls.Add(this.cb_sortby);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_printitems);
             this.Controls.Add(this.dgw_itemoverview);
             this.Controls.Add(this.btn_createnewitem);
@@ -225,6 +257,7 @@ namespace KitchenFanatics.Forms
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -245,5 +278,7 @@ namespace KitchenFanatics.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn depthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn weightDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tagsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cb_sortby;
     }
 }

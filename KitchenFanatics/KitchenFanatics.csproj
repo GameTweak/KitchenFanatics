@@ -121,6 +121,7 @@
       <DependentUpon>SalesModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\ItemType.cs" />
     <Compile Include="Models\SaleHistory.cs" />
     <Compile Include="Models\Item.cs" />
@@ -143,6 +144,9 @@
     <Compile Include="Services\SaleService.cs" />
     <EmbeddedResource Include="Forms\FormSelector.resx">
       <DependentUpon>FormSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Intellectual Counceling.resx">
+      <DependentUpon>Intellectual Counceling.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemCreate.resx">
       <DependentUpon>ItemCreate.cs</DependentUpon>

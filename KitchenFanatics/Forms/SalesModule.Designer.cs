@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SaleHistories = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deliveryAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tb_Phone = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dtp_End = new System.Windows.Forms.DateTimePicker();
@@ -47,17 +54,11 @@
             this.dtp_Start = new System.Windows.Forms.DateTimePicker();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_Create = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deliveryAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btn_EditSale = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -96,8 +97,62 @@
             this.DGV_SaleHistories.RowHeadersVisible = false;
             this.DGV_SaleHistories.RowHeadersWidth = 51;
             this.DGV_SaleHistories.RowTemplate.Height = 24;
+            this.DGV_SaleHistories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_SaleHistories.Size = new System.Drawing.Size(688, 248);
             this.DGV_SaleHistories.TabIndex = 1;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // saleDateDataGridViewTextBoxColumn
+            // 
+            this.saleDateDataGridViewTextBoxColumn.DataPropertyName = "SaleDate";
+            this.saleDateDataGridViewTextBoxColumn.HeaderText = "Købsdato";
+            this.saleDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.saleDateDataGridViewTextBoxColumn.Name = "saleDateDataGridViewTextBoxColumn";
+            this.saleDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalPriceDataGridViewTextBoxColumn
+            // 
+            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
+            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Pris";
+            this.totalPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
+            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // deliveryAddressDataGridViewTextBoxColumn
+            // 
+            this.deliveryAddressDataGridViewTextBoxColumn.DataPropertyName = "DeliveryAddress";
+            this.deliveryAddressDataGridViewTextBoxColumn.HeaderText = "Leveringsaddresse";
+            this.deliveryAddressDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.deliveryAddressDataGridViewTextBoxColumn.Name = "deliveryAddressDataGridViewTextBoxColumn";
+            this.deliveryAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // saleStatusDataGridViewTextBoxColumn
+            // 
+            this.saleStatusDataGridViewTextBoxColumn.DataPropertyName = "SaleStatus";
+            this.saleStatusDataGridViewTextBoxColumn.HeaderText = "Køb Status";
+            this.saleStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.saleStatusDataGridViewTextBoxColumn.Name = "saleStatusDataGridViewTextBoxColumn";
+            this.saleStatusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerDataGridViewTextBoxColumn
+            // 
+            this.customerDataGridViewTextBoxColumn.DataPropertyName = "CustomerName";
+            this.customerDataGridViewTextBoxColumn.HeaderText = "Kunde";
+            this.customerDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
+            this.customerDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // saleHistoryBindingSource
+            // 
+            this.saleHistoryBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleHistory);
             // 
             // tb_Phone
             // 
@@ -238,64 +293,24 @@
             this.btn_Create.UseVisualStyleBackColor = true;
             this.btn_Create.Click += new System.EventHandler(this.CreateSale);
             // 
-            // idDataGridViewTextBoxColumn
+            // btn_EditSale
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.FillWeight = 50F;
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // saleDateDataGridViewTextBoxColumn
-            // 
-            this.saleDateDataGridViewTextBoxColumn.DataPropertyName = "SaleDate";
-            this.saleDateDataGridViewTextBoxColumn.HeaderText = "Købsdato";
-            this.saleDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.saleDateDataGridViewTextBoxColumn.Name = "saleDateDataGridViewTextBoxColumn";
-            this.saleDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalPriceDataGridViewTextBoxColumn
-            // 
-            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Pris";
-            this.totalPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
-            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // deliveryAddressDataGridViewTextBoxColumn
-            // 
-            this.deliveryAddressDataGridViewTextBoxColumn.DataPropertyName = "DeliveryAddress";
-            this.deliveryAddressDataGridViewTextBoxColumn.HeaderText = "Leveringsaddresse";
-            this.deliveryAddressDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.deliveryAddressDataGridViewTextBoxColumn.Name = "deliveryAddressDataGridViewTextBoxColumn";
-            this.deliveryAddressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // saleStatusDataGridViewTextBoxColumn
-            // 
-            this.saleStatusDataGridViewTextBoxColumn.DataPropertyName = "SaleStatus";
-            this.saleStatusDataGridViewTextBoxColumn.HeaderText = "Køb Status";
-            this.saleStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.saleStatusDataGridViewTextBoxColumn.Name = "saleStatusDataGridViewTextBoxColumn";
-            this.saleStatusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // customerDataGridViewTextBoxColumn
-            // 
-            this.customerDataGridViewTextBoxColumn.DataPropertyName = "CustomerName";
-            this.customerDataGridViewTextBoxColumn.HeaderText = "Kunde";
-            this.customerDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
-            this.customerDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // saleHistoryBindingSource
-            // 
-            this.saleHistoryBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleHistory);
+            this.btn_EditSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EditSale.Location = new System.Drawing.Point(370, 379);
+            this.btn_EditSale.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_EditSale.Name = "btn_EditSale";
+            this.btn_EditSale.Size = new System.Drawing.Size(107, 31);
+            this.btn_EditSale.TabIndex = 20;
+            this.btn_EditSale.Text = "Redigere Salg";
+            this.btn_EditSale.UseVisualStyleBackColor = true;
+            this.btn_EditSale.Click += new System.EventHandler(this.EditSale);
             // 
             // SalesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 421);
+            this.Controls.Add(this.btn_EditSale);
             this.Controls.Add(this.btn_Create);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.dtp_Start);
@@ -319,9 +334,9 @@
             this.Text = "SalesModul";
             this.Load += new System.EventHandler(this.SalesModul_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,5 +369,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btn_Delete;
         private System.Windows.Forms.Button btn_Create;
+        private System.Windows.Forms.Button btn_EditSale;
     }
 }

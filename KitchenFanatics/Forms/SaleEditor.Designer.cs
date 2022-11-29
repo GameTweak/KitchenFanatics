@@ -1,6 +1,6 @@
 ﻿namespace KitchenFanatics.Forms
 {
-    partial class CreateSale
+    partial class SaleEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cb_Customers = new System.Windows.Forms.ComboBox();
-            this.btn_Create = new System.Windows.Forms.Button();
+            this.btn_CreateEdit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tb_Category = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -59,6 +59,8 @@
             this.tb_Amount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btn_Add = new System.Windows.Forms.Button();
+            this.tb_Status = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,6 +123,7 @@
             this.dgv_Selected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Selected.Size = new System.Drawing.Size(337, 348);
             this.dgv_Selected.TabIndex = 1;
+            this.dgv_Selected.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RemoveItem);
             // 
             // label1
             // 
@@ -197,9 +200,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.tb_Status);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.cb_Customers);
-            this.groupBox3.Controls.Add(this.btn_Create);
+            this.groupBox3.Controls.Add(this.btn_CreateEdit);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.dgv_Selected);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,18 +230,18 @@
             this.cb_Customers.FormattingEnabled = true;
             this.cb_Customers.Location = new System.Drawing.Point(6, 47);
             this.cb_Customers.Name = "cb_Customers";
-            this.cb_Customers.Size = new System.Drawing.Size(336, 24);
+            this.cb_Customers.Size = new System.Drawing.Size(256, 24);
             this.cb_Customers.TabIndex = 17;
             // 
-            // btn_Create
+            // btn_CreateEdit
             // 
-            this.btn_Create.Location = new System.Drawing.Point(6, 432);
-            this.btn_Create.Name = "btn_Create";
-            this.btn_Create.Size = new System.Drawing.Size(156, 27);
-            this.btn_Create.TabIndex = 16;
-            this.btn_Create.Text = "Opret";
-            this.btn_Create.UseVisualStyleBackColor = true;
-            this.btn_Create.Click += new System.EventHandler(this.CreateNewSale);
+            this.btn_CreateEdit.Location = new System.Drawing.Point(6, 432);
+            this.btn_CreateEdit.Name = "btn_CreateEdit";
+            this.btn_CreateEdit.Size = new System.Drawing.Size(156, 27);
+            this.btn_CreateEdit.TabIndex = 16;
+            this.btn_CreateEdit.Text = "Opret/Redigere";
+            this.btn_CreateEdit.UseVisualStyleBackColor = true;
+            this.btn_CreateEdit.Click += new System.EventHandler(this.CreateEditSale);
             // 
             // button1
             // 
@@ -415,6 +420,23 @@
             this.btn_Add.UseVisualStyleBackColor = true;
             this.btn_Add.Click += new System.EventHandler(this.AddToCart);
             // 
+            // tb_Status
+            // 
+            this.tb_Status.Location = new System.Drawing.Point(268, 48);
+            this.tb_Status.Name = "tb_Status";
+            this.tb_Status.Size = new System.Drawing.Size(75, 23);
+            this.tb_Status.TabIndex = 18;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(265, 28);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 17);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Status";
+            // 
             // itemNRDataGridViewTextBoxColumn
             // 
             this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
@@ -466,7 +488,7 @@
             // 
             this.saleLineBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleLine);
             // 
-            // CreateSale
+            // SaleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -476,7 +498,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "CreateSale";
+            this.Name = "SaleEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Opret nyt salg";
             this.Load += new System.EventHandler(this.CreateSale_Load);
@@ -531,7 +553,7 @@
         private System.Windows.Forms.TextBox tb_Amount;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btn_Add;
-        private System.Windows.Forms.Button btn_Create;
+        private System.Windows.Forms.Button btn_CreateEdit;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNRDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
@@ -539,5 +561,7 @@
         private System.Windows.Forms.BindingSource saleLineBindingSource1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cb_Customers;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tb_Status;
     }
 }

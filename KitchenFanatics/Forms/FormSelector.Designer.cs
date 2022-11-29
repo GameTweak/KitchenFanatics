@@ -95,6 +95,7 @@
             this.Controls.Add(this.btn_CustomerCreate);
             this.Controls.Add(this.btn_CustomerOverview);
             this.Name = "FormSelector";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSelector";
             this.ResumeLayout(false);
 

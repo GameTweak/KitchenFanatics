@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KitchenFanatics.Repositories
 {
@@ -18,8 +19,6 @@ namespace KitchenFanatics.Repositories
     /// </summary>
     public class SaleRepository : KitchenFanaticDBDataContext
     {
-        // Time debug objects
-        Stopwatch sw = new Stopwatch();
 
         /// <summary>
         /// Establishes an connection to the database and retrieves all the Sales stored on it
@@ -29,8 +28,6 @@ namespace KitchenFanatics.Repositories
         {
             // Creates an collection that will contain all the sales from the Database
             List<SaleHistory> saleHistories = new List<SaleHistory>();
-
-            sw.Start();
 
             // A foreach loop, looping through all the Sales in the Sales table
             foreach (var saleHistory in Sales)
@@ -64,10 +61,6 @@ namespace KitchenFanatics.Repositories
                     line.Add(newSaleLine);
                 }
 
-                // Uses the FetchItems to add connect the SaleLine items to the SaleHistory
-                //items = FetchItems(SaleLines.Where(sl => saleHistory.SaleID == sl.SaleID));
-
-
                 // Defines the Sale object
                 SaleHistory newSale = new SaleHistory(
                     saleHistory.SaleID,
@@ -83,47 +76,121 @@ namespace KitchenFanatics.Repositories
                 saleHistories.Add(newSale);
             }
 
-            sw.Stop();
-            Console.WriteLine("Time taken: {0}ms", sw.Elapsed.TotalMilliseconds);
-
             return saleHistories;
         }
 
+        /// <summary>
+        /// Method used to create a new sale and store it on the Database
+        /// </summary>
+        /// <param name="historyToSave">The history being saved</param>
+        /// <exception cref="NullReferenceException"></exception>
         public void CreateNewSale(SaleHistory historyToSave)
         {
+            // Check if Customeer or SaleLine is null
             if (historyToSave.Customer == null) throw new NullReferenceException("Customer cannot be null!");
             if (historyToSave.SaleLine == null) throw new NullReferenceException("The items list must not be Empty!");
 
             List<Database.SaleLine> lineToSave = new List<Database.SaleLine>();
 
+            // Defines a new Sale instance from the SaleHistory
             Sale newSale = new Sale
             {
+                // Get current time
                 SaleDate = DateTime.Now,
+                // Gets total
                 SaleTotal = (decimal)historyToSave.SaleLine.Select(l => l.Price).Sum(),
+                // Sets delivery address
                 DeliveryAddress = historyToSave.DeliveryAddress,
+                // Sets sale status
                 SaleStatus = historyToSave.SaleStatus,
+                // Sets customer id
                 CustomerID = historyToSave.Customer.CustomerID
             };
 
+            // Inserts the Sale on the database table
             Sales.InsertOnSubmit(newSale);
 
+            // Submits changes
             SubmitChanges();
-
-            Console.WriteLine(newSale.SaleID + " was created");
-
+            
+            // Loops through all salelines
             foreach (var line in historyToSave.SaleLine)
             {
+                // Defines a new SaleLine instance
                 Database.SaleLine newline = new Database.SaleLine();
 
+                // Sets the saleline variables
                 newline.ItemNR = line.ItemNR;
                 newline.Amount = (int) line.Amount;
                 newline.Price = (decimal) line.Price;
                 newline.SaleID = newSale.SaleID;
+
+                // Adds to the lineToSale collection
                 lineToSave.Add(newline);
             }
 
+            // Inserts all changes to the SaleLines table
             SaleLines.InsertAllOnSubmit(lineToSave);
             
+            // Submits changes
+            SubmitChanges();
+        }
+
+        /// <summary>
+        /// Method used to edit an already existing sale
+        /// </summary>
+        /// <param name="saleToEdit">The salehistory wanted to be updated</param>
+        public void EditSale(SaleHistory saleToEdit) 
+        {
+            // Creates two list containing what should be kept and what to remove
+            List<Database.SaleLine> salesToKeep = new List<Database.SaleLine>();
+            List<Database.SaleLine> salesToDelete = new List<Database.SaleLine>();
+
+            // Looping through all instances that match SaleID
+            foreach (var lines in SaleLines.Where(sl => sl.SaleID == saleToEdit.Id))
+            {
+                // A bool that returns whether a entry exist or not
+                bool saleLine = saleToEdit.SaleLine.Select(sl => sl.SaleLineID == lines.SaleLineID).FirstOrDefault();
+
+                // If it exist in the collection and there is none of it on the database 
+                if (saleLine && lines == null)
+                {
+                    // Adds new entry to the collection
+                    salesToKeep.Add(lines);
+                }
+                // If it does not exist in the collection but does on the database
+                else if (lines != null && saleLine)
+                {
+                    // Updates Amount
+                    lines.Amount = (int) saleToEdit.SaleLine.Where(sl => sl.SaleID == lines.SaleID).Select(sl => sl.Amount).FirstOrDefault();
+                }
+                // If it does not exist in the collection and should be deleted
+                else
+                {
+                    // Deleted from SaleLine
+                    salesToDelete.Add(lines);
+                }
+            }
+
+            // Inserts new entries
+            SaleLines.InsertAllOnSubmit(salesToKeep);
+
+            // Removes deleted entries
+            SaleLines.DeleteAllOnSubmit(salesToDelete);
+
+            // Fetches the Sale History
+            var dbSale = Sales.Where(s => s.SaleID == saleToEdit.Id).FirstOrDefault();
+
+            // Upates Status
+            dbSale.SaleStatus = saleToEdit.SaleStatus;
+
+            // Updates total
+            dbSale.SaleTotal = (decimal) salesToKeep.Select(stk => stk.Price).Sum();
+            
+            // Updates SaleDate
+            dbSale.SaleDate = DateTime.Now;
+
+            // Submits changes
             SubmitChanges();
         }
 
@@ -157,40 +224,6 @@ namespace KitchenFanatics.Repositories
             SubmitChanges();
         }
 
-        /// <summary>
-        /// A method used retrieve SaleLine items assosiated with the SaleHistory
-        /// </summary>
-        /// <param name="line">Linq2Sql line that specifes what sale is connected</param>
-        /// <returns>A List collection containing Items</returns>
-        private List<Item> FetchItems(IQueryable<Database.SaleLine> line)
-        {
-            // Defines the List that'll be returned with all the Items
-            List<Item> LineItems = new List<Item>();
-
-            // Loops through 
-            foreach (var item in line)
-            {
-                // Selects the Product from each line
-                var product = item.Product;
-
-                // Defines the object
-                Item lineItem = new Item(
-                    product.ItemNR,
-                    product.ItemName,
-                    product.ItemPrice,
-                    product.ItemStock,
-                    product.ItemCategory,
-                    product.ItemWidth,
-                    product.ItemHeight,
-                    product.ItemDepth,
-                    product.ItemWeight,
-                    product.ItemTags);
-
-                // Adds the object to the collection
-                LineItems.Add(lineItem);
-            }
-            // Returns the list
-            return LineItems;
-        }
+        
     }
 }

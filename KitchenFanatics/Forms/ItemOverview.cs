@@ -59,10 +59,8 @@ namespace KitchenFanatics.Forms
         /// </summary>
         public void LoadItemData()
         {
-            //creates a new variable which is an instance of the ItemService
-            var itemsService = new Services.ItemService();
             //the AllItems variable gets the value of a call to a method from the itemservice which gets all items from the database 
-            AllItems = itemsService.GetAllItems();
+            AllItems = ItemsService.GetAllItems();
             //the itemoverview datagridview is set to display all of the items from the database
             dgw_itemoverview.DataSource = AllItems;
         }

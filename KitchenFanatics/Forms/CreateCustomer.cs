@@ -34,9 +34,6 @@ namespace KitchenFanatics.Forms
         {
             bool ValidPhoneNumber = false;
             bool ValidEmail = false;
-            bool ValidFirstName = false;
-            bool ValidLastName = false;
-            bool ValidAdress = false;
             string MissingData = "";
 
             //verifies the phonenumber
@@ -60,7 +57,7 @@ namespace KitchenFanatics.Forms
             //verifies firstname
             if (createCustomerFirstName_tb.Text != "")
             {
-                ValidFirstName = true;
+
             }
             else if (MissingData != "")
             {
@@ -74,7 +71,7 @@ namespace KitchenFanatics.Forms
             //verifies lastname
             if (createCustomerLastName_tb.Text != "")
             {
-                ValidLastName = true;
+
             }
             else if (MissingData != "")
             {
@@ -88,7 +85,7 @@ namespace KitchenFanatics.Forms
             //verifies adress
             if (createCustomerAddress_tb.Text != "")
             {
-                ValidAdress = true;
+
             }
             else if (MissingData != "")
             {

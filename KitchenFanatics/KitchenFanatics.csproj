@@ -140,6 +140,7 @@
     <Compile Include="Repositories\SaleRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\CustomerSorting.cs" />
+    <Compile Include="Services\CustomerSortingService.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\SortingService.cs" />

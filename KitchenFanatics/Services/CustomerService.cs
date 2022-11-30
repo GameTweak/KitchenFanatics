@@ -9,8 +9,6 @@ namespace KitchenFanatics.Services
 {
     internal class CustomerService
     {
-        private CustomerSorting CustomerSortingTool { get; set; }
-        public bool ColumnHeadClicked { get; set; }
         public void createCustomer(Models.Customer currentCustomer)
         {
             var CustomerRepository = new Repositories.CustomerRepository();
@@ -33,17 +31,6 @@ namespace KitchenFanatics.Services
         {
             var customerRepository = new Repositories.CustomerRepository();
             return customerRepository.GetAllCustomers();
-        }
-
-        public void datagridSort()
-        {
-            if (ColumnHeadClicked == true)
-            {
-               CustomerSortingTool.ReturnNewest();
-            } else
-            {
-               CustomerSortingTool.ReturnOldest();
-            }
         }
     }
 }

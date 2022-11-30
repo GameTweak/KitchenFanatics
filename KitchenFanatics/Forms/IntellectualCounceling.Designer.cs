@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lb_question = new System.Windows.Forms.Label();
-            this.txt_input = new System.Windows.Forms.TextBox();
             this.btn_submit = new System.Windows.Forms.Button();
             this.btn_skip = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
@@ -45,6 +44,7 @@
             this.lb_number6 = new System.Windows.Forms.Label();
             this.lb_number5 = new System.Windows.Forms.Label();
             this.lb_number4 = new System.Windows.Forms.Label();
+            this.CLB_type = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // lb_question
@@ -56,14 +56,6 @@
             this.lb_question.Size = new System.Drawing.Size(217, 25);
             this.lb_question.TabIndex = 0;
             this.lb_question.Text = "Question placeholder";
-            // 
-            // txt_input
-            // 
-            this.txt_input.Location = new System.Drawing.Point(12, 66);
-            this.txt_input.Multiline = true;
-            this.txt_input.Name = "txt_input";
-            this.txt_input.Size = new System.Drawing.Size(311, 160);
-            this.txt_input.TabIndex = 1;
             // 
             // btn_submit
             // 
@@ -213,6 +205,14 @@
             this.lb_number4.Text = "Min bredde";
             this.lb_number4.Visible = false;
             // 
+            // CLB_type
+            // 
+            this.CLB_type.FormattingEnabled = true;
+            this.CLB_type.Location = new System.Drawing.Point(17, 54);
+            this.CLB_type.Name = "CLB_type";
+            this.CLB_type.Size = new System.Drawing.Size(154, 225);
+            this.CLB_type.TabIndex = 18;
+            // 
             // Intellectual_Counceling
             // 
             this.AcceptButton = this.btn_submit;
@@ -220,6 +220,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_cancel;
             this.ClientSize = new System.Drawing.Size(560, 356);
+            this.Controls.Add(this.CLB_type);
             this.Controls.Add(this.txt_number6);
             this.Controls.Add(this.txt_number5);
             this.Controls.Add(this.txt_number4);
@@ -235,8 +236,9 @@
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_skip);
             this.Controls.Add(this.btn_submit);
-            this.Controls.Add(this.txt_input);
             this.Controls.Add(this.lb_question);
+            this.Location = new System.Drawing.Point(578, 403);
+            this.MaximumSize = new System.Drawing.Size(578, 403);
             this.Name = "Intellectual_Counceling";
             this.Text = "Intellectual_Counceling";
             this.ResumeLayout(false);
@@ -247,7 +249,6 @@
         #endregion
 
         private System.Windows.Forms.Label lb_question;
-        private System.Windows.Forms.TextBox txt_input;
         private System.Windows.Forms.Button btn_submit;
         private System.Windows.Forms.Button btn_skip;
         private System.Windows.Forms.Button btn_cancel;
@@ -263,5 +264,6 @@
         private System.Windows.Forms.Label lb_number6;
         private System.Windows.Forms.Label lb_number5;
         private System.Windows.Forms.Label lb_number4;
+        private System.Windows.Forms.CheckedListBox CLB_type;
     }
 }

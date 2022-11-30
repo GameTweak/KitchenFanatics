@@ -22,14 +22,21 @@ namespace KitchenFanatics.Services
         /// <returns></returns>
         public List<Item> FilterByType(List<Item> ListToFilter, List<int> TypeID)
         {
-            List<Item> result = new List<Item>(); 
+            List<Item> result = new List<Item>();
 
-            //Repeats for each type searched for
-            foreach (var type in TypeID)
+            if (TypeID.Count != 0)
             {
-                //Adds the items matching the type to result
-                var temp = ListToFilter.Where(itm => itm.ItemCategory == type).ToList();
-                result.AddRange(temp);
+                //Repeats for each type searched for
+                foreach (var type in TypeID)
+                {
+                    //Adds the items matching the type to result
+                    var temp = ListToFilter.Where(itm => itm.ItemCategory == type).ToList();
+                    result.AddRange(temp);
+                }
+            }
+            else
+            {
+                result = ListToFilter;
             }
 
             //returns result

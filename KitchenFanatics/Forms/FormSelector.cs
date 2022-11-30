@@ -66,5 +66,11 @@ namespace KitchenFanatics.Forms
                 Application.Exit(); 
             }
         }
+
+        private void btn_IntelligentCouncel_Click(object sender, EventArgs e)
+        {
+            ItemOverviewIntCou itemOverviewIntCou = new ItemOverviewIntCou();
+            itemOverviewIntCou.ShowDialog();
+        }
     }
 }

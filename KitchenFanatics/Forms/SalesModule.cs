@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,14 +38,22 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void SalesModul_Load(object sender, EventArgs e)
         {
-            // Sets the history to contain all the SaleHistories on the Database
-            history = saleService.GetSaleHistories();
+            try
+            {
+                // Sets the history to contain all the SaleHistories on the Database
+                history = saleService.GetSaleHistories();
 
-            // Binds the source to the history collection
-            source.DataSource = history;
+                // Binds the source to the history collection
+                source.DataSource = history;
 
-            // Binds the DGV to display the collection
-            DGV_SaleHistories.DataSource = source;
+                // Binds the DGV to display the collection
+                DGV_SaleHistories.DataSource = source;
+            }
+            catch (Exception ex)
+            {
+                // Logs the error
+                logger.LogError(ex);
+            }
         }
 
         /// <summary>
@@ -66,6 +75,7 @@ namespace KitchenFanatics.Forms
                     // Removes the item from the DataGridView
                     history.Remove(sale);
 
+                    // Refreshes the source
                     source.ResetBindings(false);
 
                     // Displays to the user that the entry was deleted
@@ -92,38 +102,65 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void CreateSale(object sender, EventArgs e)
         {
-            // Defines the CreateSale form
-            SaleEditor sale = new SaleEditor(true);
+            try
+            {
+                // Defines the CreateSale form
+                SaleEditor sale = new SaleEditor(true);
 
-            // Opens the form for the user
-            sale.ShowDialog();
+                // Opens the form for the user
+                sale.ShowDialog();
+            }
+            catch (NullReferenceException ex) { logger.LogError(ex); }
+            catch (Exception ex) { logger.LogError(ex); }
+
         }
 
         private void EditSale(object sender, EventArgs e)
         {
-            // Defines the CreateSale form
-            SaleEditor sale = new SaleEditor(false, (SaleHistory)DGV_SaleHistories.CurrentRow.DataBoundItem);
+            try
+            {
+                // Defines the CreateSale form
+                SaleEditor sale = new SaleEditor(false, (SaleHistory)DGV_SaleHistories.CurrentRow.DataBoundItem);
 
-            // Opens the form for the user
-            sale.ShowDialog();
+                // Opens the form for the user
+                sale.ShowDialog();
+            }
+            catch (NullReferenceException ex) { logger.LogError(ex); }
+            catch (Exception ex) { logger.LogError(ex); }
+
         }
 
+        /// <summary>
+        /// Prints the filtered sale to a pdf file
+        /// </summary>
         private void PrintData(object sender, EventArgs e)
         {
             try
             {
+                // Defines a new collection that will be storing all filtered data
                 List<SaleHistory> saleHistories = new List<SaleHistory>();
 
+                // Loops through the DGV
                 foreach (DataGridViewRow sh in DGV_SaleHistories.Rows)
                 {
+                    // Adds the filtered data to the collection
                     saleHistories.Add((SaleHistory)sh.DataBoundItem);
                 }
 
+                // Creates a new file
                 file.CreateFile(saleHistories, dtp_Start.Value, dtp_End.Value);
-            } catch (IOException ex)
+            }
+            catch (IOException ex)
             {
+                // Throws an exception if the file is already open
                 logger.LogError(ex, "The file is already open!");
             }
+            catch (Exception ex)
+            {
+                // Throws an exception if an error occurs
+                logger.LogError(ex);
+            }
+
         }
     }
 }

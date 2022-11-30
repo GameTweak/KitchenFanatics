@@ -30,7 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgv_Products = new System.Windows.Forms.DataGridView();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgv_Selected = new System.Windows.Forms.DataGridView();
+            this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleLineBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.tb_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,6 +47,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tb_Status = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cb_Customers = new System.Windows.Forms.ComboBox();
             this.btn_CreateEdit = new System.Windows.Forms.Button();
@@ -59,26 +69,16 @@
             this.tb_Amount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btn_Add = new System.Windows.Forms.Button();
-            this.tb_Status = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleLineBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saleLineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Products)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Selected)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,8 +106,37 @@
             this.dgv_Products.TabIndex = 0;
             this.dgv_Products.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AddItemToChosen);
             // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // inStockDataGridViewTextBoxColumn
+            // 
+            this.inStockDataGridViewTextBoxColumn.DataPropertyName = "InStock";
+            this.inStockDataGridViewTextBoxColumn.HeaderText = "InStock";
+            this.inStockDataGridViewTextBoxColumn.Name = "inStockDataGridViewTextBoxColumn";
+            this.inStockDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
+            // 
             // dgv_Selected
             // 
+            this.dgv_Selected.AllowUserToAddRows = false;
+            this.dgv_Selected.AllowUserToDeleteRows = false;
+            this.dgv_Selected.AllowUserToResizeColumns = false;
+            this.dgv_Selected.AllowUserToResizeRows = false;
             this.dgv_Selected.AutoGenerateColumns = false;
             this.dgv_Selected.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Selected.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -124,6 +153,28 @@
             this.dgv_Selected.Size = new System.Drawing.Size(337, 348);
             this.dgv_Selected.TabIndex = 1;
             this.dgv_Selected.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RemoveItem);
+            // 
+            // itemNRDataGridViewTextBoxColumn
+            // 
+            this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
+            this.itemNRDataGridViewTextBoxColumn.HeaderText = "ItemNR";
+            this.itemNRDataGridViewTextBoxColumn.Name = "itemNRDataGridViewTextBoxColumn";
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            // 
+            // saleLineBindingSource1
+            // 
+            this.saleLineBindingSource1.DataSource = typeof(KitchenFanatics.Models.SaleLine);
             // 
             // label1
             // 
@@ -214,6 +265,23 @@
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Kurv";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(265, 28);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 17);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Status";
+            // 
+            // tb_Status
+            // 
+            this.tb_Status.Location = new System.Drawing.Point(268, 48);
+            this.tb_Status.Name = "tb_Status";
+            this.tb_Status.Size = new System.Drawing.Size(75, 23);
+            this.tb_Status.TabIndex = 18;
             // 
             // label10
             // 
@@ -420,70 +488,6 @@
             this.btn_Add.UseVisualStyleBackColor = true;
             this.btn_Add.Click += new System.EventHandler(this.AddToCart);
             // 
-            // tb_Status
-            // 
-            this.tb_Status.Location = new System.Drawing.Point(268, 48);
-            this.tb_Status.Name = "tb_Status";
-            this.tb_Status.Size = new System.Drawing.Size(75, 23);
-            this.tb_Status.TabIndex = 18;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(265, 28);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 17);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Status";
-            // 
-            // itemNRDataGridViewTextBoxColumn
-            // 
-            this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
-            this.itemNRDataGridViewTextBoxColumn.HeaderText = "ItemNR";
-            this.itemNRDataGridViewTextBoxColumn.Name = "itemNRDataGridViewTextBoxColumn";
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            // 
-            // saleLineBindingSource1
-            // 
-            this.saleLineBindingSource1.DataSource = typeof(KitchenFanatics.Models.SaleLine);
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // inStockDataGridViewTextBoxColumn
-            // 
-            this.inStockDataGridViewTextBoxColumn.DataPropertyName = "InStock";
-            this.inStockDataGridViewTextBoxColumn.HeaderText = "InStock";
-            this.inStockDataGridViewTextBoxColumn.Name = "inStockDataGridViewTextBoxColumn";
-            this.inStockDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
-            // 
             // saleLineBindingSource
             // 
             this.saleLineBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleLine);
@@ -503,7 +507,9 @@
             this.Text = "Opret nyt salg";
             this.Load += new System.EventHandler(this.CreateSale_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Products)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Selected)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -513,8 +519,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource)).EndInit();
             this.ResumeLayout(false);
 

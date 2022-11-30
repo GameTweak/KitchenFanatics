@@ -79,6 +79,8 @@ namespace KitchenFanatics.Forms
                 // Sets saleline to be the same as history saleline
                 saleLine = History.SaleLine;
 
+                // Fetches status
+                tb_Status.Text = History.SaleStatus.ToString();
             }
 
             // Binds the datasoruce of the cart to the saleLine collection

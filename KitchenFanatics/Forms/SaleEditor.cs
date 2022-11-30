@@ -61,6 +61,9 @@ namespace KitchenFanatics.Forms
 
                 // Changes btn text to Create
                 btn_CreateEdit.Text = "Opret";
+
+                //
+                tb_Status.Text = "1";
             }
             else
             {

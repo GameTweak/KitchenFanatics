@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace KitchenFanatics.Forms
         private SaleService saleService = new SaleService();
         private SortingService sorting = new SortingService();
         private LogService logger = new LogService();
+        private FileService file = new FileService();
 
         // Defines the SaleHistory collection that will be storing the sales
         private List<SaleHistory> history { get; set; }
@@ -68,7 +70,8 @@ namespace KitchenFanatics.Forms
 
                     // Displays to the user that the entry was deleted
                     MessageBox.Show($"Sale entry {sale.Id} was removed from the Database", "Entry Deleted");
-                } else { throw new NullReferenceException("No sale selected!"); }
+                }
+                else { throw new NullReferenceException("No sale selected!"); }
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
             catch (Exception ex) { logger.LogError(ex); }
@@ -99,10 +102,28 @@ namespace KitchenFanatics.Forms
         private void EditSale(object sender, EventArgs e)
         {
             // Defines the CreateSale form
-            SaleEditor sale = new SaleEditor(false, (SaleHistory) DGV_SaleHistories.CurrentRow.DataBoundItem);
+            SaleEditor sale = new SaleEditor(false, (SaleHistory)DGV_SaleHistories.CurrentRow.DataBoundItem);
 
             // Opens the form for the user
             sale.ShowDialog();
+        }
+
+        private void PrintData(object sender, EventArgs e)
+        {
+            try
+            {
+                List<SaleHistory> saleHistories = new List<SaleHistory>();
+
+                foreach (DataGridViewRow sh in DGV_SaleHistories.Rows)
+                {
+                    saleHistories.Add((SaleHistory)sh.DataBoundItem);
+                }
+
+                file.CreateFile(saleHistories, dtp_Start.Value, dtp_End.Value);
+            } catch (IOException ex)
+            {
+                logger.LogError(ex, "The file is already open!");
+            }
         }
     }
 }

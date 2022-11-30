@@ -12,14 +12,16 @@ namespace KitchenFanatics.Forms
 {
     public partial class ItemOverview : Form
 
-        //Written by Johanne
+    //Written by Johanne
     {
         //a list containing items from the item class is instantiated
         public List<Models.Item> AllItems { get; set; }
+        public Services.ItemService ItemsService { get; set; }
 
         public ItemOverview()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            ItemsService = new Services.ItemService(); 
         }
 
         private void ItemOverview_Load(object sender, EventArgs e)
@@ -37,7 +39,19 @@ namespace KitchenFanatics.Forms
         private void btn_createnewitem_Click(object sender, EventArgs e)
         {
             //a method is called which opens the CreateItem form 
-            OpenCreateItem(); 
+            OpenCreateItem();
+        }
+
+        private void cb_sortby_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //sorts the items in the datagridview when an option is clicked in the combobox
+            SortItemList();
+        }
+
+        private void btn_printitems_Click(object sender, EventArgs e)
+        {
+            //prints the content of the datagridview to a txt file
+            WriteToTxtFile(); 
         }
 
         /// <summary>
@@ -45,12 +59,10 @@ namespace KitchenFanatics.Forms
         /// </summary>
         public void LoadItemData()
         {
-            //creates a new variable which is an instance of the ItemService
-            var itemsService = new Services.ItemService();
             //the AllItems variable gets the value of a call to a method from the itemservice which gets all items from the database 
-            AllItems = itemsService.GetAllItems();
+            AllItems = ItemsService.GetAllItems();
             //the itemoverview datagridview is set to display all of the items from the database
-            dgw_itemoverview.DataSource = AllItems; 
+            dgw_itemoverview.DataSource = AllItems;
         }
 
         /// <summary>
@@ -71,7 +83,7 @@ namespace KitchenFanatics.Forms
             //call to a method which will open the form
             ItemUpdateForm.ShowDialog();
             //call to a method which loads the item data to the datagridview, to show possible changes 
-            LoadItemData(); 
+            LoadItemData();
         }
 
         /// <summary>
@@ -84,7 +96,59 @@ namespace KitchenFanatics.Forms
             //call to a method which will open the form
             ItemCreateForm.ShowDialog();
             //call to a method which loads the item data to the datagridview, to show possible changes
-            LoadItemData(); 
+            LoadItemData();
+        }
+
+        /// <summary>
+        /// Sorts the list in the datagridview according to what is selected on cb_sortby
+        /// </summary>
+        public void SortItemList()
+        {
+            //chekcs which option is picked in the combobox, and changes the datagridview accordingly
+            switch (cb_sortby.Text)
+            {
+                case "Standard":
+                    dgw_itemoverview.DataSource = AllItems;
+                    break;
+                case "Pris - Lav til høj":
+                    dgw_itemoverview.DataSource = ItemsService.SortByPriceLow();
+                    break;
+                case "Pris - Høj til lav":
+                    dgw_itemoverview.DataSource = ItemsService.SortByPriceHigh();
+                    break;
+                case "Varenavn - a-å":
+                    dgw_itemoverview.DataSource = ItemsService.SortByItemNameAsc();
+                    break;
+                case "Varenavn - å-a":
+                    dgw_itemoverview.DataSource = ItemsService.SortByNameDesc();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Saves the content of the itemoverview datagridview to a txt file
+        /// </summary>
+        public void WriteToTxtFile()
+        {
+            //initiates an empty string
+            string textToPrint = "";
+            
+            //loops through all of the rows in the datagridview
+            foreach (DataGridViewRow it in dgw_itemoverview.Rows)
+            {
+                //gets the data from the row and saves it in "item"
+                Models.Item item = (Models.Item)it.DataBoundItem;
+                //the row is saved as a string in the previously initiated string 
+                textToPrint += $"Varenummer: {item.Id}, Varenavn: {item.Title}, Pris: {item.Price}, Varekategori: {item.ItemCategory}, På lager: {item.InStock}, " +
+                    $"{Environment.NewLine} Bredde: {item.Width}, Højde: {item.Height}, Dybde: {item.Depth}, Vægt: {item.Weight}, Tags: {item.Tags} " +
+                    $"{Environment.NewLine} {Environment.NewLine}";
+            }
+            
+            //the string is saved in the Vareudskrift txt file which will be created
+            //if the file already exists it will be overwritten
+            System.IO.File.WriteAllText(@"Vareudskrift.txt", textToPrint);
+            //a messagebox pops up to inform the user of the action
+            MessageBox.Show("Varene på listen er blevet udskrevet");
         }
     }
 }

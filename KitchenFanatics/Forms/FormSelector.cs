@@ -40,5 +40,11 @@ namespace KitchenFanatics.Forms
             SalesModule salesModul = new SalesModule();
             salesModul.ShowDialog();
         }
+
+        private void btn_IntelligentCouncel_Click(object sender, EventArgs e)
+        {
+            ItemOverviewIntCou itemOverviewIntCou = new ItemOverviewIntCou();
+            itemOverviewIntCou.ShowDialog();
+        }
     }
 }

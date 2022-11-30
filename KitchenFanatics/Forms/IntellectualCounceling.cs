@@ -1,4 +1,7 @@
-﻿using System;
+﻿using KitchenFanatics.Models;
+using KitchenFanatics.Services;
+using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,8 +34,27 @@ namespace KitchenFanatics.Forms
             // Sets the default values for CurrentFilter
             CurrentFilter = new Models.Filter("",null,null,null,null,null,null,null,null,null);
 
+            SetCheckBoxList();
+
             // Calls the method SelectQuestion
             SelectQuestion();
+        }
+
+        private void SetCheckBoxList()
+        {
+            // Makes a connection to the ItemTypeService
+            var itemTypeService = new ItemTypeService();
+
+            // Gets all item types
+            var choices = itemTypeService.GetAllItemTypes();
+
+            // Adds all item types as choices in CLB_types
+            foreach(var choice in choices)
+            {
+                CLB_type.Items.Add(choice.TypeName);
+            }
+
+            CLB_type.CheckOnClick = true;
         }
 
         /// <summary>
@@ -81,11 +103,19 @@ namespace KitchenFanatics.Forms
             {
                 case 0:
                     ValidDecimal = true;
-                    // Checks whether or not anything is written in the input
-                    if (txt_input.Text != "")
+                    // Checks whether or not any boxes have been marked in CLB_type
+                    if (CLB_type.CheckedItems.Count != 0)
                     {
+                        // Makes a new string
+                        string result = "";
+
+                        // Adds each chosen box to the string result
+                        foreach (var item in CLB_type.CheckedItems)
+                        {
+                            result = result + item.ToString() + ", ";
+                        }
                         // Saves the input into the current filter
-                        CurrentFilter.Type = txt_input.Text;
+                        CurrentFilter.Type = result;
                     }
                     break;
 
@@ -124,7 +154,7 @@ namespace KitchenFanatics.Forms
             ClearUI();
             lb_question.Text = "Hvilken type/typer produkter leder du efter";
 
-            txt_input.Visible = true;
+            CLB_type.Visible = true;
         }
 
         /// <summary>
@@ -244,7 +274,6 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void ClearUI()
         {
-            txt_input.Visible = false;
             txt_number1.Visible = false;
             txt_number2.Visible = false;
             txt_number3.Visible = false;
@@ -257,8 +286,8 @@ namespace KitchenFanatics.Forms
             lb_number4.Visible = false;
             lb_number5.Visible = false;
             lb_number6.Visible = false;
+            CLB_type.Visible = false;
 
-            txt_input.Text = "";
             txt_number1.Text = "";
             txt_number2.Text = "";
             txt_number3.Text = "";

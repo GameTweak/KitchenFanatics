@@ -131,9 +131,8 @@ namespace KitchenFanatics.Forms
         /// </summary>
         public void WriteToTxtFile()
         {
+            //creates a path which saves the txt file to the desktop 
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"Vareudskrift[{DateTime.Now.ToString("MM-dd-yy HH:mm")}].txt");
-            Console.WriteLine(path);
-            
             //initiates an empty string
             string textToPrint = "";
             

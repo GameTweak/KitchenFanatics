@@ -28,67 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_CustomerOverview = new System.Windows.Forms.Button();
-            this.btn_CustomerCreate = new System.Windows.Forms.Button();
-            this.btn_ItemOverview = new System.Windows.Forms.Button();
-            this.btn_ItemUpdateNCreate = new System.Windows.Forms.Button();
-            this.btn_SaleModule = new System.Windows.Forms.Button();
-            this.btn_IntelligentCouncel = new System.Windows.Forms.Button();
+            this.btn_customer = new System.Windows.Forms.Button();
+            this.btn_item = new System.Windows.Forms.Button();
+            this.btn_sale = new System.Windows.Forms.Button();
+            this.btn_intelligentcounselling = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btn_CustomerOverview
+            // btn_customer
             // 
-            this.btn_CustomerOverview.Location = new System.Drawing.Point(16, 37);
-            this.btn_CustomerOverview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_CustomerOverview.Name = "btn_CustomerOverview";
-            this.btn_CustomerOverview.Size = new System.Drawing.Size(207, 69);
-            this.btn_CustomerOverview.TabIndex = 0;
-            this.btn_CustomerOverview.Text = "Åben Customer Overview";
-            this.btn_CustomerOverview.UseVisualStyleBackColor = true;
-            this.btn_CustomerOverview.Click += new System.EventHandler(this.btn_CustomerOverview_Click);
+            this.btn_customer.Location = new System.Drawing.Point(96, 174);
+            this.btn_customer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_customer.Name = "btn_customer";
+            this.btn_customer.Size = new System.Drawing.Size(207, 69);
+            this.btn_customer.TabIndex = 0;
+            this.btn_customer.Text = "Kunder";
+            this.btn_customer.UseVisualStyleBackColor = true;
+            this.btn_customer.Click += new System.EventHandler(this.btn_customer_Click);
             // 
-            // btn_CustomerCreate
+            // btn_item
             // 
-            this.btn_CustomerCreate.Location = new System.Drawing.Point(16, 113);
-            this.btn_CustomerCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_CustomerCreate.Name = "btn_CustomerCreate";
-            this.btn_CustomerCreate.Size = new System.Drawing.Size(207, 69);
-            this.btn_CustomerCreate.TabIndex = 1;
-            this.btn_CustomerCreate.Text = "Åben Customer Create";
-            this.btn_CustomerCreate.UseVisualStyleBackColor = true;
-            this.btn_CustomerCreate.Click += new System.EventHandler(this.btn_CustomerCreate_Click);
+            this.btn_item.Location = new System.Drawing.Point(350, 174);
+            this.btn_item.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_item.Name = "btn_item";
+            this.btn_item.Size = new System.Drawing.Size(207, 69);
+            this.btn_item.TabIndex = 2;
+            this.btn_item.Text = "Varer";
+            this.btn_item.UseVisualStyleBackColor = true;
+            this.btn_item.Click += new System.EventHandler(this.btn_item_Click);
             // 
-            // btn_ItemOverview
+            // btn_sale
             // 
-            this.btn_ItemOverview.Location = new System.Drawing.Point(16, 190);
-            this.btn_ItemOverview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_ItemOverview.Name = "btn_ItemOverview";
-            this.btn_ItemOverview.Size = new System.Drawing.Size(207, 69);
-            this.btn_ItemOverview.TabIndex = 2;
-            this.btn_ItemOverview.Text = "Åben Item Overview";
-            this.btn_ItemOverview.UseVisualStyleBackColor = true;
-            this.btn_ItemOverview.Click += new System.EventHandler(this.btn_ItemOverview_Click);
+            this.btn_sale.Location = new System.Drawing.Point(602, 174);
+            this.btn_sale.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_sale.Name = "btn_sale";
+            this.btn_sale.Size = new System.Drawing.Size(207, 69);
+            this.btn_sale.TabIndex = 4;
+            this.btn_sale.Text = "Salg";
+            this.btn_sale.UseVisualStyleBackColor = true;
+            this.btn_sale.Click += new System.EventHandler(this.btn_sale_Click);
             // 
-            // btn_ItemUpdateNCreate
+            // btn_intelligentcounselling
             // 
-            this.btn_ItemUpdateNCreate.Location = new System.Drawing.Point(16, 266);
-            this.btn_ItemUpdateNCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_ItemUpdateNCreate.Name = "btn_ItemUpdateNCreate";
-            this.btn_ItemUpdateNCreate.Size = new System.Drawing.Size(207, 69);
-            this.btn_ItemUpdateNCreate.TabIndex = 3;
-            this.btn_ItemUpdateNCreate.Text = "Åben Item Update and Create";
-            this.btn_ItemUpdateNCreate.UseVisualStyleBackColor = true;
+
+            this.btn_intelligentcounselling.Location = new System.Drawing.Point(350, 276);
+            this.btn_intelligentcounselling.Name = "btn_intelligentcounselling";
+            this.btn_intelligentcounselling.Size = new System.Drawing.Size(207, 69);
+            this.btn_intelligentcounselling.TabIndex = 5;
+            this.btn_intelligentcounselling.Text = "Intelligent rådgivning";
+            this.btn_intelligentcounselling.UseVisualStyleBackColor = true;
+            this.btn_intelligentcounselling.Click += new System.EventHandler(this.btn_intelligentcounselling_Click);
+
             // 
-            // btn_SaleModule
+            // label1
             // 
-            this.btn_SaleModule.Location = new System.Drawing.Point(16, 342);
-            this.btn_SaleModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_SaleModule.Name = "btn_SaleModule";
-            this.btn_SaleModule.Size = new System.Drawing.Size(207, 69);
-            this.btn_SaleModule.TabIndex = 4;
-            this.btn_SaleModule.Text = "Åben SaleModule";
-            this.btn_SaleModule.UseVisualStyleBackColor = true;
-            this.btn_SaleModule.Click += new System.EventHandler(this.btn_SaleModule_Click);
+
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(224, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(458, 58);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "KøkkenFanatikeren";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // btn_IntelligentCouncel
             // 
@@ -105,28 +108,32 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.btn_IntelligentCouncel);
-            this.Controls.Add(this.btn_SaleModule);
-            this.Controls.Add(this.btn_ItemUpdateNCreate);
-            this.Controls.Add(this.btn_ItemOverview);
-            this.Controls.Add(this.btn_CustomerCreate);
-            this.Controls.Add(this.btn_CustomerOverview);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+
+            this.ClientSize = new System.Drawing.Size(904, 434);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btn_intelligentcounselling);
+            this.Controls.Add(this.btn_sale);
+            this.Controls.Add(this.btn_item);
+            this.Controls.Add(this.btn_customer);
+            this.Margin = new System.Windows.Forms.Padding(4);
+
             this.Name = "FormSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormSelector";
+            this.Text = "KøkkenFanatikeren";
+            this.Load += new System.EventHandler(this.FormSelector_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btn_CustomerOverview;
-        private System.Windows.Forms.Button btn_CustomerCreate;
-        private System.Windows.Forms.Button btn_ItemOverview;
-        private System.Windows.Forms.Button btn_ItemUpdateNCreate;
-        private System.Windows.Forms.Button btn_SaleModule;
-        private System.Windows.Forms.Button btn_IntelligentCouncel;
+
+        private System.Windows.Forms.Button btn_customer;
+        private System.Windows.Forms.Button btn_item;
+        private System.Windows.Forms.Button btn_sale;
+        private System.Windows.Forms.Button btn_intelligentcounselling;
+        private System.Windows.Forms.Label label1;
+
     }
 }

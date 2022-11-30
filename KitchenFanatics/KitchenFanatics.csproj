@@ -73,6 +73,12 @@
     <Compile Include="Forms\CreateCustomer.Designer.cs">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SaleEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaleEditor.resx">
       <DependentUpon>SaleEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +191,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Database\KitchenFanaticDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

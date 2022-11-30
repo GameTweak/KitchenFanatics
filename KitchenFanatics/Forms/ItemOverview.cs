@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -130,6 +131,9 @@ namespace KitchenFanatics.Forms
         /// </summary>
         public void WriteToTxtFile()
         {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"Vareudskrift[{DateTime.Now.ToString("MM-dd-yy HH:mm")}].txt");
+            Console.WriteLine(path);
+            
             //initiates an empty string
             string textToPrint = "";
             
@@ -146,7 +150,7 @@ namespace KitchenFanatics.Forms
             
             //the string is saved in the Vareudskrift txt file which will be created
             //if the file already exists it will be overwritten
-            System.IO.File.WriteAllText(@"Vareudskrift.txt", textToPrint);
+            File.WriteAllText(path, textToPrint);
             //a messagebox pops up to inform the user of the action
             MessageBox.Show("Varene på listen er blevet udskrevet");
         }

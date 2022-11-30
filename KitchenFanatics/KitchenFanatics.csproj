@@ -73,6 +73,12 @@
     <Compile Include="Forms\CreateCustomer.Designer.cs">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ItemOverviewIntCou.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemOverviewIntCou.Designer.cs">
+      <DependentUpon>ItemOverviewIntCou.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SaleEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,11 +97,11 @@
     <Compile Include="Forms\FormSelector.Designer.cs">
       <DependentUpon>FormSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Intellectual Counceling.cs">
+    <Compile Include="Forms\IntellectualCounceling.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Intellectual Counceling.Designer.cs">
-      <DependentUpon>Intellectual Counceling.cs</DependentUpon>
+    <Compile Include="Forms\IntellectualCounceling.Designer.cs">
+      <DependentUpon>IntellectualCounceling.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ItemCreate.cs">
       <SubType>Form</SubType>
@@ -142,9 +148,13 @@
     <Compile Include="Services\CustomerSorting.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\FilterService.cs" />
+    <Compile Include="Services\ItemTypeService.cs" />
     <Compile Include="Services\SortingService.cs" />
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemOverviewIntCou.resx">
+      <DependentUpon>ItemOverviewIntCou.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaleEditor.resx">
       <DependentUpon>SaleEditor.cs</DependentUpon>
@@ -159,8 +169,8 @@
     <EmbeddedResource Include="Forms\FormSelector.resx">
       <DependentUpon>FormSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Intellectual Counceling.resx">
-      <DependentUpon>Intellectual Counceling.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\IntellectualCounceling.resx">
+      <DependentUpon>IntellectualCounceling.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemCreate.resx">
       <DependentUpon>ItemCreate.cs</DependentUpon>

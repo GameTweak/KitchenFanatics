@@ -22,6 +22,43 @@ namespace KitchenFanatics.Models
         public decimal? Weight { get; set; }
         public string Tags { get; set; }
 
+        public string GetItemCategory
+        {
+            get
+            {
+                switch (ItemCategory)
+                {
+                    case 0:
+                        return string.Empty;
+                    case 1:
+                        return "Hjørneskab";
+                    case 2:
+                        return "Overskab";
+                    case 3:
+                        return "Underskab";
+                    case 4:
+                        return "Låger";
+                    case 5:
+                        return "Bordplader";
+                    case 6:
+                        return "Belysning";
+                    case 7:
+                        return "Reoler";
+                    case 8:
+                        return "Køkkenvaske";
+                    case 9:
+                        return "Knopper og greb";
+                    case 10:
+                        return "Skuffer";
+                    case 11:
+                        return "Rulleborde";
+                    case 12:
+                        return "Hvidevare";
+                    default: return string.Empty;
+                }
+            }
+        }
+
         //a constructor is created for the Item class, ? is used to allow nulls
         public Item(int id, string title, decimal price, int stock, int? category, decimal? width, decimal? height, decimal? depth, decimal? weight, string tags)
         {

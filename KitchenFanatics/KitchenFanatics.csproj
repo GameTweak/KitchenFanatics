@@ -73,19 +73,17 @@
     <Compile Include="Forms\CreateCustomer.Designer.cs">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
-
+    </Compile>
     <Compile Include="Forms\ItemOverviewIntCou.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ItemOverviewIntCou.Designer.cs">
       <DependentUpon>ItemOverviewIntCou.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Forms\SaleEditor.cs">
       <SubType>Form</SubType>
@@ -154,6 +152,7 @@
     <Compile Include="Repositories\SaleRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\CustomerSorting.cs" />
+    <Compile Include="Services\CustomerSortingService.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\ItemTypeService.cs" />
@@ -161,13 +160,11 @@
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemOverviewIntCou.resx">
       <DependentUpon>ItemOverviewIntCou.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaleEditor.resx">
       <DependentUpon>SaleEditor.cs</DependentUpon>

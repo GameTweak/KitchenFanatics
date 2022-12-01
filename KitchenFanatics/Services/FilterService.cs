@@ -9,8 +9,7 @@ namespace KitchenFanatics.Services
 {
     public class FilterService
     {
-        private Filter filter { get; set; }
-
+        //Written by Thomas
         public FilterService()
         {
 
@@ -22,8 +21,10 @@ namespace KitchenFanatics.Services
         /// <returns></returns>
         public List<Item> FilterByType(List<Item> ListToFilter, List<int> TypeID)
         {
+            // a new list called result is initiated
             List<Item> result = new List<Item>();
 
+            // Makes sure at least one itemType was chosen for the filter
             if (TypeID.Count != 0)
             {
                 //Repeats for each type searched for
@@ -34,6 +35,7 @@ namespace KitchenFanatics.Services
                     result.AddRange(temp);
                 }
             }
+            // If no itemtype was chosen for the filter, then skip filterByType
             else
             {
                 result = ListToFilter;
@@ -63,37 +65,37 @@ namespace KitchenFanatics.Services
             //If the items max width is not null, then it filters by max width
             if (MaxWidth != null)
             {
-                result = result.Where(itm => itm.Weight < MaxWidth).ToList();
+                result = result.Where(itm => itm.Width <= MaxWidth).ToList();
             }
 
             //If the items max height is not null, then it filters by max height
             if (MaxHeight != null)
             {
-                result = result.Where(itm => itm.Weight < MaxHeight).ToList();
+                result = result.Where(itm => itm.Height <= MaxHeight).ToList();
             }
 
             //If the items max depth is not null, then it filters by max depth
             if (MaxDepth != null)
             {
-                result = result.Where(itm => itm.Weight < MaxDepth).ToList();
+                result = result.Where(itm => itm.Depth <= MaxDepth).ToList();
             }
 
             //If the items min width is not null, then it filters by min width
             if (MinWidth != null)
             {
-                result = result.Where(itm => itm.Weight < MinWidth).ToList();
+                result = result.Where(itm => itm.Width >= MinWidth).ToList();
             }
 
             //If the items min height is not null, then it filters by min height
             if (MinHeight != null)
             {
-                result = result.Where(itm => itm.Weight < MinHeight).ToList();
+                result = result.Where(itm => itm.Height >= MinHeight).ToList();
             }
 
             //If the items min depth is not null, then it filters by min depth
             if (MinDepth != null)
             {
-                result = result.Where(itm => itm.Weight < MinDepth).ToList();
+                result = result.Where(itm => itm.Depth >= MinDepth).ToList();
             }
 
             //Returns result
@@ -108,6 +110,7 @@ namespace KitchenFanatics.Services
         public List<Item> FilterByWeight(List<Item> ListToFilter, decimal? MaxWeight)
         {
             List<Item> result = new List<Item>();
+
             //Sets result to ListToFilter
             result = ListToFilter;
 

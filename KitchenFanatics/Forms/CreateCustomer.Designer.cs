@@ -96,7 +96,7 @@
             // 
             // createCustomerPhoneNumber_tb
             // 
-            this.createCustomerPhoneNumber_tb.Location = new System.Drawing.Point(15, 283);
+            this.createCustomerPhoneNumber_tb.Location = new System.Drawing.Point(12, 215);
             this.createCustomerPhoneNumber_tb.Name = "createCustomerPhoneNumber_tb";
             this.createCustomerPhoneNumber_tb.Size = new System.Drawing.Size(202, 22);
             this.createCustomerPhoneNumber_tb.TabIndex = 6;
@@ -110,7 +110,7 @@
             // 
             // createCustomerAddress_tb
             // 
-            this.createCustomerAddress_tb.Location = new System.Drawing.Point(12, 215);
+            this.createCustomerAddress_tb.Location = new System.Drawing.Point(12, 283);
             this.createCustomerAddress_tb.Name = "createCustomerAddress_tb";
             this.createCustomerAddress_tb.Size = new System.Drawing.Size(205, 22);
             this.createCustomerAddress_tb.TabIndex = 8;

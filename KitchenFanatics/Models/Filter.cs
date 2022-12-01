@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Models
 {
+    //Written by Thomas
     public class Filter
     {
         //a constructor is created for the Item class, ? is used to allow nulls

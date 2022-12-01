@@ -10,7 +10,7 @@ namespace KitchenFanatics.Models
 {
     public class Customer
     {
-        public Customer(string firstname, string lastname, string email, string customeraddress, string phonenumber, int id) 
+        public Customer(string firstname, string lastname, string email, string customeraddress, string phonenumber, int? id) 
         {
             this.FirstName = firstname;
             this.LastName = lastname;
@@ -25,7 +25,7 @@ namespace KitchenFanatics.Models
         public string Email { get; set; }
         public string Customeraddress { get; set; }
         public string phonenumber { get; set; }
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
         public int id { get; set; }
         public string FullName { get { return FirstName + " " + LastName; } }
     }

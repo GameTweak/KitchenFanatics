@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace KitchenFanatics.Forms
 {
+    //Written by Thomas
     public partial class Intellectual_Counceling : Form
     {
         // makes a series of variables that i am going use later in the code
@@ -32,7 +33,7 @@ namespace KitchenFanatics.Forms
             QuestionNumber = 0;
 
             // Sets the default values for CurrentFilter
-            CurrentFilter = new Models.Filter("",null,null,null,null,null,null,null,null,null);
+            CurrentFilter = new Filter("",null,null,null,null,null,null,null,null,null);
 
             SetCheckBoxList();
 
@@ -40,6 +41,9 @@ namespace KitchenFanatics.Forms
             SelectQuestion();
         }
 
+        /// <summary>
+        /// Sets up the values in the checkBoxList
+        /// </summary>
         private void SetCheckBoxList()
         {
             // Makes a connection to the ItemTypeService
@@ -54,6 +58,7 @@ namespace KitchenFanatics.Forms
                 CLB_type.Items.Add(choice.TypeName);
             }
 
+            // Makes it so a box in the checkBoxList is checked after one click, instead of the default doubleclick
             CLB_type.CheckOnClick = true;
         }
 

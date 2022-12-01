@@ -181,14 +181,10 @@ namespace KitchenFanatics.Forms
             lb_number3.Visible = true;
             lb_number4.Visible = true;
             lb_number5.Visible = true;
-            lb_number6.Visible = true;
 
-            lb_number1.Text = "Max højde";
-            lb_number2.Text = "Max bredde";
-            lb_number3.Text = "Max dybde";
-            lb_number4.Text = "Min højde";
-            lb_number5.Text = "Min bredde";
-            lb_number6.Text = "Min dybde";
+            lb_number1.Text = "Højde";
+            lb_number2.Text = "Bredde";
+            lb_number3.Text = "Dybde";
         }
 
         /// <summary>
@@ -290,7 +286,6 @@ namespace KitchenFanatics.Forms
             lb_number3.Visible = false;
             lb_number4.Visible = false;
             lb_number5.Visible = false;
-            lb_number6.Visible = false;
             CLB_type.Visible = false;
 
             txt_number1.Text = "";
@@ -334,6 +329,21 @@ namespace KitchenFanatics.Forms
                 MessageBox.Show(varName + " kunne ikke konverteres til et decimaltal");
                 ValidDecimal = false;
                 return null;
+            }
+        }
+        
+        /// <summary>
+        /// Går et spørgsmål tilbage når man trykker på back
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            // tjekker at det ikke allerede er det første spørgsmål
+            if (QuestionNumber > 0)
+            {
+                QuestionNumber--;
+                SelectQuestion();
             }
         }
     }

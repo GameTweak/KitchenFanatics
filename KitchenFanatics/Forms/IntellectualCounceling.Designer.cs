@@ -41,10 +41,10 @@
             this.txt_number6 = new System.Windows.Forms.TextBox();
             this.txt_number5 = new System.Windows.Forms.TextBox();
             this.txt_number4 = new System.Windows.Forms.TextBox();
-            this.lb_number6 = new System.Windows.Forms.Label();
-            this.lb_number5 = new System.Windows.Forms.Label();
-            this.lb_number4 = new System.Windows.Forms.Label();
             this.CLB_type = new System.Windows.Forms.CheckedListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lb_number4 = new System.Windows.Forms.Label();
+            this.lb_number5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_question
@@ -83,7 +83,7 @@
             // 
             this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_cancel.Location = new System.Drawing.Point(208, 290);
+            this.btn_cancel.Location = new System.Drawing.Point(306, 290);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(92, 54);
             this.btn_cancel.TabIndex = 4;
@@ -94,7 +94,7 @@
             // lb_number1
             // 
             this.lb_number1.AutoSize = true;
-            this.lb_number1.Location = new System.Drawing.Point(25, 69);
+            this.lb_number1.Location = new System.Drawing.Point(25, 73);
             this.lb_number1.Name = "lb_number1";
             this.lb_number1.Size = new System.Drawing.Size(79, 16);
             this.lb_number1.TabIndex = 6;
@@ -104,7 +104,7 @@
             // lb_number2
             // 
             this.lb_number2.AutoSize = true;
-            this.lb_number2.Location = new System.Drawing.Point(25, 106);
+            this.lb_number2.Location = new System.Drawing.Point(25, 110);
             this.lb_number2.Name = "lb_number2";
             this.lb_number2.Size = new System.Drawing.Size(69, 16);
             this.lb_number2.TabIndex = 7;
@@ -114,7 +114,7 @@
             // lb_number3
             // 
             this.lb_number3.AutoSize = true;
-            this.lb_number3.Location = new System.Drawing.Point(25, 142);
+            this.lb_number3.Location = new System.Drawing.Point(25, 146);
             this.lb_number3.Name = "lb_number3";
             this.lb_number3.Size = new System.Drawing.Size(74, 16);
             this.lb_number3.TabIndex = 8;
@@ -123,7 +123,8 @@
             // 
             // txt_number1
             // 
-            this.txt_number1.Location = new System.Drawing.Point(110, 66);
+            this.txt_number1.Location = new System.Drawing.Point(177, 73);
+            this.txt_number1.MaxLength = 7;
             this.txt_number1.Name = "txt_number1";
             this.txt_number1.Size = new System.Drawing.Size(61, 22);
             this.txt_number1.TabIndex = 9;
@@ -132,7 +133,8 @@
             // 
             // txt_number2
             // 
-            this.txt_number2.Location = new System.Drawing.Point(110, 103);
+            this.txt_number2.Location = new System.Drawing.Point(177, 110);
+            this.txt_number2.MaxLength = 7;
             this.txt_number2.Name = "txt_number2";
             this.txt_number2.Size = new System.Drawing.Size(61, 22);
             this.txt_number2.TabIndex = 10;
@@ -141,7 +143,8 @@
             // 
             // txt_number3
             // 
-            this.txt_number3.Location = new System.Drawing.Point(110, 139);
+            this.txt_number3.Location = new System.Drawing.Point(177, 146);
+            this.txt_number3.MaxLength = 7;
             this.txt_number3.Name = "txt_number3";
             this.txt_number3.Size = new System.Drawing.Size(61, 22);
             this.txt_number3.TabIndex = 11;
@@ -150,7 +153,8 @@
             // 
             // txt_number6
             // 
-            this.txt_number6.Location = new System.Drawing.Point(110, 247);
+            this.txt_number6.Location = new System.Drawing.Point(110, 146);
+            this.txt_number6.MaxLength = 7;
             this.txt_number6.Name = "txt_number6";
             this.txt_number6.Size = new System.Drawing.Size(61, 22);
             this.txt_number6.TabIndex = 17;
@@ -159,7 +163,8 @@
             // 
             // txt_number5
             // 
-            this.txt_number5.Location = new System.Drawing.Point(110, 211);
+            this.txt_number5.Location = new System.Drawing.Point(110, 110);
+            this.txt_number5.MaxLength = 7;
             this.txt_number5.Name = "txt_number5";
             this.txt_number5.Size = new System.Drawing.Size(61, 22);
             this.txt_number5.TabIndex = 16;
@@ -168,42 +173,13 @@
             // 
             // txt_number4
             // 
-            this.txt_number4.Location = new System.Drawing.Point(110, 174);
+            this.txt_number4.Location = new System.Drawing.Point(110, 73);
+            this.txt_number4.MaxLength = 7;
             this.txt_number4.Name = "txt_number4";
             this.txt_number4.Size = new System.Drawing.Size(61, 22);
             this.txt_number4.TabIndex = 15;
             this.txt_number4.Visible = false;
             this.txt_number4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_number_KeyPress);
-            // 
-            // lb_number6
-            // 
-            this.lb_number6.AutoSize = true;
-            this.lb_number6.Location = new System.Drawing.Point(25, 250);
-            this.lb_number6.Name = "lb_number6";
-            this.lb_number6.Size = new System.Drawing.Size(70, 16);
-            this.lb_number6.TabIndex = 14;
-            this.lb_number6.Text = "Min dybde";
-            this.lb_number6.Visible = false;
-            // 
-            // lb_number5
-            // 
-            this.lb_number5.AutoSize = true;
-            this.lb_number5.Location = new System.Drawing.Point(25, 214);
-            this.lb_number5.Name = "lb_number5";
-            this.lb_number5.Size = new System.Drawing.Size(65, 16);
-            this.lb_number5.TabIndex = 13;
-            this.lb_number5.Text = "Min højde";
-            this.lb_number5.Visible = false;
-            // 
-            // lb_number4
-            // 
-            this.lb_number4.AutoSize = true;
-            this.lb_number4.Location = new System.Drawing.Point(25, 177);
-            this.lb_number4.Name = "lb_number4";
-            this.lb_number4.Size = new System.Drawing.Size(75, 16);
-            this.lb_number4.TabIndex = 12;
-            this.lb_number4.Text = "Min bredde";
-            this.lb_number4.Visible = false;
             // 
             // CLB_type
             // 
@@ -213,6 +189,34 @@
             this.CLB_type.Size = new System.Drawing.Size(154, 225);
             this.CLB_type.TabIndex = 18;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(208, 290);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 54);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btn_back_Click);
+            // 
+            // lb_number4
+            // 
+            this.lb_number4.AutoSize = true;
+            this.lb_number4.Location = new System.Drawing.Point(174, 54);
+            this.lb_number4.Name = "lb_number4";
+            this.lb_number4.Size = new System.Drawing.Size(32, 16);
+            this.lb_number4.TabIndex = 20;
+            this.lb_number4.Text = "Max";
+            // 
+            // lb_number5
+            // 
+            this.lb_number5.AutoSize = true;
+            this.lb_number5.Location = new System.Drawing.Point(103, 54);
+            this.lb_number5.Name = "lb_number5";
+            this.lb_number5.Size = new System.Drawing.Size(28, 16);
+            this.lb_number5.TabIndex = 21;
+            this.lb_number5.Text = "Min";
+            // 
             // Intellectual_Counceling
             // 
             this.AcceptButton = this.btn_submit;
@@ -220,13 +224,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_cancel;
             this.ClientSize = new System.Drawing.Size(560, 356);
-            this.Controls.Add(this.CLB_type);
+            this.Controls.Add(this.lb_number5);
+            this.Controls.Add(this.lb_number4);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_number6);
             this.Controls.Add(this.txt_number5);
             this.Controls.Add(this.txt_number4);
-            this.Controls.Add(this.lb_number6);
-            this.Controls.Add(this.lb_number5);
-            this.Controls.Add(this.lb_number4);
             this.Controls.Add(this.txt_number3);
             this.Controls.Add(this.txt_number2);
             this.Controls.Add(this.txt_number1);
@@ -237,6 +240,7 @@
             this.Controls.Add(this.btn_skip);
             this.Controls.Add(this.btn_submit);
             this.Controls.Add(this.lb_question);
+            this.Controls.Add(this.CLB_type);
             this.Location = new System.Drawing.Point(578, 403);
             this.MaximumSize = new System.Drawing.Size(578, 403);
             this.Name = "Intellectual_Counceling";
@@ -261,9 +265,9 @@
         private System.Windows.Forms.TextBox txt_number6;
         private System.Windows.Forms.TextBox txt_number5;
         private System.Windows.Forms.TextBox txt_number4;
-        private System.Windows.Forms.Label lb_number6;
-        private System.Windows.Forms.Label lb_number5;
-        private System.Windows.Forms.Label lb_number4;
         private System.Windows.Forms.CheckedListBox CLB_type;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lb_number4;
+        private System.Windows.Forms.Label lb_number5;
     }
 }

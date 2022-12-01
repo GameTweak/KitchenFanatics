@@ -84,7 +84,6 @@
     </Compile>
     <Compile Include="Forms\ItemOverviewIntCou.Designer.cs">
       <DependentUpon>ItemOverviewIntCou.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Forms\SaleEditor.cs">
       <SubType>Form</SubType>
@@ -166,7 +165,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemOverviewIntCou.resx">
       <DependentUpon>ItemOverviewIntCou.cs</DependentUpon>
-    </EmbeddedResource>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaleEditor.resx">
       <DependentUpon>SaleEditor.cs</DependentUpon>

@@ -9,9 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.AccessControl;
 
 namespace KitchenFanatics.Forms
 {
+    /// <summary>
+    /// SaleEditor for creating and editing sales
+    /// 
+    /// Written by Esben
+    /// </summary>
     public partial class SaleEditor : Form
     {
         // Objects used
@@ -50,20 +56,19 @@ namespace KitchenFanatics.Forms
             ItemService itemService = new ItemService();
             CustomerService customerService = new CustomerService();
 
+            // Binds the ComboBox to contain all Customers
+            cb_Customers.DataSource = customerService.GetCustomers();
+
+            // Makes it so the ComboBox displays their full name
+            cb_Customers.DisplayMember = "FullName";
+
             if (IsNew)
             {
-
-                // Binds the ComboBox to contain all Customers
-                cb_Customers.DataSource = customerService.GetCustomers();
-
-                // Makes it so the ComboBox displays their full name
-                cb_Customers.DisplayMember = "FullName";
-
                 // Changes btn text to Create
                 btn_CreateEdit.Text = "Opret";
 
                 //
-                tb_Status.Text = "1";
+                cb_Status.SelectedIndex = cb_Status.FindStringExact("Pending");
             }
             else
             {
@@ -71,7 +76,7 @@ namespace KitchenFanatics.Forms
                 btn_CreateEdit.Text = "Redigere";
 
                 // Sets the combobox to have the customer Name
-                cb_Customers.Text = History.Customer.FullName;
+                cb_Customers.SelectedIndex = cb_Customers.FindStringExact(History.Customer.FullName);
 
                 // Disable the user from changing associated customer
                 cb_Customers.Enabled = false;
@@ -80,7 +85,7 @@ namespace KitchenFanatics.Forms
                 saleLine = History.SaleLine;
 
                 // Fetches status
-                tb_Status.Text = History.SaleStatus.ToString();
+                cb_Status.SelectedIndex = cb_Status.FindStringExact(GetStatusString(History.SaleStatus));
             }
 
             // Binds the datasoruce of the cart to the saleLine collection
@@ -124,12 +129,19 @@ namespace KitchenFanatics.Forms
         {
             try
             {
+                int amount;
+
+                if(!int.TryParse(tb_Amount.Text, out amount) || string.IsNullOrEmpty(tb_Amount.Text) || amount < 0)
+                {
+                    MessageBox.Show("Der er blevet tastet en invalid input i mængde", "An error occured!");
+                    return;
+                }
                 // Checks if there is an item selected and if the amount field is empty as well as if the given amount is 0 or less
                 if (ItemSelected && !string.IsNullOrEmpty(tb_Amount.Text) && int.Parse(tb_Amount.Text) > 0)
                 {
                     // Creates a new SaleLine object containing the data given
                     SaleLine newSale = new SaleLine(
-                                    currentSelected.Id, int.Parse(tb_Amount.Text), currentSelected.Price * decimal.Parse(tb_Amount.Text)
+                                    currentSelected, int.Parse(tb_Amount.Text), currentSelected.Price * decimal.Parse(tb_Amount.Text)
                                     );
 
                     // Adds the SaleLine to the collection
@@ -137,11 +149,6 @@ namespace KitchenFanatics.Forms
 
                     // Updates the DataGridView accordingly
                     Cart.ResetBindings(false);
-                }
-                else
-                {
-                    // Throws an exception if the conditions are not met
-                    throw new NullReferenceException("No item is selected or amount given!");
                 }
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
@@ -152,7 +159,7 @@ namespace KitchenFanatics.Forms
         /// <summary>
         /// RemoveItem is a eventhandler that is trigger when the user double clicks an entry in the Cart DGV
         /// </summary>
-        private void RemoveItem(object sender, MouseEventArgs e)
+        private void RemoveItem(object sender, EventArgs e)
         {
             // Removes selected item
             saleLine.Remove((SaleLine)dgv_Selected.CurrentRow.DataBoundItem);
@@ -205,7 +212,7 @@ namespace KitchenFanatics.Forms
 
                         History.SaleDate = DateTime.Now;
                         History.TotalPrice = Price;
-                        History.SaleStatus = int.Parse(tb_Status.Text);
+                        History.SaleStatus = GetStatusInt(cb_Status.Text);
                         History.SaleLine = saleLine;
 
 
@@ -220,6 +227,55 @@ namespace KitchenFanatics.Forms
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
             catch (Exception ex) { logger.LogError(ex); }
+        }
+
+        /// <summary>
+        /// A simple switch method that returns what type of status it is as a string
+        /// </summary>
+        /// <param name="status">The int type of status</param>
+        /// <returns></returns>
+        public string GetStatusString(int status)
+        {
+            switch (status)
+            {
+                case 0:
+                    return "Cancelled";
+                case 1:
+                    return "Pending";
+                case 2:
+                    return "Completed";
+                default:
+                    return "Pending";
+            }
+        }
+
+        /// <summary>
+        /// A simple switch method that returns what of status it is as an int
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public int GetStatusInt(string status)
+        {
+            switch (status)
+            {
+                case "Cancelled":
+                    return 0;
+                case "Pending":
+                    return 1;
+                case "Completed":
+                    return 2;
+                default:
+                    return 1;
+            }
+        }
+
+        /// <summary>
+        /// CancelAction is an eventhandler that trigger when the user presses the Cancel Button
+        /// </summary>
+        private void CancelAction(object sender, EventArgs e)
+        {
+            // Closes window
+            Close();
         }
     }
 }

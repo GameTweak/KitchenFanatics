@@ -51,5 +51,20 @@ namespace KitchenFanatics.Models
             this.Weight = weight;
             this.Tags = tags;
         }
+
+        // Another constructor that uses the Product table as a paramenter / Written by Esben
+        public Item(Product product)
+        {
+            this.Id = product.ItemNR;
+            this.Title = product.ItemName;
+            this.Price = product.ItemPrice;
+            this.InStock = product.ItemStock;
+            this.ItemCategory = product.ItemCategory;
+            this.Width = product.ItemWidth;
+            this.Height = product.ItemHeight;
+            this.Depth = product.ItemDepth; ;
+            this.Weight = product.ItemWeight;
+            this.Tags = product.ItemTags;
+        }
     }
 }

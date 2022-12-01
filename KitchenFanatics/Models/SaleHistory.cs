@@ -12,15 +12,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KitchenFanatics.Models
 {
+    /// <summary>
+    /// A SaleHistory class, which will contain the information used
+    /// in the sale part of the Application
+    /// 
+    /// Written by Esben
+    /// </summary>
     public class SaleHistory
     {
-        /// <summary>
-        /// A SaleHistory class, which will contain the information used
-        /// in the sale part of the Application
-        /// 
-        /// Written by Esben
-        /// </summary>
-         
         // Constructor for defining af instance in the Sale History
         public SaleHistory(int id, DateTime date, decimal? price, string address, int status, List<SaleLine> saleLine, Customer customer)
         {
@@ -33,6 +32,7 @@ namespace KitchenFanatics.Models
             this.Customer = customer;
         }
 
+        // Constructor for when defining a new instance in Sale History
         public SaleHistory(DateTime date, decimal? price, string address, int status, List<SaleLine> saleLine, Customer customer)
         {
             this.SaleDate = date;
@@ -53,7 +53,7 @@ namespace KitchenFanatics.Models
         public decimal? TotalPrice { get; set; }
 
         // Connects the Delivery Address to the Sale
-        public string DeliveryAddress { get; set; }
+        public String DeliveryAddress { get; set; }
 
         // Used to control the status of the Sale
         public int SaleStatus { get; set; }
@@ -66,5 +66,30 @@ namespace KitchenFanatics.Models
 
         // Returns the customers full name
         public String CustomerName { get { return Customer.FirstName + " " + Customer.LastName; } }
+
+        // Get the sale status as a string
+        public String GetStatusType
+        {
+            get
+            {
+                switch (SaleStatus)
+                {
+                    case 0:
+                        return "Cancelled";
+                    case 1:
+                        return "Pending";
+                    case 2:
+                        return "Completed";
+                    default:
+                        return "Pending";
+                }
+            }
+        }
+
+        // Returns Customers email
+        public String GetEmail { get { return Customer.Email; } }
+
+        // Gets Customers phone number
+        public String GetPhoneNumber { get { return Customer.phonenumber; } }
     }
 }

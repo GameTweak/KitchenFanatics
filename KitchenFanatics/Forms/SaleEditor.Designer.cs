@@ -30,15 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgv_Products = new System.Windows.Forms.DataGridView();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgv_Selected = new System.Windows.Forms.DataGridView();
-            this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleLineBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.tb_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,11 +40,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.tb_Status = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cb_Customers = new System.Windows.Forms.ComboBox();
             this.btn_CreateEdit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Cancel = new System.Windows.Forms.Button();
             this.tb_Category = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -69,16 +60,27 @@
             this.tb_Amount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btn_Add = new System.Windows.Forms.Button();
+            this.cb_Status = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.saleLineBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saleLineBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Products)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Selected)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,31 +108,6 @@
             this.dgv_Products.TabIndex = 0;
             this.dgv_Products.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AddItemToChosen);
             // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // inStockDataGridViewTextBoxColumn
-            // 
-            this.inStockDataGridViewTextBoxColumn.DataPropertyName = "InStock";
-            this.inStockDataGridViewTextBoxColumn.HeaderText = "InStock";
-            this.inStockDataGridViewTextBoxColumn.Name = "inStockDataGridViewTextBoxColumn";
-            this.inStockDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
-            // 
             // dgv_Selected
             // 
             this.dgv_Selected.AllowUserToAddRows = false;
@@ -142,6 +119,7 @@
             this.dgv_Selected.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Selected.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.itemNRDataGridViewTextBoxColumn,
+            this.ItemName,
             this.amountDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn1});
             this.dgv_Selected.DataSource = this.saleLineBindingSource1;
@@ -150,31 +128,8 @@
             this.dgv_Selected.Name = "dgv_Selected";
             this.dgv_Selected.RowHeadersVisible = false;
             this.dgv_Selected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Selected.Size = new System.Drawing.Size(337, 348);
+            this.dgv_Selected.Size = new System.Drawing.Size(451, 356);
             this.dgv_Selected.TabIndex = 1;
-            this.dgv_Selected.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RemoveItem);
-            // 
-            // itemNRDataGridViewTextBoxColumn
-            // 
-            this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
-            this.itemNRDataGridViewTextBoxColumn.HeaderText = "ItemNR";
-            this.itemNRDataGridViewTextBoxColumn.Name = "itemNRDataGridViewTextBoxColumn";
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            // 
-            // saleLineBindingSource1
-            // 
-            this.saleLineBindingSource1.DataSource = typeof(KitchenFanatics.Models.SaleLine);
             // 
             // label1
             // 
@@ -251,17 +206,18 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.cb_Status);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.tb_Status);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.cb_Customers);
             this.groupBox3.Controls.Add(this.btn_CreateEdit);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btn_Cancel);
             this.groupBox3.Controls.Add(this.dgv_Selected);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(720, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(349, 465);
+            this.groupBox3.Size = new System.Drawing.Size(463, 475);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Kurv";
@@ -270,18 +226,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(265, 28);
+            this.label11.Location = new System.Drawing.Point(304, 27);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 17);
             this.label11.TabIndex = 19;
             this.label11.Text = "Status";
-            // 
-            // tb_Status
-            // 
-            this.tb_Status.Location = new System.Drawing.Point(268, 48);
-            this.tb_Status.Name = "tb_Status";
-            this.tb_Status.Size = new System.Drawing.Size(75, 23);
-            this.tb_Status.TabIndex = 18;
             // 
             // label10
             // 
@@ -295,30 +244,32 @@
             // 
             // cb_Customers
             // 
+            this.cb_Customers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_Customers.FormattingEnabled = true;
             this.cb_Customers.Location = new System.Drawing.Point(6, 47);
             this.cb_Customers.Name = "cb_Customers";
-            this.cb_Customers.Size = new System.Drawing.Size(256, 24);
+            this.cb_Customers.Size = new System.Drawing.Size(296, 24);
             this.cb_Customers.TabIndex = 17;
             // 
             // btn_CreateEdit
             // 
-            this.btn_CreateEdit.Location = new System.Drawing.Point(6, 432);
+            this.btn_CreateEdit.Location = new System.Drawing.Point(6, 439);
             this.btn_CreateEdit.Name = "btn_CreateEdit";
-            this.btn_CreateEdit.Size = new System.Drawing.Size(156, 27);
+            this.btn_CreateEdit.Size = new System.Drawing.Size(145, 30);
             this.btn_CreateEdit.TabIndex = 16;
             this.btn_CreateEdit.Text = "Opret/Redigere";
             this.btn_CreateEdit.UseVisualStyleBackColor = true;
             this.btn_CreateEdit.Click += new System.EventHandler(this.CreateEditSale);
             // 
-            // button1
+            // btn_Cancel
             // 
-            this.button1.Location = new System.Drawing.Point(187, 432);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 27);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Fortryd ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Location = new System.Drawing.Point(307, 439);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(145, 30);
+            this.btn_Cancel.TabIndex = 15;
+            this.btn_Cancel.Text = "Fortryd ";
+            this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.CancelAction);
             // 
             // tb_Category
             // 
@@ -488,15 +439,100 @@
             this.btn_Add.UseVisualStyleBackColor = true;
             this.btn_Add.Click += new System.EventHandler(this.AddToCart);
             // 
+            // cb_Status
+            // 
+            this.cb_Status.AutoCompleteCustomSource.AddRange(new string[] {
+            "Pending",
+            "Completed",
+            "Cancelled"});
+            this.cb_Status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_Status.FormattingEnabled = true;
+            this.cb_Status.Items.AddRange(new object[] {
+            "Pending",
+            "Cancelled",
+            "Completed"});
+            this.cb_Status.Location = new System.Drawing.Point(307, 47);
+            this.cb_Status.Name = "cb_Status";
+            this.cb_Status.Size = new System.Drawing.Size(150, 24);
+            this.cb_Status.TabIndex = 20;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(157, 439);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(145, 30);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Fjern Vare";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.RemoveItem);
+            // 
+            // saleLineBindingSource1
+            // 
+            this.saleLineBindingSource1.DataSource = typeof(KitchenFanatics.Models.SaleLine);
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Produkt Navn";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.FillWeight = 75F;
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Pris";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // inStockDataGridViewTextBoxColumn
+            // 
+            this.inStockDataGridViewTextBoxColumn.DataPropertyName = "InStock";
+            this.inStockDataGridViewTextBoxColumn.HeaderText = "På Lager";
+            this.inStockDataGridViewTextBoxColumn.Name = "inStockDataGridViewTextBoxColumn";
+            this.inStockDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
+            // 
             // saleLineBindingSource
             // 
             this.saleLineBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleLine);
+            // 
+            // itemNRDataGridViewTextBoxColumn
+            // 
+            this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
+            this.itemNRDataGridViewTextBoxColumn.HeaderText = "Produkt Nummer";
+            this.itemNRDataGridViewTextBoxColumn.Name = "itemNRDataGridViewTextBoxColumn";
+            this.itemNRDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ItemName
+            // 
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "Produkt Navn";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn1.FillWeight = 75F;
+            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
             // 
             // SaleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1081, 488);
+            this.ClientSize = new System.Drawing.Size(1195, 499);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -507,9 +543,7 @@
             this.Text = "Opret nyt salg";
             this.Load += new System.EventHandler(this.CreateSale_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Products)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Selected)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -519,6 +553,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.saleLineBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -527,9 +563,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_Products;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inStockDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource itemBindingSource;
         private System.Windows.Forms.DataGridView dgv_Selected;
         private System.Windows.Forms.BindingSource saleLineBindingSource;
@@ -558,14 +591,19 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btn_Add;
         private System.Windows.Forms.Button btn_CreateEdit;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemNRDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.BindingSource saleLineBindingSource1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cb_Customers;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tb_Status;
+        private System.Windows.Forms.ComboBox cb_Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inStockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemNRDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
     }
 }

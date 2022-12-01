@@ -9,6 +9,7 @@ namespace KitchenFanatics.Services
     //Written by Johanne
     public class ItemService
     {
+        //a new instance of the ItemRepository class is instansiated
         Repositories.ItemRepository ItemsRepository = new Repositories.ItemRepository();
 
 
@@ -61,6 +62,7 @@ namespace KitchenFanatics.Services
             //puts the sorted items into a list
             var result = sortedItems.ToList();
 
+            //the method returns a list of sorted items 
             return result;
 
         }
@@ -78,6 +80,7 @@ namespace KitchenFanatics.Services
             //puts the sorted items into a list
             var result = sortedItems.ToList();
 
+            //the method returns a list of sorted items
             return result;
         }
 
@@ -94,6 +97,7 @@ namespace KitchenFanatics.Services
             //puts the sorted items into a list
             var result = sortedItems.ToList();
 
+            //the method returns a list of sorted items
             return result;
         }
 
@@ -110,6 +114,7 @@ namespace KitchenFanatics.Services
             //puts the sorted items into a list
             var result = sortedItems.ToList();
 
+            //the method returns a list of sorted items
             return result;
         }
     }

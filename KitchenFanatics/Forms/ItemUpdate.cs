@@ -70,7 +70,7 @@ namespace KitchenFanatics.Forms
             if (String.IsNullOrEmpty(SelectedItem.Title))
             {
                 MessageBox.Show("Varenavn skal udfyldes");
-                return; 
+                return;
             }
 
             //checks whether the decimals and integers can NOT be parsed, and saves them in a new variable 
@@ -104,8 +104,8 @@ namespace KitchenFanatics.Forms
 
             //call to a Service method which saves the updates of the SelectedItem to the database
             ItemsService.UpdateItem(SelectedItem);
-            //lastly the form is closed
-            this.Close(); 
+            //the form is closed
+            this.Close();
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace KitchenFanatics.Forms
             //the if statement checks if the Yes button is pressed
             if (confirmationBox == DialogResult.Yes)
             {
-                //if the if statement is true, a ItemService method is called, which will delete the SelectedItem from the database
+                //if the if statement is true, an ItemService method is called, which will delete the SelectedItem from the database
                 ItemsService.DeleteItem(SelectedItem);
                 this.Close();
             }

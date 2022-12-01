@@ -12,7 +12,7 @@ namespace KitchenFanatics.Forms
 {
     public partial class Login : Form
 
-        //Written by Johanne
+    //Written by Johanne
     {
         public Login()
         {
@@ -23,7 +23,7 @@ namespace KitchenFanatics.Forms
         {
             //the forms dialogresult is set to None when the form loads
             DialogResult = DialogResult.None;
-            //the content of the lb_wrong label is set to empty
+            //the content of the lb_wrong label is set to be empty
             lb_wrong.Text = "";
         }
 
@@ -37,11 +37,11 @@ namespace KitchenFanatics.Forms
                 //the Login form is closed
                 this.Close();
             }
-            //if the DoLogin is false
+            //if DoLogin is false
             else
             {
                 //the user is informaed that either the username or password is wrong
-                lb_wrong.Text = "Forkert brugernavn eller kodeord"; 
+                lb_wrong.Text = "Forkert brugernavn eller kodeord";
             }
         }
 
@@ -52,16 +52,16 @@ namespace KitchenFanatics.Forms
         public bool DoLogin()
         {
             //the standard value of the method is set to false
-            bool result = false; 
+            bool result = false;
 
             //checks if the password and username matches those created in Properties
-            if(txt_username.Text == Properties.Resources.Username && txt_password.Text == Properties.Resources.Password)
+            if (txt_username.Text == Properties.Resources.Username && txt_password.Text == Properties.Resources.Password)
             {
-                //if true the value of the method is set to true
-                result = true; 
+                //if true, the value of the method is set to true
+                result = true;
             }
             //the method returns the result which is either true or false
-            return result; 
+            return result;
         }
     }
 }

@@ -162,13 +162,12 @@
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemOverviewIntCou.resx">
       <DependentUpon>ItemOverviewIntCou.cs</DependentUpon>
-
+    </EmbeddedResource>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaleEditor.resx">
       <DependentUpon>SaleEditor.cs</DependentUpon>

@@ -93,17 +93,6 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 
-            // btn_IntelligentCouncel
-            // 
-            this.btn_IntelligentCouncel.Location = new System.Drawing.Point(16, 419);
-            this.btn_IntelligentCouncel.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_IntelligentCouncel.Name = "btn_IntelligentCouncel";
-            this.btn_IntelligentCouncel.Size = new System.Drawing.Size(207, 69);
-            this.btn_IntelligentCouncel.TabIndex = 5;
-            this.btn_IntelligentCouncel.Text = "Åben Intelligent rådgivning";
-            this.btn_IntelligentCouncel.UseVisualStyleBackColor = true;
-            this.btn_IntelligentCouncel.Click += new System.EventHandler(this.btn_IntelligentCouncel_Click);
-            // 
             // FormSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);

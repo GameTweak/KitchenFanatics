@@ -13,21 +13,21 @@ namespace KitchenFanatics.Forms
     //Written by Johanne 
     public partial class ItemCreate : Form
     {
-        //an instance of the itemservice class and the item class are instantiated
+        //an instance of the ItemService class and the Item class are instantiated
         public Services.ItemService ItemsService { get; set; }
         public Models.Item NewItem { get; set; }
 
         public ItemCreate()
         {
             InitializeComponent();
-            //the ItemsService is an instance of the ItemService class 
+            //the ItemsService is a new instance of the ItemService class 
             ItemsService = new Services.ItemService();
         }
 
         private void btn_createitem_Click(object sender, EventArgs e)
         {
             //call to a method which saves the new item in the database, when the save button is pressed 
-            SaveCreatedItem(); 
+            SaveCreatedItem();
         }
 
         /// <summary>

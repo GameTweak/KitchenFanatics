@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KitchenFanatics.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace KitchenFanatics.Forms
 {
     public partial class CreateCustomer : Form
     {
+        //Written by Thomas
         public CreateCustomer()
         {
             InitializeComponent();
@@ -115,7 +117,10 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void SaveCustomer()
         {
+            var customerService = new CustomerService();
 
+            Models.Customer NewCustomer = new Models.Customer(createCustomerFirstName_tb.Text, createCustomerLastName_tb.Text, createCustomerMail_tb.Text, createCustomerAddress_tb.Text, createCustomerPhoneNumber_tb.Text, null);
+            customerService.createCustomer(NewCustomer);
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Repositories
 {
+    // Written by Thomas
     public class ItemTypeRepository
     {
         //a variable is initialized, representing a connection to the KitchenFanatic Database

@@ -31,7 +31,6 @@ namespace KitchenFanatics.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.dgw_itemoverview = new System.Windows.Forms.DataGridView();
-            this.btn_IntCouFormOpen = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemCategoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +42,7 @@ namespace KitchenFanatics.Forms
             this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tagsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btn_IntCouFormOpen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -81,17 +81,6 @@ namespace KitchenFanatics.Forms
             this.dgw_itemoverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgw_itemoverview.Size = new System.Drawing.Size(930, 446);
             this.dgw_itemoverview.TabIndex = 2;
-            // 
-            // btn_IntCouFormOpen
-            // 
-            this.btn_IntCouFormOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_IntCouFormOpen.Location = new System.Drawing.Point(21, 512);
-            this.btn_IntCouFormOpen.Name = "btn_IntCouFormOpen";
-            this.btn_IntCouFormOpen.Size = new System.Drawing.Size(153, 38);
-            this.btn_IntCouFormOpen.TabIndex = 3;
-            this.btn_IntCouFormOpen.Text = "Intelligent rådgivning";
-            this.btn_IntCouFormOpen.UseVisualStyleBackColor = true;
-            this.btn_IntCouFormOpen.Click += new System.EventHandler(this.btn_IntCouFormOpen_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -187,8 +176,20 @@ namespace KitchenFanatics.Forms
             // 
             this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
             // 
+            // btn_IntCouFormOpen
+            // 
+            this.btn_IntCouFormOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_IntCouFormOpen.Location = new System.Drawing.Point(21, 512);
+            this.btn_IntCouFormOpen.Name = "btn_IntCouFormOpen";
+            this.btn_IntCouFormOpen.Size = new System.Drawing.Size(153, 38);
+            this.btn_IntCouFormOpen.TabIndex = 3;
+            this.btn_IntCouFormOpen.Text = "Intelligent rådgivning";
+            this.btn_IntCouFormOpen.UseVisualStyleBackColor = true;
+            this.btn_IntCouFormOpen.Click += new System.EventHandler(this.btn_IntCouFormOpen_Click);
+            // 
             // ItemOverviewIntCou
             // 
+            this.AcceptButton = this.btn_IntCouFormOpen;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 570);

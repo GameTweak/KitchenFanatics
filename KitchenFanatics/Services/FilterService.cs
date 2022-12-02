@@ -117,7 +117,7 @@ namespace KitchenFanatics.Services
             //If the items max weight is not null, then it filters by max weight
             if (MaxWeight != null)
             {
-                result = result.Where(itm => itm.Weight < MaxWeight).ToList();
+                result = result.Where(itm => itm.Weight <= MaxWeight).ToList();
             }
 
             //Returns result
@@ -139,13 +139,13 @@ namespace KitchenFanatics.Services
             //If the items max price is not null, then it filters by max price
             if (MaxPrice != null)
             {
-                result = result.Where(Itm => Itm.Price < MaxPrice).ToList();
+                result = result.Where(Itm => Itm.Price <= MaxPrice).ToList();
             }
 
             //If the items min price is not null, then it filters by min price
             if(MinPrice != null)
             {
-                result = result.Where(Itm => Itm.Price > MinPrice).ToList();
+                result = result.Where(Itm => Itm.Price >= MinPrice).ToList();
             }
 
             //Returns result

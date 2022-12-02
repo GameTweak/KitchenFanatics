@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data.Linq;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -91,7 +92,7 @@ namespace KitchenFanatics.Repositories
             Sale newSale = new Sale
             {
                 // Get current time
-                SaleDate = DateTime.Now,
+                SaleDate = historyToSave.SaleDate,
                 // Gets total
                 SaleTotal = (decimal)historyToSave.SaleLine.Select(l => l.Price).Sum(),
                 // Sets delivery address
@@ -107,7 +108,9 @@ namespace KitchenFanatics.Repositories
 
             // Submits changes
             SubmitChanges();
-            
+
+            historyToSave.Id = newSale.SaleID;
+
             // Loops through all salelines
             foreach (var line in historyToSave.SaleLine)
             {
@@ -172,6 +175,9 @@ namespace KitchenFanatics.Repositories
 
             // Removes deleted entries
             SaleLines.DeleteAllOnSubmit(salesToDelete);
+
+            // Commits changes
+            SubmitChanges();
 
             // Fetches the Sale History
             var dbSale = Sales.Where(s => s.SaleID == saleToEdit.Id).FirstOrDefault();

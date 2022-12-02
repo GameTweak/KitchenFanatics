@@ -121,11 +121,15 @@ namespace KitchenFanatics.Forms
         {
             try
             {
+
                 // Defines the CreateSale form
                 SaleEditor sale = new SaleEditor(true);
 
                 // Opens the form for the user
                 sale.ShowDialog();
+
+                // Adds new entry to DGV
+                source.Add(sale.History);
 
                 // Updates the list
                 source.ResetBindings(false);

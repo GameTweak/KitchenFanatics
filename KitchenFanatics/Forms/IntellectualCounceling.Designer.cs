@@ -191,6 +191,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Location = new System.Drawing.Point(208, 290);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 54);
@@ -243,6 +244,7 @@
             this.Controls.Add(this.CLB_type);
             this.Location = new System.Drawing.Point(578, 403);
             this.MaximumSize = new System.Drawing.Size(578, 403);
+            this.MinimumSize = new System.Drawing.Size(578, 403);
             this.Name = "Intellectual_Counceling";
             this.Text = "Intellectual_Counceling";
             this.ResumeLayout(false);

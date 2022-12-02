@@ -21,7 +21,7 @@ namespace KitchenFanatics.Forms
         public Models.Filter CurrentFilter { get; set; }
         // ValidDecimal is used when checking wether or not a string can be converted to a decimal
         public bool ValidDecimal { get; set; }
-
+        // A connection to the logService
         LogService logger = new LogService();
         /// <summary>
         /// A constructer that starts when the form is innitialized

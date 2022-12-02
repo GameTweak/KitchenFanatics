@@ -51,7 +51,7 @@ namespace KitchenFanatics.Forms
 
         private void btn_intelligentcounselling_Click(object sender, EventArgs e)
         {
-            //a new instance of the Intellectual_Counceiling form is created
+            //a new instance of the ItemOverviewIntCou form is created
             ItemOverviewIntCou ItemOverviewIntCouForm = new ItemOverviewIntCou();
             //the form is opened
             ItemOverviewIntCouForm.ShowDialog();

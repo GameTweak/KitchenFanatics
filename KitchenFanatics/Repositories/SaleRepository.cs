@@ -1,6 +1,7 @@
 ﻿using KitchenFanatics.Database;
 using KitchenFanatics.Models;
 using KitchenFanatics.Services;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Data.Linq;
@@ -50,13 +51,7 @@ namespace KitchenFanatics.Repositories
                 // Foreach loop that connects the SaleLine with the SaleHistory
                 foreach (var newline in SaleLines.Where(sl => sl.SaleID == saleHistory.SaleID))
                 {
-                    Models.SaleLine newSaleLine = new Models.SaleLine(
-                        newline.SaleLineID,
-                        newline.ItemNR,
-                        newline.Amount,
-                        newline.Price,
-                        newline.SaleID
-                        );
+                    Models.SaleLine newSaleLine = new Models.SaleLine(newline);
 
                     line.Add(newSaleLine);
                 }

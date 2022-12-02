@@ -39,7 +39,7 @@ namespace KitchenFanatics.Models
             this.Tags = tags;
         }
 
-        //a second constructor is addedl where the id is removed as a parameter 
+        //a second constructor is added where the id is removed as a parameter 
         public Item(string title, decimal price, int stock, int? category, decimal? width, decimal? height, decimal? depth, decimal? weight, string tags)
         {
             //the fields of the class are assigned the value of the parameters in the contructor

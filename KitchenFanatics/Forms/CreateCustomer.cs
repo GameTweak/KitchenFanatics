@@ -14,19 +14,38 @@ namespace KitchenFanatics.Forms
     public partial class CreateCustomer : Form
     {
         //Written by Thomas
+        //A connection to the logService
+        LogService logService = new LogService();
         public CreateCustomer()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Closes the site when cancel is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancel_btn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Goes to ValidCustomer when save is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveCustomer_btn_Click(object sender, EventArgs e)
         {
-            ValidCustomer();
+            try
+            {
+                ValidCustomer();
+            }
+            catch (Exception ex)
+            {
+                logService.LogError(ex);
+            }
         }
 
         /// <summary>
@@ -53,48 +72,43 @@ namespace KitchenFanatics.Forms
             //Tells the user that they are missing contact info
             if (ValidPhoneNumber != true && ValidEmail != true)
             {
+                //Adds Contact info to the list of data missing
                 MissingData += "Contact info";
             }
 
             //verifies firstname
-            if (createCustomerFirstName_tb.Text != "")
+            if (createCustomerFirstName_tb.Text == "" && MissingData != "")
             {
-
-            }
-            else if (MissingData != "")
-            {
+                //Adds First name to the list of data missing
                 MissingData += ", First name";
             }
-            else
+            else if (createCustomerFirstName_tb.Text == "")
             {
+                //Adds First name to the list of data missing
                 MissingData += "First name";
             }
 
             //verifies lastname
-            if (createCustomerLastName_tb.Text != "")
+            if (createCustomerLastName_tb.Text == "" && MissingData != "")
             {
-
-            }
-            else if (MissingData != "")
-            {
+                //Adds Last name to the list of data missing
                 MissingData += ", Last name";
             }
-            else
+            else if (createCustomerLastName_tb.Text == "")
             {
+                //Adds Last name to the list of data missing
                 MissingData += "Last name";
             }
 
             //verifies adress
-            if (createCustomerAddress_tb.Text != "")
+            if (createCustomerAddress_tb.Text == "" && MissingData != "")
             {
-
-            }
-            else if (MissingData != "")
-            {
+                //Adds Adress to the list of data missing
                 MissingData += ", Adress";
             }
-            else
+            else if (createCustomerAddress_tb.Text == "")
             {
+                //Adds Adress to the list of data missing
                 MissingData += "Adress";
             }
 
@@ -117,9 +131,12 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void SaveCustomer()
         {
+            // makes a new connection to the CustomerService
             var customerService = new CustomerService();
 
+            // makes a Models.Customer named NewCustomer, with all the data inserted into the form
             Models.Customer NewCustomer = new Models.Customer(createCustomerFirstName_tb.Text, createCustomerLastName_tb.Text, createCustomerMail_tb.Text, createCustomerAddress_tb.Text, createCustomerPhoneNumber_tb.Text, null);
+            // saves the customer
             customerService.createCustomer(NewCustomer);
         }
 

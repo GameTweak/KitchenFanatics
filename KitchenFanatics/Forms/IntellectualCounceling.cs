@@ -21,7 +21,8 @@ namespace KitchenFanatics.Forms
         public Models.Filter CurrentFilter { get; set; }
         // ValidDecimal is used when checking wether or not a string can be converted to a decimal
         public bool ValidDecimal { get; set; }
-
+        // A connection to the logService
+        LogService logger = new LogService();
         /// <summary>
         /// A constructer that starts when the form is innitialized
         /// </summary>
@@ -29,16 +30,24 @@ namespace KitchenFanatics.Forms
         {
             InitializeComponent();
 
-            // Sets QuestionNumber to 0 (the first question)
-            QuestionNumber = 0;
+            try
+            {
+                // Sets QuestionNumber to 0 (the first question)
+                QuestionNumber = 0;
 
-            // Sets the default values for CurrentFilter
-            CurrentFilter = new Filter("",null,null,null,null,null,null,null,null,null);
+                // Sets the default values for CurrentFilter
+                CurrentFilter = new Filter("",null,null,null,null,null,null,null,null,null);
 
-            SetCheckBoxList();
+                SetCheckBoxList();
 
-            // Calls the method SelectQuestion
-            SelectQuestion();
+                // Calls the method SelectQuestion
+                SelectQuestion();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
+            }
+
         }
 
         /// <summary>
@@ -235,15 +244,23 @@ namespace KitchenFanatics.Forms
         /// <param name="e"></param>
         private void btn_submit_Click(object sender, EventArgs e)
         {
-            // Calls the submit method
-            Submit();
-
-            // Checks whether or not the convertion to decimal is valid, if it is then the program proceeds to next question
-            if (ValidDecimal == true)
+            try
             {
-                QuestionNumber++;
-                SelectQuestion();
+                // Calls the submit method
+                Submit();
+
+                // Checks whether or not the convertion to decimal is valid, if it is then the program proceeds to next question
+                if (ValidDecimal == true)
+                {
+                    QuestionNumber++;
+                    SelectQuestion();
+                }
             }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
+            }
+            
         }
 
         /// <summary>
@@ -253,8 +270,16 @@ namespace KitchenFanatics.Forms
         /// <param name="e"></param>
         private void btn_skip_Click(object sender, EventArgs e)
         {
-            QuestionNumber++;
-            SelectQuestion();
+            try
+            {
+                QuestionNumber++;
+                SelectQuestion();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
+            }
+
         }
 
         /// <summary>
@@ -339,11 +364,18 @@ namespace KitchenFanatics.Forms
         /// <param name="e"></param>
         private void btn_back_Click(object sender, EventArgs e)
         {
-            // tjekker at det ikke allerede er det første spørgsmål
-            if (QuestionNumber > 0)
+            try
             {
-                QuestionNumber--;
-                SelectQuestion();
+                // tjekker at det ikke allerede er det første spørgsmål
+                if (QuestionNumber > 0)
+                {
+                    QuestionNumber--;
+                    SelectQuestion();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
             }
         }
     }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.dgv_Products = new System.Windows.Forms.DataGridView();
             this.dgv_Selected = new System.Windows.Forms.DataGridView();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,6 +40,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cb_Status = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.cb_Customers = new System.Windows.Forms.ComboBox();
@@ -60,18 +63,17 @@
             this.tb_Amount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btn_Add = new System.Windows.Forms.Button();
-            this.cb_Status = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleLineBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saleLineBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemNRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tb_Total = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Products)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Selected)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -128,8 +130,15 @@
             this.dgv_Selected.Name = "dgv_Selected";
             this.dgv_Selected.RowHeadersVisible = false;
             this.dgv_Selected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Selected.Size = new System.Drawing.Size(451, 356);
+            this.dgv_Selected.Size = new System.Drawing.Size(451, 326);
             this.dgv_Selected.TabIndex = 1;
+            // 
+            // ItemName
+            // 
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "Produkt Navn";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
             // 
             // label1
             // 
@@ -206,6 +215,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.tb_Total);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.cb_Status);
             this.groupBox3.Controls.Add(this.label11);
@@ -221,6 +232,33 @@
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Kurv";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(157, 439);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 30);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Fjern Vare";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.RemoveItem);
+            // 
+            // cb_Status
+            // 
+            this.cb_Status.AutoCompleteCustomSource.AddRange(new string[] {
+            "Pending",
+            "Completed",
+            "Cancelled"});
+            this.cb_Status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_Status.FormattingEnabled = true;
+            this.cb_Status.Items.AddRange(new object[] {
+            "Pending",
+            "Cancelled",
+            "Completed"});
+            this.cb_Status.Location = new System.Drawing.Point(307, 47);
+            this.cb_Status.Name = "cb_Status";
+            this.cb_Status.Size = new System.Drawing.Size(150, 24);
+            this.cb_Status.TabIndex = 20;
             // 
             // label11
             // 
@@ -263,7 +301,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(307, 439);
+            this.btn_Cancel.Location = new System.Drawing.Point(312, 439);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(145, 30);
             this.btn_Cancel.TabIndex = 15;
@@ -439,32 +477,26 @@
             this.btn_Add.UseVisualStyleBackColor = true;
             this.btn_Add.Click += new System.EventHandler(this.AddToCart);
             // 
-            // cb_Status
+            // itemNRDataGridViewTextBoxColumn
             // 
-            this.cb_Status.AutoCompleteCustomSource.AddRange(new string[] {
-            "Pending",
-            "Completed",
-            "Cancelled"});
-            this.cb_Status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_Status.FormattingEnabled = true;
-            this.cb_Status.Items.AddRange(new object[] {
-            "Pending",
-            "Cancelled",
-            "Completed"});
-            this.cb_Status.Location = new System.Drawing.Point(307, 47);
-            this.cb_Status.Name = "cb_Status";
-            this.cb_Status.Size = new System.Drawing.Size(150, 24);
-            this.cb_Status.TabIndex = 20;
+            this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
+            this.itemNRDataGridViewTextBoxColumn.HeaderText = "Produkt Nummer";
+            this.itemNRDataGridViewTextBoxColumn.Name = "itemNRDataGridViewTextBoxColumn";
+            this.itemNRDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // button1
+            // amountDataGridViewTextBoxColumn
             // 
-            this.button1.Location = new System.Drawing.Point(157, 439);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 30);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Fjern Vare";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.RemoveItem);
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn1.FillWeight = 75F;
+            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
             // 
             // saleLineBindingSource1
             // 
@@ -500,33 +532,24 @@
             // 
             this.saleLineBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleLine);
             // 
-            // itemNRDataGridViewTextBoxColumn
+            // tb_Total
             // 
-            this.itemNRDataGridViewTextBoxColumn.DataPropertyName = "ItemNR";
-            this.itemNRDataGridViewTextBoxColumn.HeaderText = "Produkt Nummer";
-            this.itemNRDataGridViewTextBoxColumn.Name = "itemNRDataGridViewTextBoxColumn";
-            this.itemNRDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tb_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_Total.Location = new System.Drawing.Point(312, 410);
+            this.tb_Total.Name = "tb_Total";
+            this.tb_Total.ReadOnly = true;
+            this.tb_Total.Size = new System.Drawing.Size(145, 23);
+            this.tb_Total.TabIndex = 14;
             // 
-            // ItemName
+            // label12
             // 
-            this.ItemName.DataPropertyName = "ItemName";
-            this.ItemName.HeaderText = "Produkt Navn";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.ReadOnly = true;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.FillWeight = 50F;
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn1.FillWeight = 75F;
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(262, 413);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(40, 17);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Total";
             // 
             // SaleEditor
             // 
@@ -605,5 +628,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tb_Total;
     }
 }

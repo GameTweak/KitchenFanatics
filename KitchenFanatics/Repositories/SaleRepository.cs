@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data.Linq;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,9 +35,9 @@ namespace KitchenFanatics.Repositories
             foreach (var saleHistory in Sales)
             {
                 // The list that'll be containing all the Items associated with the Sale
-                List<Item> items = new List<Item>();
+                //List<Item> items = new List<Item>();
 
-                List<Models.SaleLine> line = new List<Models.SaleLine>();
+                //List<Models.SaleLine> line = new List<Models.SaleLine>();
 
                 // Defines the customer assosiated with the sale
                 Models.Customer customer = new Models.Customer(
@@ -49,21 +50,21 @@ namespace KitchenFanatics.Repositories
                     );
 
                 // Foreach loop that connects the SaleLine with the SaleHistory
-                foreach (var newline in SaleLines.Where(sl => sl.SaleID == saleHistory.SaleID))
-                {
-                    Models.SaleLine newSaleLine = new Models.SaleLine(newline);
+                //foreach (var newline in SaleLines.Where(sl => sl.SaleID == saleHistory.SaleID))
+                //{
+                //    Models.SaleLine newSaleLine = new Models.SaleLine(newline);
 
-                    line.Add(newSaleLine);
-                }
+                //    line.Add(newSaleLine);
+                //}
 
                 // Defines the Sale object
                 SaleHistory newSale = new SaleHistory(
                     saleHistory.SaleID,
                     saleHistory.SaleDate,
-                    line.Select(l => l.Price).Sum(),
+                    saleHistory.SaleTotal,
                     saleHistory.DeliveryAddress,
                     saleHistory.SaleStatus,
-                    line,
+                    null,
                     customer
                     );
 
@@ -91,7 +92,7 @@ namespace KitchenFanatics.Repositories
             Sale newSale = new Sale
             {
                 // Get current time
-                SaleDate = DateTime.Now,
+                SaleDate = historyToSave.SaleDate,
                 // Gets total
                 SaleTotal = (decimal)historyToSave.SaleLine.Select(l => l.Price).Sum(),
                 // Sets delivery address
@@ -107,7 +108,9 @@ namespace KitchenFanatics.Repositories
 
             // Submits changes
             SubmitChanges();
-            
+
+            historyToSave.Id = newSale.SaleID;
+
             // Loops through all salelines
             foreach (var line in historyToSave.SaleLine)
             {
@@ -116,8 +119,8 @@ namespace KitchenFanatics.Repositories
 
                 // Sets the saleline variables
                 newline.ItemNR = line.ItemNR;
-                newline.Amount = (int) line.Amount;
-                newline.Price = (decimal) line.Price;
+                newline.Amount = (int)line.Amount;
+                newline.Price = (decimal)line.Price;
                 newline.SaleID = newSale.SaleID;
 
                 // Adds to the lineToSale collection
@@ -126,7 +129,7 @@ namespace KitchenFanatics.Repositories
 
             // Inserts all changes to the SaleLines table
             SaleLines.InsertAllOnSubmit(lineToSave);
-            
+
             // Submits changes
             SubmitChanges();
         }
@@ -135,53 +138,59 @@ namespace KitchenFanatics.Repositories
         /// Method used to edit an already existing sale
         /// </summary>
         /// <param name="saleToEdit">The salehistory wanted to be updated</param>
-        public void EditSale(SaleHistory saleToEdit) 
+        public void EditSale(SaleHistory editSale)
         {
             // Creates two list containing what should be kept and what to remove
-            List<Database.SaleLine> salesToKeep = new List<Database.SaleLine>();
             List<Database.SaleLine> salesToDelete = new List<Database.SaleLine>();
 
-            // Looping through all instances that match SaleID
-            foreach (var lines in SaleLines.Where(sl => sl.SaleID == saleToEdit.Id))
-            {
-                // A bool that returns whether a entry exist or not
-                bool saleLine = saleToEdit.SaleLine.Select(sl => sl.SaleLineID == lines.SaleLineID).FirstOrDefault();
+            //
+            List<Database.SaleLine> salesToAdd = new List<Database.SaleLine>();
 
-                // If it exist in the collection and there is none of it on the database 
-                if (saleLine && lines == null)
+            // Loops through all entries in editSale's saleLines
+            foreach (var saleLine in editSale.SaleLine)
+            {
+                // Defines a new SaleLine object that contain data if it exist in DB
+                Database.SaleLine resultSale = SaleLines.Where(sl => sl.SaleLineID == saleLine.SaleLineID).FirstOrDefault();
+
+                // Checks if it exist in DB
+                if (resultSale == null)
                 {
-                    // Adds new entry to the collection
-                    salesToKeep.Add(lines);
-                }
-                // If it does not exist in the collection but does on the database
-                else if (lines != null && saleLine)
-                {
-                    // Updates Amount
-                    lines.Amount = (int) saleToEdit.SaleLine.Where(sl => sl.SaleID == lines.SaleID).Select(sl => sl.Amount).FirstOrDefault();
-                }
-                // If it does not exist in the collection and should be deleted
-                else
-                {
-                    // Deleted from SaleLine
-                    salesToDelete.Add(lines);
+                    // Creates new entry if it doesn't exist
+                    salesToAdd.Add(CreateNewSaleLine(saleLine, editSale.Id));
                 }
             }
 
-            // Inserts new entries
-            SaleLines.InsertAllOnSubmit(salesToKeep);
+            SaleLines.InsertAllOnSubmit(salesToAdd);
+            
+            SubmitChanges();
 
-            // Removes deleted entries
+            foreach (var saleLine in SaleLines.Where(sl => sl.SaleID == editSale.Id))
+            {
+                string output = $"{saleLine.ItemNR} was added to ";
+                
+                // Check if the saleline is present in editSale's SaleLine collection
+                if (!editSale.SaleLine.Any(sl => sl.SaleLineID == saleLine.SaleLineID) && !salesToAdd.Contains(saleLine))
+                {
+                    // Adds it to removal collection
+                    salesToDelete.Add(saleLine);
+                }
+            }
+
+            // Removes them on submit
             SaleLines.DeleteAllOnSubmit(salesToDelete);
 
+            // Submits changes
+            SubmitChanges();
+
             // Fetches the Sale History
-            var dbSale = Sales.Where(s => s.SaleID == saleToEdit.Id).FirstOrDefault();
+            var dbSale = Sales.Where(s => s.SaleID == editSale.Id).FirstOrDefault();
 
             // Upates Status
-            dbSale.SaleStatus = saleToEdit.SaleStatus;
+            dbSale.SaleStatus = editSale.SaleStatus;
 
             // Updates total
-            dbSale.SaleTotal = (decimal) salesToKeep.Select(stk => stk.Price).Sum();
-            
+            dbSale.SaleTotal = SaleLines.Where(sl => sl.SaleID == editSale.Id).Select(sl => sl.Price).Sum();
+
             // Updates SaleDate
             dbSale.SaleDate = DateTime.Now;
 
@@ -195,30 +204,65 @@ namespace KitchenFanatics.Repositories
         /// <param name="historyToSave">Entry to delete</param>
         public void DeleteSelectedSale(SaleHistory historyToSave)
         {
-
-            if (historyToSave == null) throw new NullReferenceException("Sale cannot be null!");
-
             // Selects the entry that's going to be deleted
             var saleToDelete = Sales.Where(sd => sd.SaleID == historyToSave.Id).FirstOrDefault();
-            
+
             // Gets the list of items connected to the sales that are going to be deleted
             var saleLineToDelete = SaleLines.Where(sld => sld.SaleID == historyToSave.Id);
 
-            foreach(var i in saleLineToDelete)
-            {
-                Console.WriteLine(i.SaleLineID);
-            }
-
-            // 
+            // Removes entries on submit
             SaleLines.DeleteAllOnSubmit(saleLineToDelete);
 
-            // 
+            // Removes sale on submit
             Sales.DeleteOnSubmit(saleToDelete);
 
             // Submits the changes to the database
             SubmitChanges();
         }
 
-        
+        /// <summary>
+        /// CreateNewSaleLine is a private method that is used to create a new SaleLine and place it into the DB
+        /// </summary>
+        /// <param name="sale">Associated SaleHistory</param>
+        /// <param name="id">What sale id to match it with</param>
+        /// <returns></returns>
+        private Database.SaleLine CreateNewSaleLine(Models.SaleLine sale, int id)
+        {
+            // Defines new sale
+            Database.SaleLine newSale = new Database.SaleLine();
+
+            // Sets the variables for the object
+            newSale.SaleID = id;
+            newSale.Price = (decimal)sale.Price;
+            newSale.ItemNR = sale.ItemNR;
+            newSale.Amount = (int)sale.Amount;
+
+            // Returns newly made entry
+            return newSale;
+        }
+
+        /// <summary>
+        /// Fetches all SaleLines associated with the given SaleHistory
+        /// </summary>
+        /// <param name="sale">SaleHistory to retrieve item from</param>
+        /// <returns>Returns all salelines from the SaleHistory</returns>
+        public List<Models.SaleLine> FetchItemsFromSale(SaleHistory sale)
+        {
+            // Defines a collection that will be containing all the Items
+            List<Models.SaleLine> saleLines = new List<Models.SaleLine>();
+
+            // Loops through each instance with the SaleID that matches the SaleHistory's ID
+            foreach (var newline in SaleLines.Where(sl => sl.SaleID == sale.Id))
+            {
+                // Defines a new SaleLine
+                Models.SaleLine newSaleLine = new Models.SaleLine(newline);
+
+                // Adds it to the Collection
+                saleLines.Add(newSaleLine);
+            }
+
+            // Returns the collection
+            return saleLines;
+        }
     }
 }

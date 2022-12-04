@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.AccessControl;
+using Microsoft.Office.Core;
 
 namespace KitchenFanatics.Forms
 {
@@ -23,7 +24,7 @@ namespace KitchenFanatics.Forms
         // Objects used
         private List<SaleLine> saleLine = new List<SaleLine>();
         private Item currentSelected { get; set; }
-        private SaleHistory History { get; set; }
+        public SaleHistory History { get; set; }
         private BindingSource Cart = new BindingSource();
 
 
@@ -36,6 +37,7 @@ namespace KitchenFanatics.Forms
 
         public SaleEditor(bool isNew)
         {
+
             InitializeComponent();
             IsNew = isNew;
         }
@@ -83,6 +85,9 @@ namespace KitchenFanatics.Forms
 
                 // Sets saleline to be the same as history saleline
                 saleLine = History.SaleLine;
+
+                // Sets the Total
+                tb_Total.Text = History.SaleLine.Select(sl => sl.Price).Sum().ToString();
 
                 // Fetches status
                 cb_Status.SelectedIndex = cb_Status.FindStringExact(GetStatusString(History.SaleStatus));
@@ -137,7 +142,7 @@ namespace KitchenFanatics.Forms
                     return;
                 }
                 // Checks if there is an item selected and if the amount field is empty as well as if the given amount is 0 or less
-                if (ItemSelected && !string.IsNullOrEmpty(tb_Amount.Text) && int.Parse(tb_Amount.Text) > 0)
+                if (ItemSelected && !string.IsNullOrEmpty(tb_Amount.Text) && int.Parse(tb_Amount.Text) > 0 && amount <= currentSelected.InStock)
                 {
                     // Creates a new SaleLine object containing the data given
                     SaleLine newSale = new SaleLine(
@@ -149,6 +154,9 @@ namespace KitchenFanatics.Forms
 
                     // Updates the DataGridView accordingly
                     Cart.ResetBindings(false);
+
+                    // Updates total box
+                    tb_Total.Text = (decimal.Parse(tb_Total.Text) + newSale.Price).ToString();
                 }
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
@@ -161,8 +169,14 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void RemoveItem(object sender, EventArgs e)
         {
+            // Gets SaleLine
+            SaleLine sale = (SaleLine)dgv_Selected.CurrentRow.DataBoundItem;
+
+            // Updates total box
+            tb_Total.Text = (decimal.Parse(tb_Total.Text) - sale.Price).ToString();
+
             // Removes selected item
-            saleLine.Remove((SaleLine)dgv_Selected.CurrentRow.DataBoundItem);
+            saleLine.Remove(sale);
 
             // Updates the DataGridView
             Cart.ResetBindings(false);
@@ -191,10 +205,10 @@ namespace KitchenFanatics.Forms
                         decimal Price = (decimal)saleLine.Select(sl => sl.Price).Sum();
 
                         // Creates a new saleHistory with the data on the page
-                        SaleHistory saleHistory = new SaleHistory(DateTime.Now, Price, customer.Customeraddress, 1, saleLine, customer);
+                        History = new SaleHistory(RandomDateTime(), Price, customer.Customeraddress, 1, saleLine, customer);
 
                         // Saves and stores the saleHistory on the database
-                        saleService.CreateEntry(saleHistory);
+                        saleService.CreateEntry(History);
 
                         // Closes the window
                         Close();
@@ -227,6 +241,21 @@ namespace KitchenFanatics.Forms
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
             catch (Exception ex) { logger.LogError(ex); }
+        }
+
+        DateTime RandomDateTime()
+        {
+            Random random = new Random();
+            DateTime start = new DateTime(2010, 1, 1);
+            int range = (DateTime.Today - start).Days;
+
+            int randomHour = random.Next(0, 24);
+            int randomMinute = random.Next(0, 60);
+            int randomSecond = random.Next(0, 60);
+
+            var randomDate = start.AddDays(random.Next(range));
+
+            return new DateTime(randomDate.Year, randomDate.Month, randomDate.Day, randomHour, randomMinute, randomSecond);
         }
 
         /// <summary>

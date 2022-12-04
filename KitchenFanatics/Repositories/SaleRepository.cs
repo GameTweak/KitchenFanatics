@@ -164,15 +164,12 @@ namespace KitchenFanatics.Repositories
             
             SubmitChanges();
 
-            foreach(var line in editSale.SaleLine.Where(sl => sl.SaleID == editSale.Id))
-            {
-                Console.WriteLine(line.SaleLineID + " exists in db");
-            }
-
             foreach (var saleLine in SaleLines.Where(sl => sl.SaleID == editSale.Id))
             {
+                string output = $"{saleLine.ItemNR} was added to ";
+                
                 // Check if the saleline is present in editSale's SaleLine collection
-                if (!editSale.SaleLine.Any(sl => sl.SaleLineID == saleLine.SaleLineID))
+                if (!editSale.SaleLine.Any(sl => sl.SaleLineID == saleLine.SaleLineID) && !salesToAdd.Contains(saleLine))
                 {
                     // Adds it to removal collection
                     salesToDelete.Add(saleLine);
@@ -244,17 +241,27 @@ namespace KitchenFanatics.Repositories
             return newSale;
         }
 
+        /// <summary>
+        /// Fetches all SaleLines associated with the given SaleHistory
+        /// </summary>
+        /// <param name="sale">SaleHistory to retrieve item from</param>
+        /// <returns>Returns all salelines from the SaleHistory</returns>
         public List<Models.SaleLine> FetchItemsFromSale(SaleHistory sale)
         {
+            // Defines a collection that will be containing all the Items
             List<Models.SaleLine> saleLines = new List<Models.SaleLine>();
 
+            // Loops through each instance with the SaleID that matches the SaleHistory's ID
             foreach (var newline in SaleLines.Where(sl => sl.SaleID == sale.Id))
             {
+                // Defines a new SaleLine
                 Models.SaleLine newSaleLine = new Models.SaleLine(newline);
 
+                // Adds it to the Collection
                 saleLines.Add(newSaleLine);
             }
 
+            // Returns the collection
             return saleLines;
         }
     }

@@ -18,9 +18,15 @@ namespace KitchenFanatics.Forms
     /// </summary>
     public partial class CustomerOverview : Form
     {
-        private CustomerService CustomerService { get; set; }
-        private CustomerSortingService customerSortings { get; set; }
-        private List<Customer> CustomerList { get; set; }
+        private CustomerFilterService CustomerFilter = new CustomerFilterService();
+        private CustomerSortingService customerSortings { get; set;}
+        ///Makes a new instance of the CustomerService
+        private CustomerService CustomerService = new CustomerService();
+        ///Makes a new instance of the Model made into a List
+        private List<Customer> CustomerList = new List<Customer>();
+
+       // private BindingSource source = new BindingSource();
+        private LogService logger = new LogService();
         public bool CustomerID { get; set; }
         public bool CustomerFirstName { get; set; }
 
@@ -36,16 +42,26 @@ namespace KitchenFanatics.Forms
         {
             ///Initializes each individual component on the form
             InitializeComponent();
-            ///Makes a new instance of the CustomerService
-            CustomerService = new CustomerService();
-            ///Makes a new instance of the Model made into a List
-            CustomerList = new List<Customer>();
-            ///Sets the CustomerList to be equal to the GetCustomers method from CustomerService
-            CustomerList = CustomerService.GetCustomers();
-            ///Makes a new instance of the CustomerSortingService
-            customerSortings = new CustomerSortingService(CustomerList);
             ///Calls the UpdateUI method
             UpdateUI();
+        }
+
+        public void CustomerOverview_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ///Sets the CustomerList to be equal to the GetCustomers method from CustomerService
+                CustomerList = CustomerService.GetCustomers();
+                ///Makes a new instance of the CustomerSortingService
+                customerSortings = new CustomerSortingService(CustomerList);
+
+               // source.DataSource = CustomerList;
+
+                customerOverview_dgv.DataSource = CustomerList;
+            } catch (Exception ex)
+            {
+                logger.LogError(ex);
+            }
         }
 
         /// <summary>
@@ -55,7 +71,10 @@ namespace KitchenFanatics.Forms
         /// <param name="e"></param>
         private void createCustomer_Click(object sender, EventArgs e)
         {
+            ///Create a new instance of the CreateCustomer Form
             CreateCustomer customer = new CreateCustomer();
+            ///Shows the CreateCustomer form as a dialog box
+            customer.ShowDialog();
         }
 
         /// <summary>
@@ -70,7 +89,6 @@ namespace KitchenFanatics.Forms
             ///Shows the CreateCustomer form as a dialog box
             form.ShowDialog();
         }
-
         // <summary>
         // This was my first attempt on sorting by clicking on the header of the DataGridView
         // We managed to get it to read the name of the header of the cell that was last clicked
@@ -235,6 +253,11 @@ namespace KitchenFanatics.Forms
                 ///Calls the UpdateUI method
                 UpdateUI();
             }
+        }
+
+        private void ClickToFilter(object sender, EventArgs e)
+        {
+            customerOverview_dgv.DataSource = CustomerFilter.FilterCustomer(CustomerList, customerFullName_tb.Text, customerMail_tb.Text, customerPhoneNumber_tb.Text, customerAddress_tb.Text);
         }
     }
 }

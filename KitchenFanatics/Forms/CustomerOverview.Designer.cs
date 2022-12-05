@@ -63,10 +63,9 @@
             // customerFullName_lb
             // 
             this.customerFullName_lb.AutoSize = true;
-            this.customerFullName_lb.Location = new System.Drawing.Point(9, 15);
-            this.customerFullName_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.customerFullName_lb.Location = new System.Drawing.Point(12, 18);
             this.customerFullName_lb.Name = "customerFullName_lb";
-            this.customerFullName_lb.Size = new System.Drawing.Size(35, 13);
+            this.customerFullName_lb.Size = new System.Drawing.Size(44, 16);
             this.customerFullName_lb.TabIndex = 0;
             this.customerFullName_lb.Text = "Name";
             // 
@@ -82,14 +81,16 @@
             this.emailDataGridViewTextBoxColumn,
             this.phoneNumberDataGridViewTextBoxColumn});
             this.customerOverview_dgv.DataSource = this.customerBindingSource;
-            this.customerOverview_dgv.Location = new System.Drawing.Point(9, 72);
-            this.customerOverview_dgv.Margin = new System.Windows.Forms.Padding(2);
+            this.customerOverview_dgv.Location = new System.Drawing.Point(12, 89);
+            this.customerOverview_dgv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.customerOverview_dgv.MultiSelect = false;
             this.customerOverview_dgv.Name = "customerOverview_dgv";
             this.customerOverview_dgv.RowHeadersWidth = 51;
             this.customerOverview_dgv.RowTemplate.Height = 24;
-            this.customerOverview_dgv.Size = new System.Drawing.Size(779, 228);
+            this.customerOverview_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.customerOverview_dgv.Size = new System.Drawing.Size(1039, 281);
             this.customerOverview_dgv.TabIndex = 1;
-            this.customerOverview_dgv.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RowClick_customer);
+            this.customerOverview_dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerOverview_dgv_CellDoubleClick);
             // 
             // customerIDDataGridViewTextBoxColumn
             // 
@@ -156,10 +157,10 @@
             // 
             // createCustomer
             // 
-            this.createCustomer.Location = new System.Drawing.Point(655, 312);
-            this.createCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.createCustomer.Location = new System.Drawing.Point(873, 384);
+            this.createCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.createCustomer.Name = "createCustomer";
-            this.createCustomer.Size = new System.Drawing.Size(133, 49);
+            this.createCustomer.Size = new System.Drawing.Size(177, 60);
             this.createCustomer.TabIndex = 2;
             this.createCustomer.Text = "Create Customer";
             this.createCustomer.UseVisualStyleBackColor = true;
@@ -168,71 +169,68 @@
             // customerMail_lb
             // 
             this.customerMail_lb.AutoSize = true;
-            this.customerMail_lb.Location = new System.Drawing.Point(158, 15);
-            this.customerMail_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.customerMail_lb.Location = new System.Drawing.Point(211, 18);
             this.customerMail_lb.Name = "customerMail_lb";
-            this.customerMail_lb.Size = new System.Drawing.Size(26, 13);
+            this.customerMail_lb.Size = new System.Drawing.Size(32, 16);
             this.customerMail_lb.TabIndex = 3;
             this.customerMail_lb.Text = "Mail";
             // 
             // customerPhoneNumber_lb
             // 
             this.customerPhoneNumber_lb.AutoSize = true;
-            this.customerPhoneNumber_lb.Location = new System.Drawing.Point(329, 15);
-            this.customerPhoneNumber_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.customerPhoneNumber_lb.Location = new System.Drawing.Point(439, 18);
             this.customerPhoneNumber_lb.Name = "customerPhoneNumber_lb";
-            this.customerPhoneNumber_lb.Size = new System.Drawing.Size(82, 13);
+            this.customerPhoneNumber_lb.Size = new System.Drawing.Size(104, 16);
             this.customerPhoneNumber_lb.TabIndex = 4;
             this.customerPhoneNumber_lb.Text = "TelefonNummer";
             // 
             // customerAddress_lb
             // 
             this.customerAddress_lb.AutoSize = true;
-            this.customerAddress_lb.Location = new System.Drawing.Point(429, 16);
-            this.customerAddress_lb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.customerAddress_lb.Location = new System.Drawing.Point(572, 20);
             this.customerAddress_lb.Name = "customerAddress_lb";
-            this.customerAddress_lb.Size = new System.Drawing.Size(45, 13);
+            this.customerAddress_lb.Size = new System.Drawing.Size(58, 16);
             this.customerAddress_lb.TabIndex = 5;
             this.customerAddress_lb.Text = "Address";
             // 
             // customerFullName_tb
             // 
-            this.customerFullName_tb.Location = new System.Drawing.Point(9, 32);
-            this.customerFullName_tb.Margin = new System.Windows.Forms.Padding(2);
+            this.customerFullName_tb.Location = new System.Drawing.Point(12, 39);
+            this.customerFullName_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customerFullName_tb.Name = "customerFullName_tb";
-            this.customerFullName_tb.Size = new System.Drawing.Size(147, 20);
+            this.customerFullName_tb.Size = new System.Drawing.Size(195, 22);
             this.customerFullName_tb.TabIndex = 6;
             // 
             // customerMail_tb
             // 
-            this.customerMail_tb.Location = new System.Drawing.Point(160, 32);
-            this.customerMail_tb.Margin = new System.Windows.Forms.Padding(2);
+            this.customerMail_tb.Location = new System.Drawing.Point(213, 39);
+            this.customerMail_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customerMail_tb.Name = "customerMail_tb";
-            this.customerMail_tb.Size = new System.Drawing.Size(168, 20);
+            this.customerMail_tb.Size = new System.Drawing.Size(223, 22);
             this.customerMail_tb.TabIndex = 7;
             // 
             // customerPhoneNumber_tb
             // 
-            this.customerPhoneNumber_tb.Location = new System.Drawing.Point(332, 32);
-            this.customerPhoneNumber_tb.Margin = new System.Windows.Forms.Padding(2);
+            this.customerPhoneNumber_tb.Location = new System.Drawing.Point(443, 39);
+            this.customerPhoneNumber_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customerPhoneNumber_tb.Name = "customerPhoneNumber_tb";
-            this.customerPhoneNumber_tb.Size = new System.Drawing.Size(77, 20);
+            this.customerPhoneNumber_tb.Size = new System.Drawing.Size(101, 22);
             this.customerPhoneNumber_tb.TabIndex = 8;
             // 
             // customerAddress_tb
             // 
-            this.customerAddress_tb.Location = new System.Drawing.Point(431, 32);
-            this.customerAddress_tb.Margin = new System.Windows.Forms.Padding(2);
+            this.customerAddress_tb.Location = new System.Drawing.Point(575, 39);
+            this.customerAddress_tb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customerAddress_tb.Name = "customerAddress_tb";
-            this.customerAddress_tb.Size = new System.Drawing.Size(145, 20);
+            this.customerAddress_tb.Size = new System.Drawing.Size(192, 22);
             this.customerAddress_tb.TabIndex = 9;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 312);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(12, 384);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 49);
+            this.button1.Size = new System.Drawing.Size(137, 60);
             this.button1.TabIndex = 10;
             this.button1.Text = "Sort CustomerID";
             this.button1.UseVisualStyleBackColor = true;
@@ -240,10 +238,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(116, 312);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(155, 384);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 49);
+            this.button2.Size = new System.Drawing.Size(116, 60);
             this.button2.TabIndex = 11;
             this.button2.Text = "Sort Firstname";
             this.button2.UseVisualStyleBackColor = true;
@@ -251,10 +249,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(207, 312);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(276, 384);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 49);
+            this.button3.Size = new System.Drawing.Size(116, 60);
             this.button3.TabIndex = 12;
             this.button3.Text = "Sort Lastname";
             this.button3.UseVisualStyleBackColor = true;
@@ -262,10 +260,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(298, 312);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Location = new System.Drawing.Point(397, 384);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(87, 49);
+            this.button4.Size = new System.Drawing.Size(116, 60);
             this.button4.TabIndex = 13;
             this.button4.Text = "Sort Address";
             this.button4.UseVisualStyleBackColor = true;
@@ -273,10 +271,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(389, 312);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Location = new System.Drawing.Point(519, 384);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(87, 49);
+            this.button5.Size = new System.Drawing.Size(116, 60);
             this.button5.TabIndex = 14;
             this.button5.Text = "Sort Email";
             this.button5.UseVisualStyleBackColor = true;
@@ -284,10 +282,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(480, 312);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
+            this.button6.Location = new System.Drawing.Point(640, 384);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(112, 49);
+            this.button6.Size = new System.Drawing.Size(149, 60);
             this.button6.TabIndex = 15;
             this.button6.Text = "Sort PhoneNumber";
             this.button6.UseVisualStyleBackColor = true;
@@ -295,19 +293,19 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(655, 17);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
+            this.button7.Location = new System.Drawing.Point(873, 21);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(112, 49);
+            this.button7.Size = new System.Drawing.Size(149, 60);
             this.button7.TabIndex = 16;
             this.button7.Text = "Filter Customers";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // CustomerOverview
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(789, 366);
+            this.ClientSize = new System.Drawing.Size(1052, 450);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -325,7 +323,7 @@
             this.Controls.Add(this.createCustomer);
             this.Controls.Add(this.customerOverview_dgv);
             this.Controls.Add(this.customerFullName_lb);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CustomerOverview";

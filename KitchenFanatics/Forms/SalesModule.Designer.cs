@@ -31,8 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SaleHistories = new System.Windows.Forms.DataGridView();
+            this.saleDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GetEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GetPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deliveryAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tb_Phone = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dtp_End = new System.Windows.Forms.DateTimePicker();
@@ -53,16 +59,10 @@
             this.btn_PrintData = new System.Windows.Forms.Button();
             this.tb_LastName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.saleDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deliveryAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -105,6 +105,22 @@
             this.DGV_SaleHistories.Size = new System.Drawing.Size(1116, 542);
             this.DGV_SaleHistories.TabIndex = 1;
             // 
+            // saleDateDataGridViewTextBoxColumn
+            // 
+            this.saleDateDataGridViewTextBoxColumn.DataPropertyName = "SaleDate";
+            this.saleDateDataGridViewTextBoxColumn.HeaderText = "Sidst Opdateret";
+            this.saleDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.saleDateDataGridViewTextBoxColumn.Name = "saleDateDataGridViewTextBoxColumn";
+            this.saleDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerDataGridViewTextBoxColumn
+            // 
+            this.customerDataGridViewTextBoxColumn.DataPropertyName = "CustomerName";
+            this.customerDataGridViewTextBoxColumn.HeaderText = "Navn";
+            this.customerDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
+            this.customerDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // GetEmail
             // 
             this.GetEmail.DataPropertyName = "GetEmail";
@@ -122,11 +138,41 @@
             this.GetPhoneNumber.Name = "GetPhoneNumber";
             this.GetPhoneNumber.ReadOnly = true;
             // 
+            // deliveryAddressDataGridViewTextBoxColumn
+            // 
+            this.deliveryAddressDataGridViewTextBoxColumn.DataPropertyName = "DeliveryAddress";
+            this.deliveryAddressDataGridViewTextBoxColumn.HeaderText = "Leveringsaddresse";
+            this.deliveryAddressDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.deliveryAddressDataGridViewTextBoxColumn.Name = "deliveryAddressDataGridViewTextBoxColumn";
+            this.deliveryAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalPriceDataGridViewTextBoxColumn
+            // 
+            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
+            this.totalPriceDataGridViewTextBoxColumn.FillWeight = 60F;
+            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Pris";
+            this.totalPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
+            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // saleStatusDataGridViewTextBoxColumn
+            // 
+            this.saleStatusDataGridViewTextBoxColumn.DataPropertyName = "GetStatusType";
+            this.saleStatusDataGridViewTextBoxColumn.FillWeight = 55F;
+            this.saleStatusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.saleStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.saleStatusDataGridViewTextBoxColumn.Name = "saleStatusDataGridViewTextBoxColumn";
+            this.saleStatusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // saleHistoryBindingSource
+            // 
+            this.saleHistoryBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleHistory);
+            // 
             // tb_Phone
             // 
             this.tb_Phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_Phone.Location = new System.Drawing.Point(705, 69);
-            this.tb_Phone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_Phone.Margin = new System.Windows.Forms.Padding(4);
             this.tb_Phone.Name = "tb_Phone";
             this.tb_Phone.Size = new System.Drawing.Size(239, 26);
             this.tb_Phone.TabIndex = 4;
@@ -135,7 +181,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(957, 68);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(172, 80);
             this.button1.TabIndex = 5;
@@ -147,7 +193,7 @@
             // 
             this.dtp_End.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_End.Location = new System.Drawing.Point(487, 119);
-            this.dtp_End.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtp_End.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_End.Name = "dtp_End";
             this.dtp_End.Size = new System.Drawing.Size(461, 26);
             this.dtp_End.TabIndex = 7;
@@ -225,7 +271,7 @@
             // 
             this.tb_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_Email.Location = new System.Drawing.Point(457, 69);
-            this.tb_Email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_Email.Margin = new System.Windows.Forms.Padding(4);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(239, 26);
             this.tb_Email.TabIndex = 15;
@@ -234,7 +280,7 @@
             // 
             this.tb_FirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_FirstName.Location = new System.Drawing.Point(15, 69);
-            this.tb_FirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_FirstName.Margin = new System.Windows.Forms.Padding(4);
             this.tb_FirstName.Name = "tb_FirstName";
             this.tb_FirstName.Size = new System.Drawing.Size(213, 26);
             this.tb_FirstName.TabIndex = 16;
@@ -243,7 +289,7 @@
             // 
             this.dtp_Start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_Start.Location = new System.Drawing.Point(15, 119);
-            this.dtp_Start.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtp_Start.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_Start.Name = "dtp_Start";
             this.dtp_Start.Size = new System.Drawing.Size(463, 26);
             this.dtp_Start.TabIndex = 17;
@@ -281,7 +327,7 @@
             this.btn_EditSale.Name = "btn_EditSale";
             this.btn_EditSale.Size = new System.Drawing.Size(143, 38);
             this.btn_EditSale.TabIndex = 20;
-            this.btn_EditSale.Text = "Redigere Salg";
+            this.btn_EditSale.Text = "Åben Salg";
             this.btn_EditSale.UseVisualStyleBackColor = true;
             this.btn_EditSale.Click += new System.EventHandler(this.EditSale);
             // 
@@ -301,7 +347,7 @@
             // 
             this.tb_LastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_LastName.Location = new System.Drawing.Point(237, 69);
-            this.tb_LastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_LastName.Margin = new System.Windows.Forms.Padding(4);
             this.tb_LastName.Name = "tb_LastName";
             this.tb_LastName.Size = new System.Drawing.Size(211, 26);
             this.tb_LastName.TabIndex = 22;
@@ -316,52 +362,6 @@
             this.label7.Size = new System.Drawing.Size(80, 20);
             this.label7.TabIndex = 23;
             this.label7.Text = "Efternavn";
-            // 
-            // saleDateDataGridViewTextBoxColumn
-            // 
-            this.saleDateDataGridViewTextBoxColumn.DataPropertyName = "SaleDate";
-            this.saleDateDataGridViewTextBoxColumn.HeaderText = "Sidst Opdateret";
-            this.saleDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.saleDateDataGridViewTextBoxColumn.Name = "saleDateDataGridViewTextBoxColumn";
-            this.saleDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // customerDataGridViewTextBoxColumn
-            // 
-            this.customerDataGridViewTextBoxColumn.DataPropertyName = "CustomerName";
-            this.customerDataGridViewTextBoxColumn.HeaderText = "Navn";
-            this.customerDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
-            this.customerDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // deliveryAddressDataGridViewTextBoxColumn
-            // 
-            this.deliveryAddressDataGridViewTextBoxColumn.DataPropertyName = "DeliveryAddress";
-            this.deliveryAddressDataGridViewTextBoxColumn.HeaderText = "Leveringsaddresse";
-            this.deliveryAddressDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.deliveryAddressDataGridViewTextBoxColumn.Name = "deliveryAddressDataGridViewTextBoxColumn";
-            this.deliveryAddressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalPriceDataGridViewTextBoxColumn
-            // 
-            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            this.totalPriceDataGridViewTextBoxColumn.FillWeight = 60F;
-            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Pris";
-            this.totalPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
-            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // saleStatusDataGridViewTextBoxColumn
-            // 
-            this.saleStatusDataGridViewTextBoxColumn.DataPropertyName = "GetStatusType";
-            this.saleStatusDataGridViewTextBoxColumn.FillWeight = 55F;
-            this.saleStatusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.saleStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.saleStatusDataGridViewTextBoxColumn.Name = "saleStatusDataGridViewTextBoxColumn";
-            this.saleStatusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // saleHistoryBindingSource
-            // 
-            this.saleHistoryBindingSource.DataSource = typeof(KitchenFanatics.Models.SaleHistory);
             // 
             // SalesModule
             // 
@@ -393,9 +393,9 @@
             this.Text = "Salgsoversigt";
             this.Load += new System.EventHandler(this.SalesModul_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SaleHistories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleHistoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

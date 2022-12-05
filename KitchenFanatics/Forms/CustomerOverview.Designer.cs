@@ -300,6 +300,7 @@
             this.button7.TabIndex = 16;
             this.button7.Text = "Filter Customers";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.ClickToFilter);
             // 
             // CustomerOverview
             // 
@@ -329,6 +330,7 @@
             this.Name = "CustomerOverview";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerOverview";
+            this.Load += new System.EventHandler(this.CustomerOverview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customerOverview_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenFanaticDataSet)).EndInit();

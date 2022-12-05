@@ -74,7 +74,7 @@ namespace KitchenFanatics.Forms
             else
             {
                 // Changes btn text to "Edit"
-                btn_CreateEdit.Text = "Redigere";
+                btn_CreateEdit.Text = "Gem";
 
                 // Sets the combobox to have the customer Name
                 cb_Customers.SelectedIndex = cb_Customers.FindStringExact(History.Customer.FullName);

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.AccessControl;
+using Microsoft.Office.Core;
 
 namespace KitchenFanatics.Forms
 {
@@ -85,6 +86,9 @@ namespace KitchenFanatics.Forms
                 // Sets saleline to be the same as history saleline
                 saleLine = History.SaleLine;
 
+                // Sets the Total
+                tb_Total.Text = History.SaleLine.Select(sl => sl.Price).Sum().ToString();
+
                 // Fetches status
                 cb_Status.SelectedIndex = cb_Status.FindStringExact(GetStatusString(History.SaleStatus));
             }
@@ -150,6 +154,9 @@ namespace KitchenFanatics.Forms
 
                     // Updates the DataGridView accordingly
                     Cart.ResetBindings(false);
+
+                    // Updates total box
+                    tb_Total.Text = (decimal.Parse(tb_Total.Text) + newSale.Price).ToString();
                 }
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
@@ -162,8 +169,14 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void RemoveItem(object sender, EventArgs e)
         {
+            // Gets SaleLine
+            SaleLine sale = (SaleLine)dgv_Selected.CurrentRow.DataBoundItem;
+
+            // Updates total box
+            tb_Total.Text = (decimal.Parse(tb_Total.Text) - sale.Price).ToString();
+
             // Removes selected item
-            saleLine.Remove((SaleLine)dgv_Selected.CurrentRow.DataBoundItem);
+            saleLine.Remove(sale);
 
             // Updates the DataGridView
             Cart.ResetBindings(false);

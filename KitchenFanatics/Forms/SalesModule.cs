@@ -143,8 +143,12 @@ namespace KitchenFanatics.Forms
         {
             try
             {
+                SaleHistory selected = (SaleHistory) DGV_SaleHistories.CurrentRow.DataBoundItem;
+
+                selected.SaleLine = saleService.FetchSaleLines(selected);
+
                 // Defines the CreateSale form
-                SaleEditor sale = new SaleEditor(false, (SaleHistory)DGV_SaleHistories.CurrentRow.DataBoundItem);
+                SaleEditor sale = new SaleEditor(false, selected);
 
                 // Opens the form for the user
                 sale.ShowDialog();

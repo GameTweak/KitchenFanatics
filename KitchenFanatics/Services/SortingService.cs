@@ -23,9 +23,6 @@ namespace KitchenFanatics.Services
         {
             // Defines the collection that will be storing the sorted list
             List<SaleHistory> sortedList = saleHistories;
-            
-            // Defines a string array that'll be containing the information typed into the name box and split between first and last name
-
 
             // Checks if empty the first index is empty or null and filters from it
             if (!string.IsNullOrEmpty(fname))

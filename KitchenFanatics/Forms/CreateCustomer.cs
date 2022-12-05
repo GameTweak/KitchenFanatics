@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KitchenFanatics.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,58 @@ namespace KitchenFanatics.Forms
 {
     public partial class CreateCustomer : Form
     {
+        //Written by Thomas
+        //A connection to the logService
+        LogService logService = new LogService();
+
+        //Boolean to check if the form is currently edditing a cutsomer
+        private bool EditingCustomer = new bool();
+
+        private Models.Customer customer;
+
+        //A constructor for creating new customers
         public CreateCustomer()
         {
             InitializeComponent();
+            this.Text = "Create new customer";
+            EditingCustomer = false;
         }
 
+        //A constructor for editing an existing customer
+        public CreateCustomer(Models.Customer currentCustomer)
+        {
+            InitializeComponent();
+            customer = currentCustomer;
+            this.Text = "Edit customer: " + currentCustomer.FullName;
+            EditingCustomer = true;
+            LoadCustomer();
+        }
+
+        /// <summary>
+        /// Closes the site when cancel is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancel_btn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Goes to ValidCustomer when save is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveCustomer_btn_Click(object sender, EventArgs e)
         {
-            ValidCustomer();
+            try
+            {
+                ValidCustomer();
+            }
+            catch (Exception ex)
+            {
+                logService.LogError(ex);
+            }
         }
 
         /// <summary>
@@ -51,48 +91,43 @@ namespace KitchenFanatics.Forms
             //Tells the user that they are missing contact info
             if (ValidPhoneNumber != true && ValidEmail != true)
             {
+                //Adds Contact info to the list of data missing
                 MissingData += "Contact info";
             }
 
             //verifies firstname
-            if (createCustomerFirstName_tb.Text != "")
+            if (createCustomerFirstName_tb.Text == "" && MissingData != "")
             {
-
-            }
-            else if (MissingData != "")
-            {
+                //Adds First name to the list of data missing
                 MissingData += ", First name";
             }
-            else
+            else if (createCustomerFirstName_tb.Text == "")
             {
+                //Adds First name to the list of data missing
                 MissingData += "First name";
             }
 
             //verifies lastname
-            if (createCustomerLastName_tb.Text != "")
+            if (createCustomerLastName_tb.Text == "" && MissingData != "")
             {
-
-            }
-            else if (MissingData != "")
-            {
+                //Adds Last name to the list of data missing
                 MissingData += ", Last name";
             }
-            else
+            else if (createCustomerLastName_tb.Text == "")
             {
+                //Adds Last name to the list of data missing
                 MissingData += "Last name";
             }
 
             //verifies adress
-            if (createCustomerAddress_tb.Text != "")
+            if (createCustomerAddress_tb.Text == "" && MissingData != "")
             {
-
-            }
-            else if (MissingData != "")
-            {
+                //Adds Adress to the list of data missing
                 MissingData += ", Adress";
             }
-            else
+            else if (createCustomerAddress_tb.Text == "")
             {
+                //Adds Adress to the list of data missing
                 MissingData += "Adress";
             }
 
@@ -115,9 +150,33 @@ namespace KitchenFanatics.Forms
         /// </summary>
         private void SaveCustomer()
         {
+            // makes a new connection to the CustomerService
+            var customerService = new CustomerService();
 
+            if (EditingCustomer == false)
+            {
+                // makes a Models.Customer named NewCustomer, with all the data inserted into the form
+                Models.Customer NewCustomer = new Models.Customer(createCustomerFirstName_tb.Text, createCustomerLastName_tb.Text, createCustomerMail_tb.Text, createCustomerAddress_tb.Text, createCustomerPhoneNumber_tb.Text, null);
+                // saves the customer
+                customerService.createCustomer(NewCustomer);
+            }
+            else if (EditingCustomer == true)
+            {
+                // makes a Models.Customer named EditedCustomer, with all the data inserted into the form
+                Models.Customer EditedCustomer = new Models.Customer(createCustomerFirstName_tb.Text, createCustomerLastName_tb.Text, createCustomerMail_tb.Text, createCustomerAddress_tb.Text, createCustomerPhoneNumber_tb.Text, customer.CustomerID);
+                // Updates the customer
+                customerService.updateCustomer(EditedCustomer);
+            }
         }
 
+        private void LoadCustomer()
+        {
+            createCustomerFirstName_tb.Text = customer.FirstName;
+            createCustomerLastName_tb.Text = customer.LastName;
+            createCustomerMail_tb.Text = customer.Email;
+            createCustomerPhoneNumber_tb.Text = customer.phonenumber;
+            createCustomerAddress_tb.Text = customer.Customeraddress;
+        }
         /// <summary>
         /// makes it so the phonenumber only accepts numbers
         /// </summary>

@@ -85,9 +85,9 @@ namespace KitchenFanatics.Forms
         private void RowClick_customer(object sender, DataGridViewCellMouseEventArgs e)
         {
             ///Create a new instance of the CreateCustomer Form
-            CreateCustomer form = new CreateCustomer();
+            CreateCustomer customer = new CreateCustomer();
             ///Shows the CreateCustomer form as a dialog box
-            form.ShowDialog();
+            customer.ShowDialog();
         }
         // <summary>
         // This was my first attempt on sorting by clicking on the header of the DataGridView
@@ -258,6 +258,15 @@ namespace KitchenFanatics.Forms
         private void ClickToFilter(object sender, EventArgs e)
         {
             customerOverview_dgv.DataSource = CustomerFilter.FilterCustomer(CustomerList, customerFullName_tb.Text, customerMail_tb.Text, customerPhoneNumber_tb.Text, customerAddress_tb.Text);
+        }
+        
+        private void customerOverview_dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Customer SelectedCustomer = (Customer)customerOverview_dgv.SelectedRows[0].DataBoundItem;
+            ///Create a new instance of the CreateCustomer Form
+            CreateCustomer customer = new CreateCustomer(SelectedCustomer);
+            ///Shows the CreateCustomer form as a dialog box
+            customer.ShowDialog();
         }
     }
 }

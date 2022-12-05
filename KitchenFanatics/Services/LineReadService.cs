@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Services
 {
+    //Written by Thomas
     public class LineReadService
     {
         //A list is established, so it can be reffered to from any other place int the program

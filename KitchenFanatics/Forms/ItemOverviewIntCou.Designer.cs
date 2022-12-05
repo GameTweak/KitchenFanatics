@@ -32,9 +32,12 @@ namespace KitchenFanatics.Forms
             this.components = new System.ComponentModel.Container();
             this.dgw_itemoverview = new System.Windows.Forms.DataGridView();
             this.btn_IntCouFormOpen = new System.Windows.Forms.Button();
+            this.itemBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemCategoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Produkttype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.widthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,9 +45,10 @@ namespace KitchenFanatics.Forms
             this.depthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tagsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgw_itemoverview
@@ -62,7 +66,7 @@ namespace KitchenFanatics.Forms
             this.dgw_itemoverview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.titleDataGridViewTextBoxColumn,
-            this.itemCategoryDataGridViewTextBoxColumn,
+            this.Produkttype,
             this.priceDataGridViewTextBoxColumn,
             this.inStockDataGridViewTextBoxColumn,
             this.widthDataGridViewTextBoxColumn,
@@ -70,7 +74,7 @@ namespace KitchenFanatics.Forms
             this.depthDataGridViewTextBoxColumn,
             this.weightDataGridViewTextBoxColumn,
             this.tagsDataGridViewTextBoxColumn});
-            this.dgw_itemoverview.DataSource = this.itemBindingSource;
+            this.dgw_itemoverview.DataSource = this.itemBindingSource2;
             this.dgw_itemoverview.Location = new System.Drawing.Point(21, 40);
             this.dgw_itemoverview.MultiSelect = false;
             this.dgw_itemoverview.Name = "dgw_itemoverview";
@@ -93,6 +97,18 @@ namespace KitchenFanatics.Forms
             this.btn_IntCouFormOpen.UseVisualStyleBackColor = true;
             this.btn_IntCouFormOpen.Click += new System.EventHandler(this.btn_IntCouFormOpen_Click);
             // 
+            // itemBindingSource2
+            // 
+            this.itemBindingSource2.DataSource = typeof(KitchenFanatics.Models.Item);
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
+            // 
+            // itemBindingSource1
+            // 
+            this.itemBindingSource1.DataSource = typeof(KitchenFanatics.Models.Item);
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -104,21 +120,21 @@ namespace KitchenFanatics.Forms
             // 
             // titleDataGridViewTextBoxColumn
             // 
+            this.titleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
             this.titleDataGridViewTextBoxColumn.HeaderText = "Varenavn";
             this.titleDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
             this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            this.titleDataGridViewTextBoxColumn.Width = 94;
             // 
-            // itemCategoryDataGridViewTextBoxColumn
+            // Produkttype
             // 
-            this.itemCategoryDataGridViewTextBoxColumn.DataPropertyName = "ItemCategory";
-            this.itemCategoryDataGridViewTextBoxColumn.HeaderText = "Varekategori";
-            this.itemCategoryDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemCategoryDataGridViewTextBoxColumn.Name = "itemCategoryDataGridViewTextBoxColumn";
-            this.itemCategoryDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemCategoryDataGridViewTextBoxColumn.Width = 114;
+            this.Produkttype.DataPropertyName = "GetItemCategory";
+            this.Produkttype.HeaderText = "Produkttype";
+            this.Produkttype.MinimumWidth = 6;
+            this.Produkttype.Name = "Produkttype";
+            this.Produkttype.ReadOnly = true;
+            this.Produkttype.Width = 108;
             // 
             // priceDataGridViewTextBoxColumn
             // 
@@ -183,12 +199,9 @@ namespace KitchenFanatics.Forms
             this.tagsDataGridViewTextBoxColumn.ReadOnly = true;
             this.tagsDataGridViewTextBoxColumn.Width = 68;
             // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(KitchenFanatics.Models.Item);
-            // 
             // ItemOverviewIntCou
             // 
+            this.AcceptButton = this.btn_IntCouFormOpen;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 570);
@@ -198,7 +211,9 @@ namespace KitchenFanatics.Forms
             this.Text = "Vareoversigt";
             this.Load += new System.EventHandler(this.ItemOverview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgw_itemoverview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,9 +222,11 @@ namespace KitchenFanatics.Forms
         private System.Windows.Forms.Button btn_IntCouFormOpen;
         private System.Windows.Forms.DataGridView dgw_itemoverview;
         private System.Windows.Forms.BindingSource itemBindingSource;
+        private System.Windows.Forms.BindingSource itemBindingSource2;
+        private System.Windows.Forms.BindingSource itemBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemCategoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Produkttype;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn inStockDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn widthDataGridViewTextBoxColumn;

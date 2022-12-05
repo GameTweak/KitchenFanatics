@@ -43,7 +43,7 @@ namespace KitchenFanatics.Forms
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(77, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 17);
+            this.label1.Size = new System.Drawing.Size(79, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Brugernavn:";
             // 
@@ -53,7 +53,7 @@ namespace KitchenFanatics.Forms
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(77, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 17);
+            this.label2.Size = new System.Drawing.Size(70, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password:";
             // 
@@ -64,7 +64,7 @@ namespace KitchenFanatics.Forms
             this.lb_wrong.ForeColor = System.Drawing.Color.Red;
             this.lb_wrong.Location = new System.Drawing.Point(179, 223);
             this.lb_wrong.Name = "lb_wrong";
-            this.lb_wrong.Size = new System.Drawing.Size(217, 17);
+            this.lb_wrong.Size = new System.Drawing.Size(203, 16);
             this.lb_wrong.TabIndex = 2;
             this.lb_wrong.Text = "Forkert brugernavn eller kodeord";
             // 
@@ -84,7 +84,6 @@ namespace KitchenFanatics.Forms
             this.txt_username.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_username.Location = new System.Drawing.Point(165, 109);
             this.txt_username.Name = "txt_username";
-            this.txt_username.PasswordChar = '*';
             this.txt_username.Size = new System.Drawing.Size(231, 22);
             this.txt_username.TabIndex = 4;
             // 

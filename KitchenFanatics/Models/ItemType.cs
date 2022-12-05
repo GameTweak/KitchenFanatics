@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Models
 {
+    //Written by Thomas
     public class ItemType
     {
         //a constructor is created for the ItemType class, ? allows null

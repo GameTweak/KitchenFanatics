@@ -19,29 +19,24 @@ namespace KitchenFanatics.Services
         /// <param name="start">The start date</param>
         /// <param name="end">The end date</param>
         /// <returns></returns>
-        public List<SaleHistory> FilterSale(List<SaleHistory> saleHistories, string fname, string email, string phone, DateTime start, DateTime end)
+        public List<SaleHistory> FilterSale(List<SaleHistory> saleHistories, string fname, string lname, string email, string phone, DateTime start, DateTime end)
         {
             // Defines the collection that will be storing the sorted list
             List<SaleHistory> sortedList = saleHistories;
-            
-            // Defines a string array that'll be containing the information typed into the name box and split between first and last name
-            string[] name = fname.Split(' ');
-
 
             // Checks if empty the first index is empty or null and filters from it
-            if (!string.IsNullOrEmpty(name[0]))
+            if (!string.IsNullOrEmpty(fname))
             {
                 // Sorts the list by where the FirstName matches the input from the name box
                 sortedList = sortedList.Where(s => 
-                    s.Customer.FirstName.StartsWith(name[0], StringComparison.InvariantCultureIgnoreCase) || 
-                    s.Customer.LastName.StartsWith(name[0], StringComparison.InvariantCultureIgnoreCase)
+                    s.Customer.FirstName.StartsWith(fname, StringComparison.InvariantCultureIgnoreCase)
                     ).ToList();
             }
 
             // Checks if empty and if array is longer than 1
-            if (name.Length > 1 && !string.IsNullOrEmpty(name[0]) && !string.IsNullOrEmpty(name[1]))
+            if (!string.IsNullOrEmpty(lname))
             {
-                sortedList = sortedList.Where(s => s.Customer.LastName.StartsWith(name[1], StringComparison.InvariantCultureIgnoreCase)).ToList();
+                sortedList = sortedList.Where(s => s.Customer.LastName.StartsWith(lname, StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
 
             // Checks if the email box is empty

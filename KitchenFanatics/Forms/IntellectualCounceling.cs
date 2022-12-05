@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace KitchenFanatics.Forms
 {
+    //Written by Thomas
     public partial class Intellectual_Counceling : Form
     {
         // makes a series of variables that i am going use later in the code
@@ -20,7 +21,8 @@ namespace KitchenFanatics.Forms
         public Models.Filter CurrentFilter { get; set; }
         // ValidDecimal is used when checking wether or not a string can be converted to a decimal
         public bool ValidDecimal { get; set; }
-
+        // A connection to the logService
+        LogService logger = new LogService();
         /// <summary>
         /// A constructer that starts when the form is innitialized
         /// </summary>
@@ -28,18 +30,29 @@ namespace KitchenFanatics.Forms
         {
             InitializeComponent();
 
-            // Sets QuestionNumber to 0 (the first question)
-            QuestionNumber = 0;
+            try
+            {
+                // Sets QuestionNumber to 0 (the first question)
+                QuestionNumber = 0;
 
-            // Sets the default values for CurrentFilter
-            CurrentFilter = new Models.Filter("",null,null,null,null,null,null,null,null,null);
+                // Sets the default values for CurrentFilter
+                CurrentFilter = new Filter("",null,null,null,null,null,null,null,null,null);
 
-            SetCheckBoxList();
+                SetCheckBoxList();
 
-            // Calls the method SelectQuestion
-            SelectQuestion();
+                // Calls the method SelectQuestion
+                SelectQuestion();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
+            }
+
         }
 
+        /// <summary>
+        /// Sets up the values in the checkBoxList
+        /// </summary>
         private void SetCheckBoxList()
         {
             // Makes a connection to the ItemTypeService
@@ -54,6 +67,7 @@ namespace KitchenFanatics.Forms
                 CLB_type.Items.Add(choice.TypeName);
             }
 
+            // Makes it so a box in the checkBoxList is checked after one click, instead of the default doubleclick
             CLB_type.CheckOnClick = true;
         }
 
@@ -176,14 +190,10 @@ namespace KitchenFanatics.Forms
             lb_number3.Visible = true;
             lb_number4.Visible = true;
             lb_number5.Visible = true;
-            lb_number6.Visible = true;
 
-            lb_number1.Text = "Max højde";
-            lb_number2.Text = "Max bredde";
-            lb_number3.Text = "Max dybde";
-            lb_number4.Text = "Min højde";
-            lb_number5.Text = "Min bredde";
-            lb_number6.Text = "Min dybde";
+            lb_number1.Text = "Højde";
+            lb_number2.Text = "Bredde";
+            lb_number3.Text = "Dybde";
         }
 
         /// <summary>
@@ -234,15 +244,23 @@ namespace KitchenFanatics.Forms
         /// <param name="e"></param>
         private void btn_submit_Click(object sender, EventArgs e)
         {
-            // Calls the submit method
-            Submit();
-
-            // Checks whether or not the convertion to decimal is valid, if it is then the program proceeds to next question
-            if (ValidDecimal == true)
+            try
             {
-                QuestionNumber++;
-                SelectQuestion();
+                // Calls the submit method
+                Submit();
+
+                // Checks whether or not the convertion to decimal is valid, if it is then the program proceeds to next question
+                if (ValidDecimal == true)
+                {
+                    QuestionNumber++;
+                    SelectQuestion();
+                }
             }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
+            }
+            
         }
 
         /// <summary>
@@ -252,8 +270,16 @@ namespace KitchenFanatics.Forms
         /// <param name="e"></param>
         private void btn_skip_Click(object sender, EventArgs e)
         {
-            QuestionNumber++;
-            SelectQuestion();
+            try
+            {
+                QuestionNumber++;
+                SelectQuestion();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
+            }
+
         }
 
         /// <summary>
@@ -285,7 +311,6 @@ namespace KitchenFanatics.Forms
             lb_number3.Visible = false;
             lb_number4.Visible = false;
             lb_number5.Visible = false;
-            lb_number6.Visible = false;
             CLB_type.Visible = false;
 
             txt_number1.Text = "";
@@ -329,6 +354,28 @@ namespace KitchenFanatics.Forms
                 MessageBox.Show(varName + " kunne ikke konverteres til et decimaltal");
                 ValidDecimal = false;
                 return null;
+            }
+        }
+        
+        /// <summary>
+        /// Går et spørgsmål tilbage når man trykker på back
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // tjekker at det ikke allerede er det første spørgsmål
+                if (QuestionNumber > 0)
+                {
+                    QuestionNumber--;
+                    SelectQuestion();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex);
             }
         }
     }

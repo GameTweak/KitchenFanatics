@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KitchenFanatics.Services
 {
+    // Written by Thomas
     public class ItemTypeService
     {
         Repositories.ItemTypeRepository ItemTypesRepository = new Repositories.ItemTypeRepository();

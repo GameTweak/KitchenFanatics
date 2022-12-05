@@ -10,11 +10,10 @@ using System.Windows.Forms;
 
 namespace KitchenFanatics.Forms
 {
+    //Written by Thomas
     public partial class ItemOverviewIntCou : Form
-
-        //Written by Johanne
     {
-        //a list containing items from the item class is instantiated
+        //a list and a Models.Filter are initiated
         public List<Models.Item> AllItems { get; set; }
         public Models.Filter CurrentFilter { get; set; }
 
@@ -42,6 +41,11 @@ namespace KitchenFanatics.Forms
             dgw_itemoverview.DataSource = AllItems; 
         }
 
+        /// <summary>
+        /// Opens the intellectual counceling form when the button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_IntCouFormOpen_Click(object sender, EventArgs e)
         {
             OpenIntellectualCounceling();
@@ -55,6 +59,8 @@ namespace KitchenFanatics.Forms
             using (var form = new Intellectual_Counceling())
             {
                 var result = form.ShowDialog();
+
+                //checks whether or not DialogResult is OK, it will be OK as long as cancel in Intellectual counceling has not been clicked
                 if (result == DialogResult.OK)
                 {
                     // gets the filter from the form, and sends the filter to FilterData
@@ -75,6 +81,10 @@ namespace KitchenFanatics.Forms
             UpdateData(result);
         }
 
+        /// <summary>
+        /// Updates the DataGridView with new data
+        /// </summary>
+        /// <param name="items"></param>
         private void UpdateData(List<Models.Item> items)
         {
             dgw_itemoverview.DataSource = items;

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace KitchenFanatics.Models
 {
     //Written by Johanne
+
     public class Item
     {
         //the class is assigned fields, which are all made public 
@@ -37,10 +38,11 @@ namespace KitchenFanatics.Models
             this.Weight = weight;
             this.Tags = tags;
         }
-        
-        //a second constructor is addedl where the id is removed as a parameter 
+
+        //a second constructor is added where the id is removed as a parameter 
         public Item(string title, decimal price, int stock, int? category, decimal? width, decimal? height, decimal? depth, decimal? weight, string tags)
         {
+            //the fields of the class are assigned the value of the parameters in the contructor
             this.Title = title;
             this.Price = price;
             this.InStock = stock;
@@ -50,6 +52,60 @@ namespace KitchenFanatics.Models
             this.Depth = depth;
             this.Weight = weight;
             this.Tags = tags;
+        }
+
+        // Written by Esben 
+        // Another constructor that uses the Product table as a paramenter
+        public Item(Product product)
+        {
+            this.Id = product.ItemNR;
+            this.Title = product.ItemName;
+            this.Price = product.ItemPrice;
+            this.InStock = product.ItemStock;
+            this.ItemCategory = product.ItemCategory;
+            this.Width = product.ItemWidth;
+            this.Height = product.ItemHeight;
+            this.Depth = product.ItemDepth; ;
+            this.Weight = product.ItemWeight;
+            this.Tags = product.ItemTags;
+        }
+
+        //Written by Thomas
+        public string GetItemCategory
+        {
+            get
+            {
+                switch (ItemCategory)
+                {
+                    case 0:
+                        return string.Empty;
+                    case 1:
+                        return "Hjørneskab";
+                    case 2:
+                        return "Overskab";
+                    case 3:
+                        return "Underskab";
+                    case 4:
+                        return "Låger";
+                    case 5:
+                        return "Bordplader";
+                    case 6:
+                        return "Belysning";
+                    case 7:
+                        return "Reoler";
+                    case 8:
+                        return "Køkkenvaske";
+                    case 9:
+                        return "Knopper og greb";
+                    case 10:
+                        return "Skuffer";
+                    case 11:
+                        return "Rulleborde";
+                    case 12:
+                        return "Hvidevare";
+                    default: return string.Empty;
+                }
+            }
         }
     }
 }

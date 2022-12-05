@@ -45,14 +45,13 @@ namespace KitchenFanatics.Repositories
 
         public void updateCustomer(Models.Customer currentCustomer)
         {
-            Database.Customer updatedCustomer = new Database.Customer();
             var selectedCustomer = Customers.Single(Customer => Customer.CustomerID == currentCustomer.CustomerID);
             
-            updatedCustomer.FirstName = selectedCustomer.FirstName;
-            updatedCustomer.LastName = selectedCustomer.LastName;
-            updatedCustomer.Email = selectedCustomer.Email;
-            updatedCustomer.PhoneNumber = selectedCustomer.PhoneNumber;
-            updatedCustomer.CustomerAddress = selectedCustomer.CustomerAddress;
+            selectedCustomer.FirstName = currentCustomer.FirstName;
+            selectedCustomer.LastName = currentCustomer.LastName;
+            selectedCustomer.Email = currentCustomer.Email;
+            selectedCustomer.PhoneNumber = currentCustomer.phonenumber;
+            selectedCustomer.CustomerAddress = currentCustomer.Customeraddress;
 
             SubmitChanges();
         }

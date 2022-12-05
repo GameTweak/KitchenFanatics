@@ -83,12 +83,14 @@
             this.customerOverview_dgv.DataSource = this.customerBindingSource;
             this.customerOverview_dgv.Location = new System.Drawing.Point(12, 89);
             this.customerOverview_dgv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.customerOverview_dgv.MultiSelect = false;
             this.customerOverview_dgv.Name = "customerOverview_dgv";
             this.customerOverview_dgv.RowHeadersWidth = 51;
             this.customerOverview_dgv.RowTemplate.Height = 24;
+            this.customerOverview_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customerOverview_dgv.Size = new System.Drawing.Size(1039, 281);
             this.customerOverview_dgv.TabIndex = 1;
-            this.customerOverview_dgv.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RowClick_customer);
+            this.customerOverview_dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerOverview_dgv_CellDoubleClick);
             // 
             // customerIDDataGridViewTextBoxColumn
             // 

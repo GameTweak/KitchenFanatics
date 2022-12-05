@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,11 @@ using System.Windows.Forms;
 
 namespace KitchenFanatics.Forms
 {
+    /// <summary>
+    /// SalesModule is an overview of all sales
+    /// 
+    /// Written by Esben
+    /// </summary>
     public partial class SalesModule : Form
     {
         // Defines the services used in the from
@@ -28,6 +34,9 @@ namespace KitchenFanatics.Forms
         // Defines the binding source that will be holding the collection
         private BindingSource source = new BindingSource();
 
+        // A stopwatch for benchmarks
+        private Stopwatch watch = new Stopwatch();
+
         public SalesModule()
         {
             InitializeComponent();
@@ -40,6 +49,9 @@ namespace KitchenFanatics.Forms
         {
             try
             {
+                // Starts Watch
+                watch.Start();
+
                 // Sets the history to contain all the SaleHistories on the Database
                 history = saleService.GetSaleHistories();
 
@@ -48,6 +60,11 @@ namespace KitchenFanatics.Forms
 
                 // Binds the DGV to display the collection
                 DGV_SaleHistories.DataSource = source;
+
+                // Ends watch
+                watch.Stop();
+
+                this.Text = $"Salgsoversigt [{watch.ElapsedMilliseconds}ms]";
             }
             catch (Exception ex)
             {
@@ -94,7 +111,7 @@ namespace KitchenFanatics.Forms
         private void ClickToFilter(object sender, EventArgs e)
         {
             // Sorts the DGV by using a method from the SortingService
-            DGV_SaleHistories.DataSource = sorting.FilterSale(history, tb_Name.Text, tb_Email.Text, tb_Phone.Text, dtp_Start.Value, dtp_End.Value);
+            DGV_SaleHistories.DataSource = sorting.FilterSale(history, tb_FirstName.Text, tb_LastName.Text, tb_Email.Text, tb_Phone.Text, dtp_Start.Value, dtp_End.Value);
         }
 
         /// <summary>
@@ -104,11 +121,18 @@ namespace KitchenFanatics.Forms
         {
             try
             {
+
                 // Defines the CreateSale form
                 SaleEditor sale = new SaleEditor(true);
 
                 // Opens the form for the user
                 sale.ShowDialog();
+
+                // Adds new entry to DGV
+                source.Add(sale.History);
+
+                // Updates the list
+                source.ResetBindings(false);
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
             catch (Exception ex) { logger.LogError(ex); }
@@ -119,11 +143,18 @@ namespace KitchenFanatics.Forms
         {
             try
             {
+                SaleHistory selected = (SaleHistory) DGV_SaleHistories.CurrentRow.DataBoundItem;
+
+                selected.SaleLine = saleService.FetchSaleLines(selected);
+
                 // Defines the CreateSale form
-                SaleEditor sale = new SaleEditor(false, (SaleHistory)DGV_SaleHistories.CurrentRow.DataBoundItem);
+                SaleEditor sale = new SaleEditor(false, selected);
 
                 // Opens the form for the user
                 sale.ShowDialog();
+
+                // Updates the list
+                source.ResetBindings(false);
             }
             catch (NullReferenceException ex) { logger.LogError(ex); }
             catch (Exception ex) { logger.LogError(ex); }
@@ -160,7 +191,6 @@ namespace KitchenFanatics.Forms
                 // Throws an exception if an error occurs
                 logger.LogError(ex);
             }
-
         }
     }
 }

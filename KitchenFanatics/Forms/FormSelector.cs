@@ -21,8 +21,8 @@ namespace KitchenFanatics.Forms
 
         private void FormSelector_Load(object sender, EventArgs e)
         {
-            //when the program is started, the login form will show 
-            ShowLoginBox(); 
+            //call to a method, which will show a login box when the program starts 
+            ShowLoginBox();
         }
 
         private void btn_customer_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace KitchenFanatics.Forms
             //a new instance of the CustomerOverview form is created
             CustomerOverview customerOverviewForm = new CustomerOverview();
             //the form is opened
-            customerOverviewForm.ShowDialog(); 
+            customerOverviewForm.ShowDialog();
         }
 
         private void btn_item_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace KitchenFanatics.Forms
             //a new instance of the ItemOverview form is created
             ItemOverview itemOverviewForm = new ItemOverview();
             //the form is opened
-            itemOverviewForm.ShowDialog(); 
+            itemOverviewForm.ShowDialog();
         }
 
         private void btn_sale_Click(object sender, EventArgs e)
@@ -46,31 +46,34 @@ namespace KitchenFanatics.Forms
             //a new instance of the SalesModule form is created
             SalesModule saleModuleForm = new SalesModule();
             //the form is opened
-            saleModuleForm.ShowDialog(); 
+            saleModuleForm.ShowDialog();
         }
 
         private void btn_intelligentcounselling_Click(object sender, EventArgs e)
         {
-            //a new instance of the Intellectual_Counceiling form is created
-            Intellectual_Counceling intellectualCounceilingForm = new Intellectual_Counceling();
+            //a new instance of the ItemOverviewIntCou form is created
+            ItemOverviewIntCou ItemOverviewIntCouForm = new ItemOverviewIntCou();
             //the form is opened
-            intellectualCounceilingForm.ShowDialog(); 
+            ItemOverviewIntCouForm.ShowDialog();
         }
 
+        /// <summary>
+        /// Shows the Login form
+        /// </summary>
         public void ShowLoginBox()
         {
+            //a new instance of the Login form is created
             Login loginForm = new Login();
-            var loginResult = loginForm.ShowDialog(); 
-            if(loginResult != DialogResult.OK)
-            {
-                Application.Exit(); 
-            }
-        }
+            //the form is opened
+            var loginResult = loginForm.ShowDialog();
 
-        private void btn_IntelligentCouncel_Click(object sender, EventArgs e)
-        {
-            ItemOverviewIntCou itemOverviewIntCou = new ItemOverviewIntCou();
-            itemOverviewIntCou.ShowDialog();
+            //checks if the dialogresult of the login form is NOT ok
+            if (loginResult != DialogResult.OK)
+            {
+                //if the dialogresult is NOT ok the application will close 
+                //this prevents the user from using the program without logging in 
+                Application.Exit();
+            }
         }
     }
 }

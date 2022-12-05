@@ -42,13 +42,19 @@ namespace KitchenFanatics.Services
         }
 
         /// <summary>
-        /// Edits an already excisting sale
+        /// Edits an already existing sale
         /// </summary>
         /// <param name="history">Sale history to edit</param>
         public void EditSale(SaleHistory history)
         {
             SaleRepository saleRepository = new SaleRepository();
             saleRepository.EditSale(history);
+        }
+
+        public List<SaleLine> FetchSaleLines(SaleHistory history)
+        {
+            SaleRepository saleRepository = new SaleRepository();
+            return saleRepository.FetchItemsFromSale(history);
         }
     }
 }

@@ -16,9 +16,28 @@ namespace KitchenFanatics.Forms
         //Written by Thomas
         //A connection to the logService
         LogService logService = new LogService();
+
+        //Boolean to check if the form is currently edditing a cutsomer
+        private bool EditingCustomer = new bool();
+
+        private Models.Customer customer;
+
+        //A constructor for creating new customers
         public CreateCustomer()
         {
             InitializeComponent();
+            this.Text = "Create new customer";
+            EditingCustomer = false;
+        }
+
+        //A constructor for editing an existing customer
+        public CreateCustomer(Models.Customer currentCustomer)
+        {
+            InitializeComponent();
+            customer = currentCustomer;
+            this.Text = "Edit customer: " + currentCustomer.FullName;
+            EditingCustomer = true;
+            LoadCustomer();
         }
 
         /// <summary>
@@ -134,12 +153,30 @@ namespace KitchenFanatics.Forms
             // makes a new connection to the CustomerService
             var customerService = new CustomerService();
 
-            // makes a Models.Customer named NewCustomer, with all the data inserted into the form
-            Models.Customer NewCustomer = new Models.Customer(createCustomerFirstName_tb.Text, createCustomerLastName_tb.Text, createCustomerMail_tb.Text, createCustomerAddress_tb.Text, createCustomerPhoneNumber_tb.Text, null);
-            // saves the customer
-            customerService.createCustomer(NewCustomer);
+            if (EditingCustomer == false)
+            {
+                // makes a Models.Customer named NewCustomer, with all the data inserted into the form
+                Models.Customer NewCustomer = new Models.Customer(createCustomerFirstName_tb.Text, createCustomerLastName_tb.Text, createCustomerMail_tb.Text, createCustomerAddress_tb.Text, createCustomerPhoneNumber_tb.Text, null);
+                // saves the customer
+                customerService.createCustomer(NewCustomer);
+            }
+            else if (EditingCustomer == true)
+            {
+                // makes a Models.Customer named EditedCustomer, with all the data inserted into the form
+                Models.Customer EditedCustomer = new Models.Customer(createCustomerFirstName_tb.Text, createCustomerLastName_tb.Text, createCustomerMail_tb.Text, createCustomerAddress_tb.Text, createCustomerPhoneNumber_tb.Text, customer.CustomerID);
+                // Updates the customer
+                customerService.updateCustomer(EditedCustomer);
+            }
         }
 
+        private void LoadCustomer()
+        {
+            createCustomerFirstName_tb.Text = customer.FirstName;
+            createCustomerLastName_tb.Text = customer.LastName;
+            createCustomerMail_tb.Text = customer.Email;
+            createCustomerPhoneNumber_tb.Text = customer.phonenumber;
+            createCustomerAddress_tb.Text = customer.Customeraddress;
+        }
         /// <summary>
         /// makes it so the phonenumber only accepts numbers
         /// </summary>

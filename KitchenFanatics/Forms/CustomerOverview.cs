@@ -55,20 +55,10 @@ namespace KitchenFanatics.Forms
         /// <param name="e"></param>
         private void createCustomer_Click(object sender, EventArgs e)
         {
-            CreateCustomer customer = new CreateCustomer();
-        }
-
-        /// <summary>
-        /// A method for when you click the on a the rowheader
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RowClick_customer(object sender, DataGridViewCellMouseEventArgs e)
-        {
             ///Create a new instance of the CreateCustomer Form
-            CreateCustomer form = new CreateCustomer();
+            CreateCustomer customer = new CreateCustomer();
             ///Shows the CreateCustomer form as a dialog box
-            form.ShowDialog();
+            customer.ShowDialog();
         }
 
         // <summary>
@@ -235,6 +225,15 @@ namespace KitchenFanatics.Forms
                 ///Calls the UpdateUI method
                 UpdateUI();
             }
+        }
+
+        private void customerOverview_dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Customer SelectedCustomer = (Customer)customerOverview_dgv.SelectedRows[0].DataBoundItem;
+            ///Create a new instance of the CreateCustomer Form
+            CreateCustomer customer = new CreateCustomer(SelectedCustomer);
+            ///Shows the CreateCustomer form as a dialog box
+            customer.ShowDialog();
         }
     }
 }
